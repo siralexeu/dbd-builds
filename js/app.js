@@ -70,6 +70,7 @@
     search: svg(15, '<circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/>'),
     lines: svg(16, '<path d="M4 6h16M4 12h11M4 18h7"/>'),
     chevron: svg(16, '<path d="M9 6l6 6-6 6"/>'),
+    save: svg(16, '<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>'),
     close: svg(18, '<path d="M6 6l12 12M18 6L6 18"/>', 'stroke-width="2.4"'),
   };
 
@@ -157,16 +158,46 @@
     }));
   }
 
+  /* builds come from js/builds.js (the file you commit, written by "Save builds to file") or from this
+     browser's localStorage (your edits since) — whichever is newer; with neither, the starter builds */
   function load() {
+    const valid = (s) => s && s.killers && Array.isArray(s.survivor);
+    let local = null;
+    try { local = JSON.parse(localStorage.getItem(STORE_KEY)); } catch (_) { /* storage blocked or corrupt */ }
+    const file = window.DBD_BUILDS ? JSON.parse(JSON.stringify(window.DBD_BUILDS)) : null;
+    const s = valid(local) && (!valid(file) || (local.updatedAt || 0) >= (file.updatedAt || 0)) ? local
+      : valid(file) ? file : null;
+    if (!s) return seed();
+    D.killers.forEach((k) => { if (!Array.isArray(s.killers[k.id])) s.killers[k.id] = []; });
+    migrate(s);
+    return ensureV1(s);
+  }
+
+  /* writes every build into js/builds.js — save it over the one in the project folder, then commit it.
+     Chrome / Edge let you pick where to save it; other browsers download it to Downloads. */
+  const canSaveFile = ["localhost", "127.0.0.1", ""].includes(location.hostname); // only on your own computer
+  async function exportBuilds() {
+    const text = `/* Your builds — written by the "Save builds to file" button on the home page.
+   Save it over js/builds.js in the project folder and commit it; the site loads it for everyone. */
+window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
+`;
     try {
-      const s = JSON.parse(localStorage.getItem(STORE_KEY));
-      if (s && s.killers && Array.isArray(s.survivor)) {
-        D.killers.forEach((k) => { if (!Array.isArray(s.killers[k.id])) s.killers[k.id] = []; });
-        migrate(s);
-        return ensureV1(s);
+      if (window.showSaveFilePicker) {
+        const handle = await window.showSaveFilePicker({ suggestedName: "builds.js", types: [{ description: "JavaScript", accept: { "text/javascript": [".js"] } }] });
+        const out = await handle.createWritable();
+        await out.write(text);
+        await out.close();
+        return toast("Builds saved. Commit js/builds.js to put them on GitHub.");
       }
-    } catch (_) { /* storage blocked or corrupt — fall back to seed */ }
-    return seed();
+    } catch (err) {
+      if (err && err.name === "AbortError") return; // closed the save window
+    }
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([text], { type: "text/javascript" }));
+    a.download = "builds.js";
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    toast("builds.js downloaded. Move it into the project's js folder, then commit it.");
   }
 
   let state = load();
@@ -421,6 +452,7 @@
 
   function renderHome() {
     return `${hero(true)}
+      ${canSaveFile ? `<div class="save-file"><button class="save-file-btn" data-action="export">${ICONS.save} Save builds to file</button></div>` : ""}
       <div class="role-cards">
         <a class="role-card killer" href="#/killers">
           <kbd class="role-key">Q</kbd><h2>Killers</h2>
@@ -876,6 +908,7 @@
       case "pick": openPicker(id, el.dataset.slot, el.dataset.index); break;
       case "alts": openAlts(id, +el.dataset.index); break;
       case "alt-drop": toggleDrop(el); break;
+      case "export": exportBuilds(); break;
       case "alt-remove": { const { b } = locate(altState.buildId); b.alts[altState.p].splice(+el.dataset.index, 1); if (!b.alts[altState.p].length) delete b.alts[altState.p]; save(); render(); break; }
       case "alts-close": closeAlts(); break;
       case "close": closeOverlay(); break;

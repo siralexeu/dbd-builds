@@ -48,6 +48,14 @@ main { padding: 0 16px; }
 .page-list .hero { padding-top: 36px; }
 .updated { margin: 16px 0 0; font-size: 16px; font-weight: 400; }
 .updated + .updated { margin-top: 4px; }
+/* home page, only on your own computer: writes every build into js/builds.js */
+.save-file { display: flex; justify-content: center; margin: -8px 0 24px; }
+.save-file-btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; cursor: pointer;
+  font: 600 13px/1 var(--font); color: #ddd; background: var(--card);
+  border: 1px solid var(--edge); border-radius: 6px;
+}
+.save-file-btn:hover { border-color: var(--accent); color: #fff; }
 
 .logo-mark {
   width: 1.3em; height: 1.3em; flex: none; border-radius: 50%;
