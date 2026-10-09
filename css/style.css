@@ -1,0 +1,603 @@
+:root {
+  --bg: #0f0f10;
+  --card: #171717;
+  --card-2: #1e1e1f;
+  --edge: #262626;
+  --edge-2: #3a3a3b;
+  --txt: rgba(255, 255, 255, .87);
+  --dim: #8b8b8d;
+  --dim-2: #5c5c5f;
+  --accent: #cf2a4e;
+  --accent-hi: #e0355c;
+  --accent-dark: #7c1430;
+
+  --font: "Lexend", "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { background: var(--bg); }
+body {
+  margin: 0; min-height: 100vh;
+  font-family: var(--font); font-size: 16px; line-height: 1.5;
+  color: var(--txt); background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+body.locked { overflow: hidden; }
+button, input, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+main { padding: 0 16px; }
+
+/* ---------- hero ---------- */
+.hero { text-align: center; padding: 56px 0 8px; }
+.hero h1 { margin: 0; line-height: 1; font-weight: 700; }
+.hero-top {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: clamp(20px, 3vw, 30px); font-weight: 700;
+}
+.hero-top .accent { color: var(--accent); }
+.hero-big {
+  display: block; margin-top: 8px;
+  font-size: clamp(40px, 7vw, 72px); letter-spacing: .01em; text-transform: uppercase;
+  color: #e6e6e6;
+}
+.page-list .hero { padding-top: 36px; }
+.updated { margin: 16px 0 0; font-size: 16px; font-weight: 400; }
+.updated + .updated { margin-top: 4px; }
+
+.logo-mark {
+  width: 1.3em; height: 1.3em; flex: none; border-radius: 50%;
+  display: grid; place-items: center;
+  background: radial-gradient(circle at 50% 35%, #3a0f1b, #140609);
+  border: 2px solid var(--accent);
+}
+.logo-mark::before {
+  content: ""; width: 40%; height: 40%; transform: rotate(45deg);
+  background: var(--accent); box-shadow: 0 0 10px var(--accent);
+}
+
+/* ---------- home role cards ---------- */
+.role-cards {
+  max-width: 740px; margin: 32px auto 64px;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px;
+}
+.role-card {
+  position: relative; display: flex; flex-direction: column; align-items: center; gap: 18px;
+  padding: 18px 16px 22px;
+  border-radius: 8px; border: 2px solid;
+  transition: transform .2s, filter .2s;
+}
+.role-card:hover { transform: translateY(-3px); filter: brightness(1.12); }
+.role-card h2 { margin: 0; font-size: 24px; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; color: #ececec; }
+/* the whole emblem stays visible — no cropping */
+.role-card img {
+  width: min(80%, 256px); height: auto; aspect-ratio: 1; object-fit: contain;
+  filter: drop-shadow(0 8px 14px rgba(0,0,0,.45));
+}
+.role-key {
+  position: absolute; top: 18px; font-family: inherit; font-size: 16px; font-weight: 400;
+  color: rgba(255,255,255,.3);
+}
+.role-card.killer .role-key { left: 18px; }
+.role-card.survivor .role-key { right: 18px; }
+@media (hover: none) { .role-key { display: none; } }
+.role-card.killer { border-color: #8f2433; background: linear-gradient(180deg, #1c1415 0%, #7b1f2c 100%); }
+.role-card.survivor { border-color: #4b5b6b; background: linear-gradient(180deg, #1b1d21 0%, #475a6b 100%); }
+
+/* ---------- list page ---------- */
+.corner-nav {
+  position: fixed; top: 14px; right: 16px; z-index: 30;
+  display: flex; gap: 10px;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 14px; border: 0; border-radius: 6px;
+  background: var(--accent); color: #fff; font-size: 15px; font-weight: 500; text-transform: uppercase;
+  transition: background .15s, transform .1s;
+}
+.btn:hover { background: var(--accent-hi); }
+.btn:active { transform: translateY(1px); }
+.btn.plain { text-transform: none; }
+
+.search {
+  position: relative; width: min(100%, 340px); margin: 24px auto 0;
+}
+.search svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--dim); }
+.search input {
+  width: 100%; padding: 10px 12px 10px 36px; border-radius: 6px;
+  background: var(--card); border: 1px solid var(--edge-2); font-size: 14px;
+}
+.search input::placeholder { color: var(--dim); }
+.search input:focus { outline: none; border-color: var(--accent); }
+
+.page-title {
+  width: fit-content; margin: 44px auto 0; padding-bottom: 4px;
+  font-size: 30px; font-weight: 700; text-align: center;
+  border-bottom: 3px solid var(--accent);
+}
+.page-sub { margin: 10px 0 0; text-align: center; color: var(--dim); }
+
+/* ---------- killer grid ---------- */
+.kgrid {
+  max-width: 1080px; margin: 26px auto 0;
+  display: grid; gap: 12px;
+  grid-template-columns: repeat(auto-fill, 156px); justify-content: center;
+}
+.ktile {
+  /* portraits come with their own coloured background + black frame (character pack); the tile matches the frame shape */
+  position: relative; display: block; aspect-ratio: 43 / 50; overflow: hidden;
+  border-radius: 6px; border: 2px solid #3d3d40;
+  background: #0c0c0d;
+  transition: transform .18s, border-color .18s, box-shadow .18s;
+}
+.ktile:hover { transform: translateY(-3px); border-color: #77777c; }
+.ktile.active { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 8px 26px -8px var(--accent); }
+.ktile-face { position: absolute; inset: 0; display: grid; place-items: center; }
+.ktile-face img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.ktile-face .initial { font-size: 92px; font-weight: 700; line-height: 1; color: rgba(255,255,255,.13); }
+.ktile-label {
+  position: absolute; inset: auto 0 0; padding: 26px 10px 9px;
+  display: flex; flex-direction: column; text-align: center;
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,.88) 55%);
+}
+.ktile-label b { font-size: 15px; font-weight: 600; line-height: 1.2; }
+.ktile-label small { font-size: 12px; color: var(--dim); }
+
+/* ---------- build card ---------- */
+.bcard {
+  position: relative; display: flex; flex-direction: column;
+  background: var(--card); border: 1px solid var(--edge); border-radius: 6px;
+  padding: 14px 14px 18px;
+}
+.bcard-head { border-bottom: 1px solid var(--edge-2); padding-bottom: 12px; }
+.bcard-title {
+  margin: 0; text-align: center; font-size: 24px; font-weight: 700; line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+.bcard-name {
+  width: 100%; text-align: center; font-size: 20px; font-weight: 600;
+  background: var(--bg); border: 1px solid var(--edge-2); border-radius: 6px; padding: 2px 8px;
+}
+.bcard-name:focus { outline: none; border-color: var(--accent); }
+.bcard-tools {
+  display: flex; justify-content: flex-end; gap: 2px; margin: 10px -10px -10px 0;
+  opacity: 0; transition: opacity .15s;
+}
+.bcard:hover .bcard-tools, .bcard:focus-within .bcard-tools, .bcard.editing .bcard-tools { opacity: 1; }
+@media (hover: none) { .bcard-tools { opacity: 1; } }
+.tool {
+  width: 30px; height: 30px; display: grid; place-items: center; padding: 0;
+  border: 0; border-radius: 6px; background: transparent; color: var(--dim);
+}
+.tool:hover { background: var(--card-2); color: var(--txt); }
+.tool.danger:hover { color: var(--accent-hi); }
+.tool.done { width: auto; padding: 0 10px; background: var(--accent); color: #fff; font-size: 13px; font-weight: 500; }
+.tool.done:hover { background: var(--accent-hi); }
+
+/* the 4 perks share the card width (diamond tips almost touching, like in-game) */
+/* perks: 88px diamonds, 12px apart, centred — same as otzdarva's build cards */
+.perks { display: flex; justify-content: center; gap: 12px; padding: 12px 0 10px; }
+.perks .slot-perk { width: 88px; height: 88px; flex: none; }
+.perks .ico-perk { width: 100%; height: 100%; }
+
+.loadout {
+  display: flex; justify-content: center; align-items: center; gap: 14px; flex-wrap: wrap;
+  border-top: 1px solid var(--edge-2); padding-top: 14px;
+}
+.loadout .divider { width: 1px; height: 30px; background: var(--edge-2); margin: 0 6px; }
+/* survivor item + add-ons connected by a line (like the in-game loadout) */
+.chain { display: flex; align-items: center; }
+.chain .link { width: 24px; height: 3px; background: #050505; box-shadow: 0 0 0 1px rgba(255,255,255,.04); }
+.chain .link-item { width: 48px; }
+.loadout-label { font-size: 11px; color: var(--dim-2); text-transform: uppercase; letter-spacing: .12em; margin-right: 2px; }
+
+/* survivor builds: portrait column on the left */
+.bcard.with-portrait { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 16px; align-items: center; }
+.bcard-main { display: flex; flex-direction: column; min-width: 0; }
+/* a bit less room next to the portrait: slightly smaller loadout so item — add-ons | offering stay on one row */
+.with-portrait .ico-item { width: 60px; height: 60px; }
+.with-portrait .ico-addon, .with-portrait .ico-offering { width: 56px; height: 56px; }
+.with-portrait .perks { gap: 8px; }
+.with-portrait .perks .slot-perk { width: 80px; height: 80px; }
+.with-portrait .chain .link { width: 16px; }
+.with-portrait .chain .link-item { width: 34px; }
+.with-portrait .loadout { gap: 10px; }
+.bportrait {
+  position: relative; display: grid; place-items: center; width: 100%; aspect-ratio: 43 / 50; padding: 0;
+  border-radius: 6px; overflow: hidden; border: 2px solid #2c2c2f; background: #0c0c0d; color: var(--dim);
+}
+.bportrait img { width: 100%; height: 100%; object-fit: cover; }
+.bportrait img.emblem { width: 62%; height: auto; opacity: .16; }
+.bportrait .choose { position: absolute; bottom: 10px; left: 0; right: 0; text-align: center; font-size: 12px; font-weight: 600; color: var(--dim); }
+button.bportrait:hover { border-color: var(--accent); }
+button.bportrait:hover .choose { color: var(--txt); }
+.build-grid.survivors-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 520px), 1fr)); max-width: 1100px; }
+
+/* picker: survivor portraits */
+.ico-survivor { width: 76px; height: 88px; border-radius: 5px; overflow: hidden; background: #0c0c0d; }
+.ico-survivor img { width: 100%; height: 100%; object-fit: cover; }
+.opt .ico-survivor { width: 76px; height: 88px; }
+.picker-detail .ico-survivor { width: 62px; height: 72px; }
+
+/* ---------- slots & icons ---------- */
+.slot { position: relative; padding: 0; border: 0; background: transparent; display: grid; place-items: center; }
+.slot[disabled] { cursor: default; }
+.slot { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+span.slot[data-tip] { cursor: pointer; }
+/* hover / hold: a subtle aura in the icon's rarity colour that follows its shape (drop-shadow) */
+.slot.glow .ico, .opt:not(:disabled):hover .ico, .opt:focus-visible .ico {
+  filter: drop-shadow(0 0 1px color-mix(in srgb, var(--rc) 95%, transparent)) drop-shadow(0 0 6px color-mix(in srgb, var(--rc) 60%, transparent));
+}
+.slot-perk { width: 92px; height: 92px; }
+
+.ico {
+  --rc: #555;
+  position: relative; display: grid; place-items: center;
+  font-weight: 700; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.6);
+}
+.ico img { position: relative; z-index: 1; width: 96%; height: 96%; object-fit: contain; pointer-events: none; -webkit-user-drag: none; }
+.ico-txt { position: relative; z-index: 1; font-size: 15px; letter-spacing: .02em; }
+
+/* official in-game frames — the backgrounds deadbydaylight.wiki.gg itself uses (MediaWiki:Base64Files.css);
+   the white icon sits on the rarity background. Ultra rare = the wiki's "visceral". */
+.r-common    { --rc: #a7845c; --addon-bg: url(../img/ui/common-addon.png);     --item-bg: url(../img/ui/common-item.png);     --offering-bg: url(../img/ui/common-offering.png); }
+.r-uncommon  { --rc: #5fae4f; --addon-bg: url(../img/ui/uncommon-addon.png);   --item-bg: url(../img/ui/uncommon-item.png);   --offering-bg: url(../img/ui/uncommon-offering.png); }
+.r-rare      { --rc: #5a8fd6; --addon-bg: url(../img/ui/rare-addon.png);       --item-bg: url(../img/ui/rare-item.png);       --offering-bg: url(../img/ui/rare-offering.png); }
+.r-veryrare  { --rc: #a66cd4; --addon-bg: url(../img/ui/very-rare-addon.png);  --item-bg: url(../img/ui/very-rare-item.png);  --offering-bg: url(../img/ui/very-rare-offering.png); }
+.r-ultrarare { --rc: #e5476f; --addon-bg: url(../img/ui/visceral-addon.png);   --item-bg: url(../img/ui/visceral-item.png);   --offering-bg: url(../img/ui/visceral-offering.png); }
+.r-event     { --rc: #e8a23a; --addon-bg: url(../img/ui/event-item.png);       --item-bg: url(../img/ui/event-item.png);      --offering-bg: url(../img/ui/event-offering.png); }
+
+/* perk: the wiki's very-rare perk diamond (purple, tier III) */
+.ico-perk {
+  --rc: #a66cd4;
+  width: 92px; height: 92px;
+  background: url(../img/ui/very-rare-perk.png) center / contain no-repeat;
+}
+.ico-perk img { width: 92%; height: 92%; }
+.ico-perk .ico-txt { font-size: 16px; }
+
+.ico-addon {
+  width: 64px; height: 64px;
+  background: var(--addon-bg, url(../img/ui/common-addon.png)) center / contain no-repeat;
+}
+/* killer power: brown square frame like in the game's loadout */
+.ico-power {
+  --rc: #a7845c;
+  width: 68px; height: 68px;
+  background: url(../img/ui/common-item.png) center / contain no-repeat;
+}
+.ico-item {
+  width: 68px; height: 68px;
+  background: var(--item-bg, url(../img/ui/common-item.png)) center / contain no-repeat;
+}
+.ico-addon .ico-txt, .ico-item .ico-txt, .ico-offering .ico-txt { font-size: 12px; }
+.ico-offering {
+  width: 64px; height: 64px;
+  background: var(--offering-bg, url(../img/ui/common-offering.png)) center / contain no-repeat;
+}
+.ico-offering img { width: 86%; height: 86%; }
+
+/* empty slots: the same frames, greyed out */
+.ico.empty { color: var(--dim); text-shadow: none; filter: grayscale(1) brightness(.42); }
+.ico-addon.empty { background-image: url(../img/ui/common-addon.png); }
+.ico-item.empty { background-image: url(../img/ui/common-item.png); }
+.ico-offering.empty { background-image: url(../img/ui/common-offering.png); }
+.ico .plus { position: relative; z-index: 1; font-size: 22px; font-weight: 400; color: #fff; opacity: 0; }
+.bcard.editing .ico .plus { opacity: 1; }
+.bcard.editing .slot:hover .ico.empty { filter: grayscale(1) brightness(.7); }
+
+/* ---------- builds grid & layouts ---------- */
+.close-btn {
+  width: 34px; height: 34px; display: grid; place-items: center; padding: 0;
+  border: 0; border-radius: 6px; background: var(--accent); color: #fff;
+}
+.close-btn:hover { background: var(--accent-hi); }
+.build-grid {
+  display: grid; gap: 22px 28px;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr));
+}
+.survivors-grid { max-width: 1240px; margin: 30px auto 0; }
+
+/* ---------- pop-up with a killer's builds ---------- */
+.overlay {
+  position: fixed; inset: 0; z-index: 40; overflow-y: auto;
+  display: flex; padding: 40px 80px;
+  background: rgba(0, 0, 0, .75);
+}
+.popup-box {
+  position: relative; margin: auto; width: 100%; max-width: 1000px;
+  padding: 26px 36px 36px;
+  background: #121213; border: 1px solid var(--edge-2); border-radius: 10px;
+  box-shadow: 0 30px 80px -10px rgba(0,0,0,.85);
+}
+.popup-close { position: absolute; top: 14px; right: 14px; }
+.sec-title {
+  display: flex; align-items: center; gap: 26px; margin: 0 40px;
+  font-size: 30px; font-weight: 700; line-height: 1.2; white-space: nowrap;
+}
+.sec-title::before, .sec-title::after {
+  content: ""; flex: 1; height: 1px; min-width: 20px;
+  background: linear-gradient(90deg, transparent, var(--accent));
+}
+.sec-title::after { background: linear-gradient(90deg, var(--accent), transparent); }
+.popup-meta { margin: 6px 0 28px; text-align: center; color: var(--dim); font-size: 14px; }
+.popup-meta b { color: var(--txt); font-weight: 500; }
+.popup-meta .sep { margin: 0 8px; color: var(--dim-2); }
+.popup-box .build-grid { gap: 24px 32px; }
+.popup-nav {
+  position: fixed; top: 50%; transform: translateY(-50%); z-index: 2;
+  width: 48px; height: 48px; display: grid; place-items: center; border-radius: 50%;
+  background: #1e1e1f; border: 1px solid var(--edge-2); color: var(--txt);
+}
+.popup-nav:hover { background: var(--accent); border-color: var(--accent); }
+.popup-nav.prev { left: 16px; }
+.popup-nav.next { right: 16px; }
+.overlay.opening { animation: fade .18s ease-out; }
+.overlay.opening .popup-box { animation: pop .22s cubic-bezier(.2, .8, .2, 1); }
+@keyframes pop { from { transform: translateY(14px) scale(.98); opacity: 0; } }
+@keyframes fade { from { opacity: 0; } }
+
+.add-tile {
+  min-height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+  border-radius: 6px; border: 2px dashed var(--edge-2); background: transparent; color: var(--dim);
+  font-size: 16px; font-weight: 600; transition: color .15s, border-color .15s, background .15s;
+}
+.add-tile .plus-circle {
+  width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%;
+  border: 2px solid currentColor; font-size: 26px; font-weight: 300; line-height: 1;
+}
+.add-tile:hover { color: var(--accent); border-color: var(--accent); background: rgba(207,42,78,.05); }
+.popup-box .add-tile { min-height: 220px; }
+
+.bcard.flash { animation: flash 1.2s ease-out; }
+@keyframes flash { from { box-shadow: 0 0 0 2px var(--accent); } to { box-shadow: 0 0 0 2px transparent; } }
+
+/* ---------- tooltip ---------- */
+.tip {
+  position: fixed; z-index: 60; max-width: min(380px, calc(100vw - 16px)); pointer-events: none;
+  background: #111112; border: 1px solid var(--edge-2); border-radius: 6px;
+  padding: 10px 12px; box-shadow: 0 10px 30px rgba(0,0,0,.6);
+}
+.tip .tip-name { display: block; font-size: 15px; }
+.tip.pinned { pointer-events: auto; max-height: min(72vh, 560px); overflow-y: auto; scrollbar-width: thin; }
+.tip small { display: block; color: var(--accent); font-size: 12px; margin-top: 1px; }
+.tip small.r { color: var(--rc); }
+/* perk descriptions (from the wiki): paragraphs, lists, tier values in the game's tier colours */
+.desc { margin-top: 6px; font-size: 13px; line-height: 1.45; color: #c9c6c1; }
+.desc p { margin: 0 0 6px; }
+.desc p:last-child { margin-bottom: 0; }
+.desc ul { margin: 0 0 6px; padding-left: 18px; }
+.desc li { margin: 2px 0; }
+.desc b { color: #fff; font-weight: 600; }
+.desc .t1 { color: #2fbf37; }
+.desc .t2 { color: #3aa8e8; }
+.desc .t3 { color: #b85cf0; }
+.desc .neg { color: #e5484d; }
+.tip .desc { font-size: 12.5px; }
+
+/* ---------- picker dialog ---------- */
+#picker {
+  width: min(760px, calc(100vw - 32px)); max-height: min(82vh, 760px);
+  padding: 0; border-radius: 8px; border: 1px solid var(--edge-2);
+  background: var(--card); color: var(--txt);
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,.85);
+}
+#picker[open] { display: flex; flex-direction: column; }
+#picker::backdrop { background: rgba(0,0,0,.72); }
+.picker-head { display: flex; align-items: center; justify-content: space-between; padding: 14px 14px 4px 20px; }
+.picker-head h2 { margin: 0; font-size: 20px; font-weight: 700; }
+.picker-search { padding: 8px 20px 12px; }
+.picker-search input {
+  width: 100%; padding: 9px 12px; border-radius: 6px; font-size: 14px;
+  background: var(--bg); border: 1px solid var(--edge-2);
+}
+.picker-search input:focus { outline: none; border-color: var(--accent); }
+.picker-list {
+  flex: 1; overflow-y: auto; padding: 4px 14px 14px;
+  display: grid; gap: 4px; align-content: start;
+  grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
+}
+.picker-empty { grid-column: 1 / -1; padding: 30px 10px; text-align: center; color: var(--dim); }
+.opt {
+  position: relative; display: flex; flex-direction: column; align-items: center; gap: 8px;
+  padding: 10px 6px; border-radius: 6px; border: 1px solid transparent; background: transparent;
+}
+.opt:hover:not(:disabled), .opt:focus-visible { background: var(--card-2); border-color: var(--edge-2); outline: none; }
+.opt.is-current { border-color: var(--accent); background: rgba(207,42,78,.08); }
+.opt:disabled { opacity: .35; cursor: not-allowed; }
+.opt .ico-wrap { height: 90px; display: grid; place-items: center; }
+.opt .ico-perk { width: 88px; height: 88px; }
+.opt .ico-addon, .opt .ico-item { width: 72px; height: 72px; }
+.opt .ico-offering { width: 72px; height: 72px; }
+.picker-detail .ico-perk { width: 72px; height: 72px; }
+.picker-detail .ico-addon, .picker-detail .ico-item { width: 60px; height: 60px; }
+.picker-detail .ico-offering { width: 60px; height: 60px; }
+.opt-name { font-size: 12.5px; line-height: 1.25; text-align: center; }
+.opt-tag {
+  position: absolute; top: 6px; right: 6px; font-size: 9.5px; letter-spacing: .06em; text-transform: uppercase;
+  padding: 1px 5px; border-radius: 4px; background: var(--edge-2); color: var(--dim);
+}
+.picker-detail {
+  border-top: 1px solid var(--edge); padding: 14px 20px 16px; min-height: 92px;
+  display: flex; gap: 18px; align-items: center; background: rgba(0,0,0,.2);
+}
+.picker-detail .d-body { flex: 1; min-width: 0; }
+.picker-detail h3 { margin: 0 0 4px; font-size: 17px; font-weight: 600; }
+.picker-detail p { margin: 6px 0 0; color: var(--dim); font-size: 13px; }
+.picker-detail .desc { max-height: 170px; overflow-y: auto; padding-right: 6px; scrollbar-width: thin; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font-size: 11px; padding: 1px 8px; border-radius: 99px; border: 1px solid var(--edge-2); color: var(--dim); }
+.chip.rarity { color: var(--rc); border-color: color-mix(in srgb, var(--rc) 50%, transparent); }
+.btn-outline {
+  padding: 6px 12px; border-radius: 6px; border: 1px solid var(--edge-2); background: transparent; font-size: 14px;
+}
+.btn-outline:hover { border-color: var(--accent); color: var(--accent-hi); }
+
+/* ---------- toast & footer ---------- */
+.toast {
+  position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%);
+  z-index: 70; display: flex; align-items: center; gap: 14px;
+  padding: 10px 10px 10px 16px; border-radius: 8px; font-size: 14px;
+  background: #1c1c1d; border: 1px solid var(--edge-2); box-shadow: 0 12px 40px rgba(0,0,0,.6);
+}
+.toast button { border: 0; background: transparent; color: var(--accent-hi); font-weight: 600; padding: 6px 10px; border-radius: 6px; }
+.toast button:hover { background: var(--card-2); }
+
+.site-foot { padding: 80px 16px 40px; text-align: center; color: var(--dim-2); font-size: 14px; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 700px) {
+  .bcard.with-portrait { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .bportrait { width: 128px; justify-self: center; }
+  .with-portrait .ico-item, .with-portrait .ico-addon, .with-portrait .ico-offering { width: 58px; height: 58px; }
+  .with-portrait .chain .link { width: 12px; }
+  .with-portrait .chain .link-item { width: 24px; }
+  .with-portrait .loadout { gap: 8px; }
+  .role-cards { gap: 10px; }
+  .role-card { padding: 16px 10px 20px; gap: 14px; }
+  .role-key { top: 12px; font-size: 16px; }
+  .role-card.killer .role-key { left: 12px; }
+  .role-card.survivor .role-key { right: 12px; }
+  .role-card h2 { font-size: clamp(18px, 6vw, 32px); }
+  .corner-nav { top: auto; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); right: 50%; transform: translateX(50%);
+    background: #1a1a1b; border: 1px solid var(--edge-2); border-radius: 10px; padding: 10px 12px; box-shadow: 0 10px 30px rgba(0,0,0,.6); }
+  .kgrid { grid-template-columns: repeat(auto-fill, 104px); gap: 8px; }
+  .ktile-face .initial { font-size: 60px; }
+  .overlay { padding: 10px 8px 84px; }
+  .popup-box { padding: 20px 12px 20px; }
+  .popup-close { top: 10px; right: 10px; }
+  .sec-title { gap: 12px; margin: 0 40px 0 0; font-size: 24px; }
+  .popup-nav { top: auto; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); transform: none; }
+  .popup-nav.prev { left: calc(50% - 60px); }
+  .popup-nav.next { right: calc(50% - 60px); }
+  .bcard { padding-inline: 14px; }
+  .bcard-title { font-size: 20px; }
+  .perks { padding: 10px 0 8px; gap: 4px; }
+  .perks .slot-perk, .with-portrait .perks .slot-perk { width: min(72px, 22vw); height: min(72px, 22vw); }
+  .ico-item, .ico-power, .ico-addon, .ico-offering { width: 58px; height: 58px; }
+  .loadout { gap: 8px; }
+  .loadout .divider { margin: 0 2px; }
+  .chain .link { width: 12px; }
+  .chain .link-item { width: 24px; }
+  .ico-perk .ico-txt { font-size: 14px; }
+}
+
+/* ---------- Builds | 1v1 tabs ---------- */
+.tabs-bar { display: flex; justify-content: center; gap: 8px; margin: 14px 0 24px; }
+.tabs-bar .tab {
+  padding: 7px 22px; border-radius: 6px; border: 1px solid var(--edge-2);
+  color: var(--dim); font-weight: 600; font-size: 15px; transition: color .15s, border-color .15s, background .15s;
+}
+.tabs-bar .tab:hover { color: var(--txt); border-color: #59595c; }
+.tabs-bar .tab.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.page-sub + .tabs-bar { margin-top: 18px; }
+.v1-wrap { max-width: 1240px; margin: 0 auto; }
+
+/* ---------- 1v1 rules panel ---------- */
+.rules-box {
+  background: #161617; border: 1px solid var(--edge); border-radius: 8px;
+  padding: 18px 22px 16px; margin-bottom: 28px;
+}
+.rules-box h3 { margin: 0 0 10px; font-size: 20px; font-weight: 700; }
+.rules-box h4 { margin: 18px 0 8px; font-size: 15px; font-weight: 600; color: var(--txt); }
+.rules-list { margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.55; color: #c9c6c1; }
+.rules-list li { margin: 3px 0; }
+.rules-list b { color: #fff; font-weight: 600; }
+.rules-empty { margin: 0; font-size: 13px; color: var(--dim-2); }
+.banned-title { display: flex; align-items: center; gap: 8px; color: #ff7b7f !important; }
+.banned-title span { font-size: 12px; font-weight: 600; padding: 0 7px; border-radius: 99px; background: rgba(229, 72, 77, .15); color: #ff7b7f; }
+.ban-grid { display: flex; flex-wrap: wrap; gap: 8px 6px; }
+.ban-item { width: 92px; display: flex; flex-direction: column; align-items: center; gap: 2px; text-align: center; font-size: 11.5px; line-height: 1.25; color: #c9c6c1; }
+.ban-item .slot-perk, .ban-item .ico-perk { width: 66px; height: 66px; }
+.ban-item .ico-addon { width: 56px; height: 56px; }
+.rules-source { margin: 16px 0 0; font-size: 12px; color: var(--dim-2); }
+
+/* ---------- 1v1 builds ---------- */
+.v1-heading { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; font-size: 20px; font-weight: 700; }
+.v1-heading span { font-size: 13px; font-weight: 600; color: var(--dim); }
+.v1-add { min-height: 220px; }
+.v1-label { display: block; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--dim-2); margin-bottom: 6px; }
+.muted { color: var(--dim-2); font-weight: 400; }
+
+/* picker: banned in 1v1 */
+.opt.is-banned { opacity: .5; }
+.opt.is-banned .ico { filter: grayscale(1); }
+.opt-tag.banned { background: rgba(229, 72, 77, .9); color: #fff; }
+
+@media (max-width: 700px) {
+  .rules-box { padding: 14px 14px 12px; }
+  .ban-item { width: 76px; }
+  .ban-item .slot-perk, .ban-item .ico-perk { width: 56px; height: 56px; }
+}
+.map-bans { display: flex; flex-wrap: wrap; gap: 6px; }
+.map-ban { padding: 4px 10px; border-radius: 5px; font-size: 13px; font-weight: 500; background: rgba(229, 72, 77, .12); border: 1px solid rgba(229, 72, 77, .35); color: #ffb3b5; }
+/* the map the 1v1 is played on — important, so it stands out */
+.v1-map {
+  display: inline-flex; align-items: center; gap: 12px; margin: 2px 0 12px;
+  padding: 8px 14px; border-radius: 6px; border: 1px solid var(--accent);
+  background: rgba(207, 42, 78, .1);
+}
+.v1-map .v1-label { margin: 0; color: var(--accent); }
+.v1-map b { font-size: 17px; font-weight: 700; color: #fff; }
+.v1-map.is-empty { border-color: var(--edge-2); background: transparent; }
+.v1-map.is-empty b { font-size: 14px; font-weight: 500; color: var(--dim-2); }
+button.v1-map { font: inherit; color: inherit; cursor: pointer; transition: background .15s, box-shadow .15s; }
+button.v1-map:hover { background: rgba(207, 42, 78, .2); box-shadow: 0 0 12px -4px var(--accent); }
+.v1-map-hint { display: grid; place-items: center; color: var(--accent); opacity: .8; }
+/* map picture card (opens on click, like perk descriptions) */
+.tip.map-tip { max-width: min(540px, calc(100vw - 16px)); }
+.tip .map-img { display: block; width: 100%; max-width: 512px; height: auto; margin-top: 8px; border-radius: 4px; }
+
+.rules-all-banned { margin: 0; padding: 8px 12px; border-radius: 6px; font-size: 14px; font-weight: 600; color: #ffb3b5; background: rgba(229, 72, 77, .12); border: 1px solid rgba(229, 72, 77, .35); display: inline-block; }
+
+/* the add-on rule line, the same for every killer */
+.addon-rule { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: #e6e3de; }
+.addon-rule.all-banned { display: inline-block; padding: 8px 12px; border-radius: 6px; font-weight: 600; color: #ffb3b5; background: rgba(229, 72, 77, .12); border: 1px solid rgba(229, 72, 77, .35); }
+
+/* ---------- 1v1 alternatives (like otzdarva): "+N" badge on the perk, pop-up on click ---------- */
+.perk-wrap { position: relative; flex: none; }
+.perk-wrap[data-action] { cursor: pointer; }
+.alt-badge {
+  /* sized and placed relative to the perk: sits off the middle of its top-right edge */
+  position: absolute; top: -11%; right: -11%; z-index: 2;
+  width: 43%; height: 43%; padding: 0; display: grid; place-items: center;
+  font: 700 13px/1 var(--font); color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.8); border: 0; cursor: pointer;
+  /* same diamond frame as a perk (black border included), just smaller */
+  background: url(../img/ui/very-rare-perk.png) center / contain no-repeat;
+}
+/* try-out: alternatives as a dropdown under the perk (ALT_DROPDOWN in app.js) */
+.alt-drop {
+  /* no top border / top corners: the panel hangs straight off the perk's bottom tip, as if attached to it */
+  display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); z-index: 5;
+  flex-direction: column; align-items: center; gap: 10px; padding: 12px 14px;
+  background: var(--card); border: 1px solid var(--edge); border-top: 0; border-radius: 0 0 8px 8px;
+  box-shadow: 0 14px 24px -6px rgba(0,0,0,.55);
+}
+.perk-wrap.drop-open .alt-drop { display: flex; }
+.perk-wrap.drop-open > .slot { z-index: 6; } /* the perk's tip + glow sit on top of the dropdown, not under it */
+.perk-wrap.drop-open > .slot .ico {
+  filter: drop-shadow(0 0 1px color-mix(in srgb, var(--rc) 95%, transparent)) drop-shadow(0 0 6px color-mix(in srgb, var(--rc) 60%, transparent));
+}
+.alt-badge.add { filter: grayscale(1) brightness(.6); font-size: 18px; font-weight: 400; }
+.alt-badge:hover { filter: brightness(1.2); }
+.alt-badge.add:hover { filter: grayscale(1) brightness(.85); }
+.altpop {
+  position: fixed; inset: 0; z-index: 55; display: grid; place-items: center; padding: 16px;
+  background: rgba(0, 0, 0, .55); backdrop-filter: blur(6px);
+}
+.altpop-box {
+  position: relative; width: min(380px, 100%); max-height: calc(100vh - 32px); overflow-y: auto;
+  padding: 18px 20px; border-radius: 10px; background: #141415; border: 1px solid var(--edge-2);
+  box-shadow: 0 30px 80px -10px rgba(0,0,0,.85);
+}
+.altpop-close { position: absolute; top: 12px; right: 12px; }
+.altpop .v1-label { margin: 6px 0 8px; }
+.alt-row { display: flex; align-items: center; gap: 12px; padding: 4px 0; }
+.alt-row .slot-perk, .alt-row .ico-perk { width: 64px; height: 64px; flex: none; }
+.alt-text { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.alt-text b { font-size: 15px; font-weight: 600; }
+.alt-text small { font-size: 12.5px; color: var(--dim); }
