@@ -4,6 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DBD Builds</title>
+<script>
+/* Pages have clean addresses (/killers/trapper), so css / js / img files must be found from the site's root, not
+   from the current page: <base> says where the root is. "/" on Vercel or an own domain, "/dbd-builds/" on GitHub
+   Pages' project address. Opened as a file there is no <base> (pages use #/… addresses then). app.js reads SITE_BASE. */
+(function () {
+  var p = location.pathname, b = "/";
+  if (/\.github\.io$/.test(location.hostname) && p.indexOf("/dbd-builds/") === 0) b = "/dbd-builds/";
+  window.SITE_BASE = b;
+  if (location.protocol !== "file:") {
+    var el = document.createElement("base");
+    el.href = b;
+    document.head.appendChild(el);
+  }
+})();
+</script>
 <link rel="icon" type="image/png" href="img/sir-logo.png">
 <link rel="apple-touch-icon" href="img/sir-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">

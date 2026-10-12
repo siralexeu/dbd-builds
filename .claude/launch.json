@@ -4,7 +4,7 @@
     {
       "name": "dbd-builds",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["-y", "http-server", ".", "-p", "5188", "-c-1", "--silent"],
+      "runtimeArgs": ["-y", "serve", "-s", ".", "-l", "5188", "--no-clipboard"],
       "port": 5188
     }
   ]

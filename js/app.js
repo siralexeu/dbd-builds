@@ -215,8 +215,34 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
 
   /* ---------------- routing ---------------- */
 
+  /* Page addresses. Inside the code a page is written "#/killers/trapper"; on a web server it is shown as a clean
+     path — /killers/trapper (under /dbd-builds/ on GitHub Pages' project address). Opened as a file (index.html
+     double-clicked) it stays "#/killers/trapper", because a file has no server to answer paths. SITE_BASE comes
+     from the small script at the top of index.html. */
+  const BASE = window.SITE_BASE || "/";
+  const CLEAN = location.protocol !== "file:";
+  const url = (h) => (CLEAN ? BASE + h.replace(/^#\/?/, "") : h);   // "#/killers" → "/killers"
+  function currentHash() {
+    const rest = CLEAN
+      ? (location.pathname.startsWith(BASE) ? location.pathname.slice(BASE.length) : "")
+      : location.hash.replace(/^#\/?/, "");
+    return "#/" + rest.replace(/index\.html$/, "").replace(/\/+$/, "");
+  }
+  function navigate(h) {   // go to a page without animation; the same page = just redraw
+    if (currentHash() === h) return render();
+    if (CLEAN) { history.pushState(null, "", url(h)); closeAlts(); render(); }
+    else location.hash = h;   // the hashchange listener redraws
+  }
+  // links from before (/#/killers/trapper) and the hand-over from 404.html on GitHub Pages become clean paths
+  if (CLEAN) {
+    let saved = null;
+    try { saved = sessionStorage.getItem("spa-path"); sessionStorage.removeItem("spa-path"); } catch (_) { /* blocked */ }
+    if (saved && saved.startsWith(BASE)) history.replaceState(null, "", saved);
+    else if (/^#\//.test(location.hash)) history.replaceState(null, "", url(location.hash));
+  }
+
   function route() {
-    const [page, sub, tab] = location.hash.replace(/^#\/?/, "").split("/");
+    const [page, sub, tab] = currentHash().replace(/^#\/?/, "").split("/");
     if (page === "killers") {
       const k = D.killers.find((x) => x.id === sub);
       return { page, role: "killer", open: k ? k.id : null, tab: tab === "1v1" ? "1v1" : "builds" };
@@ -372,7 +398,7 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
   function killerTile(k, active) {
     const n = state.killers[k.id].length;
     const glow = (D.killerGlow || {})[k.id];
-    return `<a class="ktile ${active ? "active" : ""}" href="#/killers/${k.id}" ${glow ? `style="--kc: ${glow}"` : ""}
+    return `<a class="ktile ${active ? "active" : ""}" href="${url("#/killers/" + k.id)}" ${glow ? `style="--kc: ${glow}"` : ""}
         data-search="${esc(searchText(k.name, k.realName, ...(k.aliases || [])))}" ${active ? 'aria-current="page"' : ""} title="${esc(k.name)}">
       <span class="ktile-face">${portraitFace(k)}</span>
       <span class="ktile-label"><b>${esc(k.name)}</b><small>${n} build${n === 1 ? "" : "s"}</small></span>
@@ -393,7 +419,7 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
   const navBtn = (cls, href, label, icon, current, tag = "a", attrs = "") => {
     const inner = `<span class="nav-btn-label">${label}</span><span class="nav-btn-icon">${NAV_ICONS[icon]}</span>`;
     return tag === "button" ? `<button class="nav-btn ${cls}" ${attrs}>${inner}</button>`
-      : `<a class="nav-btn ${cls}" href="${href}" ${current ? 'aria-current="page"' : ""}>${inner}</a>`;
+      : `<a class="nav-btn ${cls}" href="${url(href)}" ${current ? 'aria-current="page"' : ""}>${inner}</a>`;
   };
   // "Add another build" / "Add 1v1 build": a big tile with a Swap / Back style button in the middle
   // view mode with a single build: centre it (in edit mode the Add tile sits next to it)
@@ -406,8 +432,8 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
   const cornerNav = (other, extra = "") => {
     const role = other === "#/survivors" ? "killers" : "survivors";
     return `<nav class="corner-nav">${extra}
-      <a class="nav-btn tint ${role}" href="${other}"><span class="nav-btn-label">Swap</span><span class="nav-btn-icon">${NAV_ICONS.swap}</span></a>
-      <a class="nav-btn back" href="#/"><span class="nav-btn-label">Back</span><span class="nav-btn-icon">${NAV_ICONS.back}</span></a>
+      <a class="nav-btn tint ${role}" href="${url(other)}"><span class="nav-btn-label">Swap</span><span class="nav-btn-icon">${NAV_ICONS.swap}</span></a>
+      <a class="nav-btn back" href="${url("#/")}"><span class="nav-btn-label">Back</span><span class="nav-btn-icon">${NAV_ICONS.back}</span></a>
     </nav>`;
   };
 
@@ -487,11 +513,11 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
   function renderHome() {
     return `${hero(true)}
       <div class="role-cards">
-        <a class="role-card killer" href="#/killers">
+        <a class="role-card killer" href="${url("#/killers")}">
           <kbd class="role-key">Q</kbd><h2>Killers</h2>
           <img src="img/killer-icon.png" alt="" width="736" height="706">
         </a>
-        <a class="role-card survivor" href="#/survivors">
+        <a class="role-card survivor" href="${url("#/survivors")}">
           <kbd class="role-key">E</kbd><h2>Survivors</h2>
           <img src="img/survivor-icon.png" alt="" width="692" height="692">
         </a>
@@ -512,7 +538,7 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
     const prev = D.killers[(i - 1 + D.killers.length) % D.killers.length];
     const next = D.killers[(i + 1) % D.killers.length];
     const arrow = (dir) => svg(30, dir === "prev" ? '<path d="M15 5l-7 7 7 7"/>' : '<path d="M9 5l7 7-7 7"/>');
-    return `<a class="popup-nav prev" href="#/killers/${prev.id}${keepTab}" aria-label="Previous killer: ${esc(prev.name)}">${arrow("prev")}</a>
+    return `<a class="popup-nav prev" href="${url("#/killers/" + prev.id + keepTab)}" aria-label="Previous killer: ${esc(prev.name)}">${arrow("prev")}</a>
       <div class="popup-box" role="dialog" aria-label="${esc(k.name)} builds">
         <button class="close-btn popup-close" data-action="close" aria-label="Close">${ICONS.close}</button>
         <h2 class="sec-title">${esc(k.name)}</h2>
@@ -523,7 +549,7 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
           ${addTile(k.id, "Add another build", "", list.length)}
         </div>`}
       </div>
-      <a class="popup-nav next" href="#/killers/${next.id}${keepTab}" aria-label="Next killer: ${esc(next.name)}">${arrow("next")}</a>`;
+      <a class="popup-nav next" href="${url("#/killers/" + next.id + keepTab)}" aria-label="Next killer: ${esc(next.name)}">${arrow("next")}</a>`;
   }
 
   // survivor builds: found by build name, survivor, perks (+ alternatives), item, add-ons and offering
@@ -605,8 +631,7 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
     pendingFocus = id;
     const base = baseScope(scope), tab = isV1(scope) ? "/1v1" : "";
     const target = (base === "survivor" ? "#/survivors" : "#/killers/" + base) + tab;
-    if (location.hash === target) render();
-    else location.hash = target;
+    navigate(target);
   }
 
   function addBuild(scope) {
@@ -951,7 +976,7 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
   /* ---------------- events ---------------- */
 
   function closeOverlay() {
-    location.hash = "#/killers";
+    navigate("#/killers");
   }
 
   overlay.addEventListener("click", (e) => { if (e.target === overlay) closeOverlay(); });
@@ -1013,13 +1038,13 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
      from the right (like the role cards' order); "back": Esc / Back to the home page, the page fades out and the
      home page fades in. Uses the browser's view transitions; without them (or with reduced motion) it just switches. */
   function slideTo(hash, from) {
-    if (location.hash === hash) return;
+    if (currentHash() === hash) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!document.startViewTransition || reduce) { location.hash = hash; return; }
+    if (!document.startViewTransition || reduce) { navigate(hash); return; }
     document.documentElement.dataset.slide = from;
     const t = document.startViewTransition(() => new Promise((done) => {
-      window.addEventListener("hashchange", done, { once: true }); // runs after the hashchange render below
-      location.hash = hash;
+      if (CLEAN) { navigate(hash); done(); }   // redraws straight away
+      else { window.addEventListener("hashchange", done, { once: true }); location.hash = hash; } // after the hashchange render below
     }));
     // the browser may skip the animation (e.g. tab hidden) — the page still switches, so that's not an error
     t.ready.catch(() => {});
@@ -1049,6 +1074,18 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
     }
   });
 
-  window.addEventListener("hashchange", () => { closeAlts(); render(); });
+  // internal links (killer tiles, Swap, tabs…) change the page without reloading it; ctrl / middle click still opens a tab
+  document.addEventListener("click", (e) => {
+    if (!CLEAN || e.defaultPrevented || e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
+    const a = e.target.closest("a[href]");
+    if (!a || a.target || a.origin !== location.origin || !a.pathname.startsWith(BASE)) return;
+    e.preventDefault();
+    navigate("#/" + a.pathname.slice(BASE.length).replace(/\/+$/, ""));
+  });
+  window.addEventListener("popstate", () => { closeAlts(); render(); });
+  window.addEventListener("hashchange", () => {
+    if (CLEAN && /^#\//.test(location.hash)) history.replaceState(null, "", url(location.hash)); // an old-style address typed in
+    closeAlts(); render();
+  });
   render();
 })();

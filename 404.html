@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DBD Builds</title>
+<script>
+/* GitHub Pages only: it has no file for an address like /dbd-builds/killers/trapper, so it shows this page instead.
+   Remember the address and open the site's main page — app.js puts the address back and shows the right page.
+   (Vercel does the same job with the rewrite in vercel.json.) */
+(function () {
+  var p = location.pathname, b = p.indexOf("/dbd-builds/") === 0 ? "/dbd-builds/" : "/";
+  try { sessionStorage.setItem("spa-path", p + location.search + location.hash); } catch (e) {}
+  location.replace(b);
+})();
+</script>
+</head>
+<body></body>
+</html>
