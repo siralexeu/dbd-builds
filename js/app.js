@@ -156,7 +156,7 @@
     }));
   }
 
-  /* builds come only from js/builds.js (written by "Save builds to file"); nothing is kept in the browser,
+  /* builds come only from js/builds.js (written by "Save builds"); nothing is kept in the browser,
      so edits last until the page is closed / reloaded unless you save the file. No file yet = starter builds. */
   function load() {
     const s = window.DBD_BUILDS ? JSON.parse(JSON.stringify(window.DBD_BUILDS)) : null;
@@ -169,7 +169,7 @@
   /* writes every build into js/builds.js — save it over the one in the project folder, then commit it.
      Chrome / Edge let you pick where to save it; other browsers download it to Downloads. */
   async function exportBuilds() {
-    const text = `/* Your builds — written by the "Save builds to file" button on the home page.
+    const text = `/* Your builds — written by the "Save builds" button on the home page.
    Save it over js/builds.js in the project folder and commit it; the site loads it for everyone. */
 window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
 `;
@@ -195,7 +195,7 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
   }
 
   let state = load();
-  // edits only live in this page until "Save builds to file" — leaving / reloading with unsaved edits asks first
+  // edits only live in this page until "Save builds" — leaving / reloading with unsaved edits asks first
   let unsaved = false;
   function save() {
     state.updatedAt = Date.now();
@@ -205,7 +205,7 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
 
   /* edit mode: add / edit / copy / delete builds and save them to a file. View mode: look only, like otzdarva-builds.
      It opens in edit mode on your own computer (localhost / 127.0.0.1 / index.html opened as a file) and in view
-     mode anywhere else (e.g. GitHub Pages); the button under "Save builds to file" on the home page switches. */
+     mode anywhere else (e.g. GitHub Pages); the button under "Save builds" on the home page switches. */
   const isLocal = location.protocol === "file:" || ["localhost", "127.0.0.1", "[::1]"].includes(location.hostname);
   let editMode = isLocal;
   const editing = new Set();   // ids of builds currently in edit mode
@@ -499,7 +499,7 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
       <div class="credits">
         <span>Created by <a href="https://github.com/siralexeu" target="_blank" rel="noopener">siralexeu</a></span>
         <span>Inspired by <a href="https://otzdarva-builds.com/" target="_blank" rel="noopener">Otzdarva</a></span>
-        ${editMode ? `<button class="credits-link" data-action="export">Save builds to file</button>` : ""}
+        ${editMode ? `<button class="credits-link" data-action="export">Save builds</button>` : ""}
         <button class="credits-link" data-action="mode">${editMode ? "Switch to view mode" : "Switch to edit mode"}</button>
       </div>`;
   }
@@ -993,7 +993,7 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
       case "alts": openAlts(id, +el.dataset.index); break;
       case "alt-drop": toggleDrop(el); break;
       case "export": exportBuilds(); break;
-      case "mode": editMode = !editMode; editing.clear(); render(); toast(editMode ? "Edit mode — you can add, edit and delete builds." : "View mode — builds can only be looked at."); break;
+      case "mode": editMode = !editMode; editing.clear(); render(); toast(editMode ? "Switched to edit mode" : "Switched to view mode"); break;
       case "alt-remove": { const { b } = locate(altState.buildId); b.alts[altState.p].splice(+el.dataset.index, 1); if (!b.alts[altState.p].length) delete b.alts[altState.p]; save(); render(); break; }
       case "alts-close": closeAlts(); break;
       case "close": closeOverlay(); break;

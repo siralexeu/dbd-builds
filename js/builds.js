@@ -1,4 +1,4 @@
-/* Your builds — written by the "Save builds to file" button on the home page.
+/* Your builds — written by the "Save builds" button on the home page.
    Save it over js/builds.js in the project folder and commit it; the site loads it for everyone. */
 window.DBD_BUILDS = {
  "killers": {

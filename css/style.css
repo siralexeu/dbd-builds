@@ -54,7 +54,7 @@ main { padding: 0 16px 64px; }
 .page-list .hero { padding-top: 36px; }
 .updated { margin: 16px 0 0; font-size: 16px; font-weight: 400; }
 .updated + .updated { margin-top: 4px; }
-/* home page, bottom-left (like otzdarva-builds): Created by / Inspired by / Save builds to file (writes js/builds.js) */
+/* home page, bottom-left (like otzdarva-builds): Created by / Inspired by / Save builds (writes js/builds.js) */
 .credits {
   position: fixed; left: 32px; bottom: 32px; z-index: 5;
   display: flex; flex-direction: column; gap: 2px;
