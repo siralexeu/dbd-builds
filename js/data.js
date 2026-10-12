@@ -14,6 +14,19 @@ window.DBD_DATA = {
   // gameVersion: the Dead by Daylight patch the builds are for (shown on the home page)
   site: { brand: "alex sir", gameVersion: "10.1.2" },
 
+  /* killer grid: hover / hold / selected glow, in the colour of each portrait's background (sampled from the
+     portrait, then brightened so it shows as a glow). A killer missing here gets a neutral grey. */
+  killerGlow: {
+    trapper: "#d48654", wraith: "#a347e0", hillbilly: "#d5b753", nurse: "#d454b5", shape: "#5487d4", hag: "#8ed454",
+    doctor: "#2df2fb", huntress: "#db4d79", cannibal: "#d87450", nightmare: "#d45463", pig: "#e34557", clown: "#f434a0",
+    spirit: "#54d4d0", legion: "#b8b8b8", plague: "#a8d454", "ghost-face": "#b8b8b8", demogorgon: "#d75b51", oni: "#d45488",
+    deathslinger: "#dd614b", executioner: "#de674a", blight: "#ff8429", twins: "#dc4ca5", trickster: "#fff029",
+    nemesis: "#3f73e8", cenobite: "#d45465", artist: "#f4347f", onryo: "#53d4bd", dredge: "#d46054", mastermind: "#f57232",
+    knight: "#54d4ae", "skull-merchant": "#54d49d", singularity: "#d454ab", xenomorph: "#49ed3b", "good-guy": "#34a3f4",
+    unknown: "#d6528a", lich: "#d454ce", "dark-lord": "#ff2931", houndmaster: "#d4548d", ghoul: "#d45473",
+    animatronic: "#d0f235", krasue: "#8654d4", first: "#d45479", slasher: "#d45458", judgment: "#d4b654",
+  },
+
   killers: [
     {
       id: "trapper", name: "The Trapper", realName: "Evan MacMillan", power: "Bear Trap", difficulty: "Easy", img: "img/killers/trapper.png", powerImg: "img/powers/trapper.png",

@@ -10,6 +10,12 @@
   --accent: #cf2a4e;
   --accent-hi: #e0355c;
   --accent-dark: #7c1430;
+  /* the one look every button / panel shares (like otzdarva-builds' buttons) */
+  --radius: 12px;
+  --line: #262626;
+  --glass: rgba(23, 23, 23, .4);
+  --glass-hi: rgba(23, 23, 23, .8);
+  --icon: #a1a1a1;
 
   --font: "Lexend", "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   color-scheme: dark;
@@ -48,14 +54,22 @@ main { padding: 0 16px 64px; }
 .page-list .hero { padding-top: 36px; }
 .updated { margin: 16px 0 0; font-size: 16px; font-weight: 400; }
 .updated + .updated { margin-top: 4px; }
-/* home page: writes every build into js/builds.js */
-.save-file { display: flex; justify-content: center; margin: -8px 0 24px; }
-.save-file-btn {
-  display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; cursor: pointer;
-  font: 600 13px/1 var(--font); color: #ddd; background: var(--card);
-  border: 1px solid var(--edge); border-radius: 6px;
+/* home page, bottom-left (like otzdarva-builds): Created by / Inspired by / Save builds to file (writes js/builds.js) */
+.credits {
+  position: fixed; left: 32px; bottom: 32px; z-index: 5;
+  display: flex; flex-direction: column; gap: 2px;
+  font-size: 14px; line-height: 20px; color: hsl(220, 5%, 23%);
 }
-.save-file-btn:hover { border-color: var(--accent); color: #fff; }
+.credits a, .credits-link {
+  color: inherit; text-decoration: underline; transition: color .2s;
+}
+.credits-link { align-self: flex-start; padding: 0; border: 0; background: none; font: inherit; cursor: pointer; }
+.credits a:hover, .credits-link:hover { color: hsl(220, 5%, 33%); }
+/* narrow screens: under the role cards, centred, so it never covers them */
+@media (max-width: 1000px) {
+  .credits { position: static; align-items: center; margin: -32px 0 0; font-size: 12px; line-height: 18px; }
+  .credits-link { align-self: center; }
+}
 
 .logo-mark {
   width: 1.3em; height: 1.3em; flex: none; border-radius: 50%;
@@ -76,7 +90,7 @@ main { padding: 0 16px 64px; }
 .role-card {
   position: relative; display: flex; flex-direction: column; align-items: center; gap: 18px;
   padding: 18px 16px 22px;
-  border-radius: 8px; border: 2px solid;
+  border-radius: var(--radius); border: 1px solid;
   transition: transform .2s, filter .2s;
 }
 .role-card:hover { transform: translateY(-3px); filter: brightness(1.12); }
@@ -86,10 +100,18 @@ main { padding: 0 16px 64px; }
   width: min(80%, 256px); height: auto; aspect-ratio: 1; object-fit: contain;
   filter: drop-shadow(0 8px 14px rgba(0,0,0,.45));
 }
+/* Q / E shortcut hint drawn as a keyboard key: dark keycap, thicker bottom edge for depth (same spot as before) */
 .role-key {
-  position: absolute; top: 18px; font-family: inherit; font-size: 16px; font-weight: 400;
-  color: rgba(255,255,255,.3);
+  position: absolute; top: 18px;
+  min-width: 28px; height: 28px; padding: 0 7px; display: grid; place-items: center;
+  font-family: inherit; font-size: 13px; font-weight: 600; line-height: 1; color: rgba(255,255,255,.7);
+  background: linear-gradient(180deg, #2a2a2c, #1a1a1b);
+  border: 1px solid #3a3a3b; border-bottom-width: 3px; border-radius: 7px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 2px 6px rgba(0,0,0,.35);
+  transition: color .2s, border-color .2s, transform .1s;
 }
+.role-card:hover .role-key { color: #fff; border-color: #4a4a4c; }
+.role-card:active .role-key { transform: translateY(2px); border-bottom-width: 1px; } /* key pressed down */
 .role-card.killer .role-key { left: 18px; }
 .role-card.survivor .role-key { right: 18px; }
 @media (hover: none) { .role-key { display: none; } }
@@ -101,33 +123,45 @@ main { padding: 0 16px 64px; }
   position: fixed; top: 14px; right: 16px; z-index: 30;
   display: flex; gap: 10px;
 }
-.btn {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 6px 14px; border: 0; border-radius: 6px;
-  background: var(--accent); color: #fff; font-size: 15px; font-weight: 500; text-transform: uppercase;
-  transition: background .15s, transform .1s;
+/* Swap / Back — like otzdarva-builds' corner buttons, but always expanded (label + icon) */
+.nav-btn {
+  display: flex; align-items: center; padding: 8px; border: 1px solid var(--line); border-radius: var(--radius);
+  font: inherit; color: var(--txt); background: var(--glass); cursor: pointer;
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -4px rgba(0,0,0,.1);
+  transition: background-color .2s, border-color .2s, color .2s;
 }
-.btn:hover { background: var(--accent-hi); }
-.btn:active { transform: translateY(1px); }
-.btn.plain { text-transform: none; }
+.nav-btn-label { padding: 0 8px; font-size: 12px; line-height: 16px; font-weight: 500; white-space: nowrap; }
+.nav-btn-icon { display: block; width: 20px; height: 20px; color: var(--icon); transition: transform .2s, color .2s; }
+.nav-btn-icon svg { display: block; width: 100%; height: 100%; }
+.nav-btn:hover .nav-btn-icon { transform: scale(1.1); }
+.nav-btn:active { border-color: var(--accent); color: #f5f5f5; }
+/* plain (Back, the closed tab) vs tinted with the page's role colour (Swap, the open Builds / 1v1 tab) */
+.nav-btn:not(.tint):hover { background: var(--glass-hi); }
+.nav-btn:not(.tint):hover .nav-btn-icon { color: var(--accent); }
+.nav-btn.tint:hover .nav-btn-icon { color: inherit; }
+.nav-btn.tint.killers   { border-color: #782128; background: linear-gradient(90deg, #782128, rgba(23,23,23,.4)); }
+.nav-btn.tint.survivors { border-color: #475966; background: linear-gradient(90deg, rgba(23,23,23,.4), #475966); }
+.nav-btn.tint:active { border-color: var(--accent); }
 
 .search {
   position: relative; width: min(100%, 340px); margin: 24px auto 0;
 }
-.search svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--dim); }
+.search svg { position: absolute; z-index: 1; left: 12px; top: 50%; transform: translateY(-50%); color: var(--dim); pointer-events: none; } /* above the input's blur layer */
 .search input {
-  width: 100%; padding: 10px 12px 10px 36px; border-radius: 6px;
-  background: var(--card); border: 1px solid var(--edge-2); font-size: 14px;
+  width: 100%; padding: 10px 12px 10px 36px; border-radius: var(--radius);
+  background: var(--glass); border: 1px solid var(--line); font-size: 14px;
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); transition: border-color .2s, background-color .2s;
 }
 .search input::placeholder { color: var(--dim); }
-.search input:focus { outline: none; border-color: var(--accent); }
+.search input:hover { background: var(--glass-hi); }
+.search input:focus { outline: none; border-color: var(--accent); background: var(--glass-hi); }
 
 .page-title {
   width: fit-content; margin: 44px auto 0; padding-bottom: 4px;
   font-size: 30px; font-weight: 700; text-align: center;
   border-bottom: 3px solid var(--accent);
 }
-.page-sub { margin: 10px 0 0; text-align: center; color: var(--dim); }
 
 /* ---------- killer grid ---------- */
 .kgrid {
@@ -138,12 +172,15 @@ main { padding: 0 16px 64px; }
 .ktile {
   /* portraits come with their own coloured background + black frame (character pack); the tile matches the frame shape */
   position: relative; display: block; aspect-ratio: 43 / 50; overflow: hidden;
-  border-radius: 6px; border: 2px solid #3d3d40;
+  border-radius: 6px; border: 1px solid var(--line); /* squarer corners than the rest, to match the portrait frames */
   background: #0c0c0d;
   transition: transform .18s, border-color .18s, box-shadow .18s;
 }
-.ktile:hover { transform: translateY(-3px); border-color: #77777c; }
-.ktile.active { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 8px 26px -8px var(--accent); }
+/* hover / hold / selected: just the border, in the colour of the portrait's background (--kc, per killer from killerGlow) */
+.ktile:hover { transform: translateY(-3px); border-color: var(--kc, #8a8a8d); }
+.ktile:active { transform: translateY(-1px); border-color: var(--kc, #8a8a8d); }
+.ktile.active { border-color: var(--kc, var(--accent)); }
+.ktile:focus-visible { outline-color: var(--kc, var(--accent)); }
 .ktile-face { position: absolute; inset: 0; display: grid; place-items: center; }
 .ktile-face img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .ktile-face .initial { font-size: 92px; font-weight: 700; line-height: 1; color: rgba(255,255,255,.13); }
@@ -158,7 +195,7 @@ main { padding: 0 16px 64px; }
 /* ---------- build card ---------- */
 .bcard {
   position: relative; display: flex; flex-direction: column;
-  background: var(--card); border: 1px solid var(--edge); border-radius: 6px;
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
   padding: 14px 14px 18px;
 }
 .bcard-head { border-bottom: 1px solid var(--edge-2); padding-bottom: 12px; }
@@ -168,23 +205,28 @@ main { padding: 0 16px 64px; }
 }
 .bcard-name {
   width: 100%; text-align: center; font-size: 20px; font-weight: 600;
-  background: var(--bg); border: 1px solid var(--edge-2); border-radius: 6px; padding: 2px 8px;
+  background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 2px 8px;
 }
 .bcard-name:focus { outline: none; border-color: var(--accent); }
 .bcard-tools {
-  display: flex; justify-content: flex-end; gap: 2px; margin: 10px -10px -10px 0;
+  display: flex; justify-content: flex-end; align-items: center; gap: 6px; margin: 10px -6px -8px 0;
   opacity: 0; transition: opacity .15s;
 }
 .bcard:hover .bcard-tools, .bcard:focus-within .bcard-tools, .bcard.editing .bcard-tools { opacity: 1; }
 @media (hover: none) { .bcard-tools { opacity: 1; } }
 .tool {
-  width: 30px; height: 30px; display: grid; place-items: center; padding: 0;
-  border: 0; border-radius: 6px; background: transparent; color: var(--dim);
+  width: 34px; height: 34px; display: grid; place-items: center; padding: 0;
+  border: 1px solid var(--line); border-radius: 10px; background: var(--glass); color: var(--icon);
+  transition: background-color .2s, border-color .2s, color .2s;
 }
-.tool:hover { background: var(--card-2); color: var(--txt); }
-.tool.danger:hover { color: var(--accent-hi); }
-.tool.done { width: auto; padding: 0 10px; background: var(--accent); color: #fff; font-size: 13px; font-weight: 500; }
-.tool.done:hover { background: var(--accent-hi); }
+.tool svg { transition: transform .2s; }
+.tool:hover { background: var(--glass-hi); color: var(--accent); }
+.tool:hover svg { transform: scale(1.1); }
+.tool:active { border-color: var(--accent); }
+/* Done: the build's role colour like the open Builds / 1v1 tab — red for killers, slate for survivors */
+.nav-btn.done { border-color: #782128; background: linear-gradient(90deg, #782128, var(--glass)); }
+.nav-btn.done .nav-btn-icon { color: var(--txt); }
+.nav-btn.done.survivors { border-color: #475966; background: linear-gradient(90deg, var(--glass), #475966); }
 
 /* the 4 perks share the card width (diamond tips almost touching, like in-game) */
 /* perks: 88px diamonds, 12px apart, centred — same as otzdarva's build cards */
@@ -216,7 +258,7 @@ main { padding: 0 16px 64px; }
 .with-portrait .loadout { gap: 10px; }
 .bportrait {
   position: relative; display: grid; place-items: center; width: 100%; aspect-ratio: 43 / 50; padding: 0;
-  border-radius: 6px; overflow: hidden; border: 2px solid #2c2c2f; background: #0c0c0d; color: var(--dim);
+  border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: #0c0c0d; color: var(--dim);
 }
 .bportrait img { width: 100%; height: 100%; object-fit: cover; }
 .bportrait img.emblem { width: 62%; height: auto; opacity: .16; }
@@ -300,10 +342,14 @@ span.slot[data-tip] { cursor: pointer; }
 
 /* ---------- builds grid & layouts ---------- */
 .close-btn {
-  width: 34px; height: 34px; display: grid; place-items: center; padding: 0;
-  border: 0; border-radius: 6px; background: var(--accent); color: #fff;
+  width: 38px; height: 38px; display: grid; place-items: center; padding: 0;
+  border: 1px solid var(--line); border-radius: var(--radius); background: var(--glass); color: var(--icon);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); transition: background-color .2s, color .2s, border-color .2s;
 }
-.close-btn:hover { background: var(--accent-hi); }
+.close-btn svg { transition: transform .2s; }
+.close-btn:hover { background: var(--glass-hi); color: var(--accent); }
+.close-btn:hover svg { transform: scale(1.1); }
+.close-btn:active { border-color: var(--accent); }
 .build-grid {
   display: grid; gap: 22px 28px;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr));
@@ -319,7 +365,7 @@ span.slot[data-tip] { cursor: pointer; }
 .popup-box {
   position: relative; margin: auto; width: 100%; max-width: 1000px;
   padding: 26px 36px 36px;
-  background: #121213; border: 1px solid var(--edge-2); border-radius: 10px;
+  background: #121213; border: 1px solid var(--line); border-radius: var(--radius);
   box-shadow: 0 30px 80px -10px rgba(0,0,0,.85);
 }
 .popup-close { position: absolute; top: 14px; right: 14px; }
@@ -338,10 +384,14 @@ span.slot[data-tip] { cursor: pointer; }
 .popup-box .build-grid { gap: 24px 32px; }
 .popup-nav {
   position: fixed; top: 50%; transform: translateY(-50%); z-index: 2;
-  width: 48px; height: 48px; display: grid; place-items: center; border-radius: 50%;
-  background: #1e1e1f; border: 1px solid var(--edge-2); color: var(--txt);
+  width: 48px; height: 48px; display: grid; place-items: center; border-radius: var(--radius);
+  background: var(--glass); border: 1px solid var(--line); color: var(--icon);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); transition: background-color .2s, color .2s, border-color .2s;
 }
-.popup-nav:hover { background: var(--accent); border-color: var(--accent); }
+.popup-nav svg { transition: transform .2s; }
+.popup-nav:hover { background: var(--glass-hi); color: var(--accent); }
+.popup-nav:hover svg { transform: scale(1.1); }
+.popup-nav:active { border-color: var(--accent); }
 .popup-nav.prev { left: 16px; }
 .popup-nav.next { right: 16px; }
 .overlay.opening { animation: fade .18s ease-out; }
@@ -350,15 +400,17 @@ span.slot[data-tip] { cursor: pointer; }
 @keyframes fade { from { opacity: 0; } }
 
 .add-tile {
-  min-height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
-  border-radius: 6px; border: 2px dashed var(--edge-2); background: transparent; color: var(--dim);
-  font-size: 16px; font-weight: 600; transition: color .15s, border-color .15s, background .15s;
+  min-height: 300px; display: flex; align-items: center; justify-content: center; padding: 16px;
+  border-radius: var(--radius); border: 1px solid var(--line); background: var(--glass); color: var(--txt);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); transition: background-color .2s, border-color .2s;
 }
-.add-tile .plus-circle {
-  width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%;
-  border: 2px solid currentColor; font-size: 26px; font-weight: 300; line-height: 1;
-}
-.add-tile:hover { color: var(--accent); border-color: var(--accent); background: rgba(207,42,78,.05); }
+/* the button in the middle: the same as Swap / Back, a bit bigger */
+.add-tile .add-pill { pointer-events: none; padding: 10px 12px; }
+.add-tile .add-pill .nav-btn-label { font-size: 14px; line-height: 18px; }
+.add-tile:hover { background: rgba(23,23,23,.6); border-color: #3a3a3b; }
+.add-tile:hover .add-pill { background: var(--glass-hi); }
+.add-tile:hover .nav-btn-icon { color: var(--accent); transform: scale(1.1); }
+.add-tile:active .add-pill { border-color: var(--accent); }
 .popup-box .add-tile { min-height: 220px; }
 
 .bcard.flash { animation: flash 1.2s ease-out; }
@@ -367,7 +419,7 @@ span.slot[data-tip] { cursor: pointer; }
 /* ---------- tooltip ---------- */
 .tip {
   position: fixed; z-index: 60; max-width: min(380px, calc(100vw - 16px)); pointer-events: none;
-  background: #111112; border: 1px solid var(--edge-2); border-radius: 6px;
+  background: #111112; border: 1px solid var(--line); border-radius: var(--radius);
   padding: 10px 12px; box-shadow: 0 10px 30px rgba(0,0,0,.6);
 }
 .tip .tip-name { display: block; font-size: 15px; }
@@ -390,7 +442,7 @@ span.slot[data-tip] { cursor: pointer; }
 /* ---------- picker dialog ---------- */
 #picker {
   width: min(760px, calc(100vw - 32px)); max-height: min(82vh, 760px);
-  padding: 0; border-radius: 8px; border: 1px solid var(--edge-2);
+  padding: 0; border-radius: var(--radius); border: 1px solid var(--line);
   background: var(--card); color: var(--txt);
   box-shadow: 0 30px 80px -20px rgba(0,0,0,.85);
 }
@@ -400,10 +452,11 @@ span.slot[data-tip] { cursor: pointer; }
 .picker-head h2 { margin: 0; font-size: 20px; font-weight: 700; }
 .picker-search { padding: 8px 20px 12px; }
 .picker-search input {
-  width: 100%; padding: 9px 12px; border-radius: 6px; font-size: 14px;
-  background: var(--bg); border: 1px solid var(--edge-2);
+  width: 100%; padding: 9px 12px; border-radius: var(--radius); font-size: 14px;
+  background: var(--glass); border: 1px solid var(--line); transition: border-color .2s, background-color .2s;
 }
-.picker-search input:focus { outline: none; border-color: var(--accent); }
+.picker-search input:hover { background: var(--glass-hi); }
+.picker-search input:focus { outline: none; border-color: var(--accent); background: var(--glass-hi); }
 .picker-list {
   flex: 1; overflow-y: auto; padding: 4px 14px 14px;
   display: grid; gap: 4px; align-content: start;
@@ -412,9 +465,9 @@ span.slot[data-tip] { cursor: pointer; }
 .picker-empty { grid-column: 1 / -1; padding: 30px 10px; text-align: center; color: var(--dim); }
 .opt {
   position: relative; display: flex; flex-direction: column; align-items: center; gap: 8px;
-  padding: 10px 6px; border-radius: 6px; border: 1px solid transparent; background: transparent;
+  padding: 10px 6px; border-radius: 10px; border: 1px solid transparent; background: transparent;
 }
-.opt:hover:not(:disabled), .opt:focus-visible { background: var(--card-2); border-color: var(--edge-2); outline: none; }
+.opt:hover:not(:disabled), .opt:focus-visible { background: var(--glass-hi); border-color: var(--line); outline: none; }
 .opt.is-current { border-color: var(--accent); background: rgba(207,42,78,.08); }
 .opt:disabled { opacity: .35; cursor: not-allowed; }
 .opt .ico-wrap { height: 90px; display: grid; place-items: center; }
@@ -441,19 +494,26 @@ span.slot[data-tip] { cursor: pointer; }
 .chip { font-size: 11px; padding: 1px 8px; border-radius: 99px; border: 1px solid var(--edge-2); color: var(--dim); }
 .chip.rarity { color: var(--rc); border-color: color-mix(in srgb, var(--rc) 50%, transparent); }
 .btn-outline {
-  padding: 6px 12px; border-radius: 6px; border: 1px solid var(--edge-2); background: transparent; font-size: 14px;
+  padding: 8px 14px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--glass);
+  font-size: 12px; font-weight: 500; transition: background-color .2s, border-color .2s, color .2s;
 }
-.btn-outline:hover { border-color: var(--accent); color: var(--accent-hi); }
+.btn-outline:hover { background: var(--glass-hi); color: var(--accent); }
+.btn-outline:active { border-color: var(--accent); }
 
 /* ---------- toast & footer ---------- */
 .toast {
   position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%);
   z-index: 70; display: flex; align-items: center; gap: 14px;
-  padding: 10px 10px 10px 16px; border-radius: 8px; font-size: 14px;
-  background: #1c1c1d; border: 1px solid var(--edge-2); box-shadow: 0 12px 40px rgba(0,0,0,.6);
+  padding: 8px 8px 8px 16px; border-radius: var(--radius); font-size: 13px;
+  background: rgba(23,23,23,.85); border: 1px solid var(--line); box-shadow: 0 12px 40px rgba(0,0,0,.6);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
 }
-.toast button { border: 0; background: transparent; color: var(--accent-hi); font-weight: 600; padding: 6px 10px; border-radius: 6px; }
-.toast button:hover { background: var(--card-2); }
+.toast button {
+  padding: 7px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--glass);
+  color: var(--accent); font-size: 12px; font-weight: 600; transition: background-color .2s, border-color .2s;
+}
+.toast button:hover { background: var(--glass-hi); }
+.toast button:active { border-color: var(--accent); }
 
 /* ---------- responsive ---------- */
 @media (max-width: 700px) {
@@ -465,12 +525,13 @@ span.slot[data-tip] { cursor: pointer; }
   .with-portrait .loadout { gap: 8px; }
   .role-cards { gap: 10px; }
   .role-card { padding: 16px 10px 20px; gap: 14px; }
-  .role-key { top: 12px; font-size: 16px; }
+  .role-key { top: 12px; }
   .role-card.killer .role-key { left: 12px; }
   .role-card.survivor .role-key { right: 12px; }
   .role-card h2 { font-size: clamp(18px, 6vw, 32px); }
   .corner-nav { top: auto; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); right: 50%; transform: translateX(50%);
-    background: #1a1a1b; border: 1px solid var(--edge-2); border-radius: 10px; padding: 10px 12px; box-shadow: 0 10px 30px rgba(0,0,0,.6); }
+    background: rgba(23,23,23,.85); border: 1px solid var(--line); border-radius: 16px; padding: 8px;
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); box-shadow: 0 10px 30px rgba(0,0,0,.6); }
   .kgrid { grid-template-columns: repeat(auto-fill, 104px); gap: 8px; }
   .ktile-face .initial { font-size: 60px; }
   .overlay { padding: 10px 8px 84px; }
@@ -493,19 +554,14 @@ span.slot[data-tip] { cursor: pointer; }
 }
 
 /* ---------- Builds | 1v1 tabs ---------- */
-.tabs-bar { display: flex; justify-content: center; gap: 8px; margin: 14px 0 24px; }
-.tabs-bar .tab {
-  padding: 7px 22px; border-radius: 6px; border: 1px solid var(--edge-2);
-  color: var(--dim); font-weight: 600; font-size: 15px; transition: color .15s, border-color .15s, background .15s;
-}
-.tabs-bar .tab:hover { color: var(--txt); border-color: #59595c; }
-.tabs-bar .tab.active { background: var(--accent); border-color: var(--accent); color: #fff; }
-.page-sub + .tabs-bar { margin-top: 18px; }
-.v1-wrap { max-width: 1240px; margin: 0 auto; }
+.tabs-bar { display: flex; justify-content: center; gap: 10px; margin: 14px 0 24px; }
+.tabs-bar .nav-btn:not(.tint) .nav-btn-label { color: var(--dim); }
+.tabs-bar .nav-btn:not(.tint):hover .nav-btn-label { color: var(--txt); }
+.v1-wrap { max-width: 1240px; margin: 30px auto 0; }
 
 /* ---------- 1v1 rules panel ---------- */
 .rules-box {
-  background: #161617; border: 1px solid var(--edge); border-radius: 8px;
+  background: #161617; border: 1px solid var(--line); border-radius: var(--radius);
   padding: 18px 22px 16px; margin-bottom: 28px;
 }
 .rules-box h3 { margin: 0 0 10px; font-size: 20px; font-weight: 700; }
@@ -544,25 +600,26 @@ span.slot[data-tip] { cursor: pointer; }
 /* the map the 1v1 is played on — important, so it stands out */
 .v1-map {
   display: inline-flex; align-items: center; gap: 12px; margin: 2px 0 12px;
-  padding: 8px 14px; border-radius: 6px; border: 1px solid var(--accent);
-  background: rgba(207, 42, 78, .1);
+  padding: 8px 14px; border-radius: var(--radius); border: 1px solid #782128;
+  background: linear-gradient(90deg, rgba(120,33,40,.55), var(--glass));
 }
 .v1-map .v1-label { margin: 0; color: var(--accent); }
 .v1-map b { font-size: 17px; font-weight: 700; color: #fff; }
-.v1-map.is-empty { border-color: var(--edge-2); background: transparent; }
+.v1-map.is-empty { border-color: var(--line); background: var(--glass); }
 .v1-map.is-empty b { font-size: 14px; font-weight: 500; color: var(--dim-2); }
 button.v1-map { font: inherit; color: inherit; cursor: pointer; transition: background .15s, box-shadow .15s; }
-button.v1-map:hover { background: rgba(207, 42, 78, .2); box-shadow: 0 0 12px -4px var(--accent); }
+button.v1-map:hover { background: linear-gradient(90deg, rgba(120,33,40,.9), var(--glass-hi)); }
+button.v1-map:active { border-color: var(--accent); }
 .v1-map-hint { display: grid; place-items: center; color: var(--accent); opacity: .8; }
 /* map picture card (opens on click, like perk descriptions) */
 .tip.map-tip { max-width: min(540px, calc(100vw - 16px)); }
 .tip .map-img { display: block; width: 100%; max-width: 512px; height: auto; margin-top: 8px; border-radius: 4px; }
 
-.rules-all-banned { margin: 0; padding: 8px 12px; border-radius: 6px; font-size: 14px; font-weight: 600; color: #ffb3b5; background: rgba(229, 72, 77, .12); border: 1px solid rgba(229, 72, 77, .35); display: inline-block; }
+.rules-all-banned { margin: 0; padding: 8px 12px; border-radius: 10px; font-size: 14px; font-weight: 600; color: #ffb3b5; background: rgba(229, 72, 77, .12); border: 1px solid rgba(229, 72, 77, .35); display: inline-block; }
 
 /* the add-on rule line, the same for every killer */
 .addon-rule { margin: 0 0 10px; font-size: 14px; font-weight: 500; color: #e6e3de; }
-.addon-rule.all-banned { display: inline-block; padding: 8px 12px; border-radius: 6px; font-weight: 600; color: #ffb3b5; background: rgba(229, 72, 77, .12); border: 1px solid rgba(229, 72, 77, .35); }
+.addon-rule.all-banned { display: inline-block; padding: 8px 12px; border-radius: 10px; font-weight: 600; color: #ffb3b5; background: rgba(229, 72, 77, .12); border: 1px solid rgba(229, 72, 77, .35); }
 
 /* ---------- 1v1 alternatives (like otzdarva): "+N" badge on the perk, pop-up on click ---------- */
 .perk-wrap { position: relative; flex: none; }
@@ -580,7 +637,7 @@ button.v1-map:hover { background: rgba(207, 42, 78, .2); box-shadow: 0 0 12px -4
   /* no top border / top corners: the panel hangs straight off the perk's bottom tip, as if attached to it */
   display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); z-index: 5;
   flex-direction: column; align-items: center; gap: 10px; padding: 12px 14px;
-  background: var(--card); border: 1px solid var(--edge); border-top: 0; border-radius: 0 0 8px 8px;
+  background: var(--card); border: 1px solid var(--line); border-top: 0; border-radius: 0 0 var(--radius) var(--radius);
   box-shadow: 0 14px 24px -6px rgba(0,0,0,.55);
 }
 .perk-wrap.drop-open .alt-drop { display: flex; }
@@ -597,7 +654,7 @@ button.v1-map:hover { background: rgba(207, 42, 78, .2); box-shadow: 0 0 12px -4
 }
 .altpop-box {
   position: relative; width: min(380px, 100%); max-height: calc(100vh - 32px); overflow-y: auto;
-  padding: 18px 20px; border-radius: 10px; background: #141415; border: 1px solid var(--edge-2);
+  padding: 18px 20px; border-radius: var(--radius); background: #141415; border: 1px solid var(--line);
   box-shadow: 0 30px 80px -10px rgba(0,0,0,.85);
 }
 .altpop-close { position: absolute; top: 12px; right: 12px; }
@@ -610,7 +667,12 @@ button.v1-map:hover { background: rgba(207, 42, 78, .2); box-shadow: 0 0 12px -4
 
 /* ---------- Q / E page switch: slide left / right (slideTo in app.js) ---------- */
 .hero { view-transition-name: hero; }        /* the title stays put while the page slides */
-.corner-nav { view-transition-name: corner-nav; }
+/* top-right buttons: each one on its own, so Swap / Back stay put and the survivors-only 1v1 / Builds button
+   just fades — animating the whole bar would stretch it (2 buttons on killers, 3 on survivors) */
+.corner-nav .nav-btn.tint { view-transition-name: nav-swap; }
+.corner-nav .nav-btn.back { view-transition-name: nav-back; }
+.corner-nav .nav-btn:not(.tint):not(.back) { view-transition-name: nav-extra; }
+::view-transition-group(nav-swap), ::view-transition-group(nav-back), ::view-transition-group(nav-extra) { animation-duration: .32s; }
 ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .32s; animation-timing-function: cubic-bezier(.3, .7, .3, 1); }
 html[data-slide="left"]::view-transition-old(root)  { animation-name: slide-out-right; }
 html[data-slide="left"]::view-transition-new(root)  { animation-name: slide-in-left; }
@@ -620,3 +682,9 @@ html[data-slide="right"]::view-transition-new(root) { animation-name: slide-in-r
 @keyframes slide-in-right  { from { transform: translateX(12%);  opacity: 0; } }
 @keyframes slide-out-left  { to   { transform: translateX(-12%); opacity: 0; } }
 @keyframes slide-out-right { to   { transform: translateX(12%);  opacity: 0; } }
+
+/* Esc / Back to the home page: the page fades out (shrinking a little), the home page fades in */
+html[data-slide="back"]::view-transition-old(root) { animation-name: back-out; }
+html[data-slide="back"]::view-transition-new(root) { animation-name: back-in; }
+@keyframes back-out { to   { transform: scale(.97);  opacity: 0; } }
+@keyframes back-in  { from { transform: scale(1.03); opacity: 0; } }

@@ -46,7 +46,7 @@
     if (scope === "survivor") {
       const r = R1.survivor || {};
       return { role: "survivor", rules: r.rules || [], notes: [], bannedPerks: idsByName(D.survivorPerks, r.bannedPerks),
-        bannedAddons: [], map: r.map || null, maxBuilds: r.maxBuilds || 2, perkSlots: r.perkSlots || 2, addonSlots: 0 };
+        bannedAddons: [], map: r.map || null, perkSlots: r.perkSlots || 2, addonSlots: 0 };
     }
     const r = R1.killer || {}, pk = (r.perKiller || {})[scope] || {};
     const killer = D.killers.find((x) => x.id === scope);
@@ -57,7 +57,7 @@
     return { role: "killer", rules: r.rules || [], notes: pk.notes || [], addonsNote: pk.addonsNote || "", hasRules: !!R1.killer.perKiller && !!(R1.killer.perKiller || {})[scope],
       allPerksBanned: allPerks, bannedPerks: banned.filter((id) => !allowed.has(id)),
       bannedAddons: addonBans(killer, pk.bannedAddons), map: pk.map || null,
-      maxBuilds: r.maxBuilds || 3, perkSlots: r.perkSlots || 3, addonSlots: r.addonSlots || 5 };
+      perkSlots: r.perkSlots || 3, addonSlots: r.addonSlots || 5 };
   }
 
   const svg = (w, body, extra = "") =>
@@ -69,7 +69,6 @@
     search: svg(15, '<circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/>'),
     lines: svg(16, '<path d="M4 6h16M4 12h11M4 18h7"/>'),
     chevron: svg(16, '<path d="M9 6l6 6-6 6"/>'),
-    save: svg(16, '<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>'),
     close: svg(18, '<path d="M6 6l12 12M18 6L6 18"/>', 'stroke-width="2.4"'),
   };
 
@@ -206,6 +205,7 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
 
   const editing = new Set();   // ids of builds currently in edit mode
   let query = "";              // character search on the killers page
+  let buildQuery = "";         // build search on the survivors page
   let pendingFocus = null;     // build to scroll to after the next render
 
   /* ---------------- routing ---------------- */
@@ -333,7 +333,7 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
       ${hasLoadout ? `<div class="loadout">${loadout.join("")}</div>` : ""}
       <div class="bcard-tools">
         ${ed
-          ? `<button class="tool done" data-action="done">Done</button>`
+          ? navBtn(`done ${role === "survivor" ? "survivors" : "killers"}`, "", "Done", "check", false, "button", "data-action=\"done\"")
           : `<button class="tool" data-action="edit" title="Edit build" aria-label="Edit build">${ICONS.edit}</button>`}
         <button class="tool" data-action="duplicate" title="Duplicate build" aria-label="Duplicate build">${ICONS.copy}</button>
         <button class="tool danger" data-action="delete" title="Delete build" aria-label="Delete build">${ICONS.trash}</button>
@@ -366,15 +366,41 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
 
   function killerTile(k, active) {
     const n = state.killers[k.id].length;
-    return `<a class="ktile ${active ? "active" : ""}" href="#/killers/${k.id}"
+    const glow = (D.killerGlow || {})[k.id];
+    return `<a class="ktile ${active ? "active" : ""}" href="#/killers/${k.id}" ${glow ? `style="--kc: ${glow}"` : ""}
         data-search="${esc(searchText(k.name, k.realName, ...(k.aliases || [])))}" ${active ? 'aria-current="page"' : ""} title="${esc(k.name)}">
       <span class="ktile-face">${portraitFace(k)}</span>
       <span class="ktile-label"><b>${esc(k.name)}</b><small>${n} build${n === 1 ? "" : "s"}</small></span>
     </a>`;
   }
 
-  const cornerNav = (other) =>
-    `<nav class="corner-nav"><a class="btn" href="${other}">Swap</a><a class="btn" href="#/">Back ${ICONS.chevron}</a></nav>`;
+  // top-right Swap / Back, styled like otzdarva-builds' buttons in their expanded (hover) state, always expanded;
+  // Swap is tinted with the current page's role colour (killers red / survivors slate)
+  const NAV_ICONS = {
+    swap: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.05 12.05 21 17l-4.95 4.95-1.414-1.415L17.172 18H4v-2h13.172l-2.536-2.536 1.414-1.414ZM7.95 2.05l1.414 1.414L6.828 6H20v2H6.828l2.536 2.536L7.95 11.95 3 7l4.95-4.95Z"/></svg>',
+    back: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.172 12 8.222 7.05l1.414-1.414L16 12l-6.364 6.364-1.414-1.414L13.172 12Z"/></svg>',
+    builds: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>',
+    v1: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 17.5 3 6V3h3l11.5 11.5M13 19l6-6M16 16l4 4M19 21l2-2M14.5 6.5 18 3h3v3l-3.5 3.5M5 14l4 4M7 17l-3 3M3 19l2 2"/></svg>',
+    plus: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>',
+    check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
+  };
+  // the site's one button style: label + icon (a link, or a <button> when tag = "button" with extra attributes)
+  const navBtn = (cls, href, label, icon, current, tag = "a", attrs = "") => {
+    const inner = `<span class="nav-btn-label">${label}</span><span class="nav-btn-icon">${NAV_ICONS[icon]}</span>`;
+    return tag === "button" ? `<button class="nav-btn ${cls}" ${attrs}>${inner}</button>`
+      : `<a class="nav-btn ${cls}" href="${href}" ${current ? 'aria-current="page"' : ""}>${inner}</a>`;
+  };
+  // "Add another build" / "Add 1v1 build": a big tile with a Swap / Back style button in the middle
+  const addTile = (scope, label, cls = "") =>
+    `<button class="add-tile ${cls}" data-action="add" data-scope="${scope}"><span class="nav-btn add-pill"><span class="nav-btn-label">${label}</span><span class="nav-btn-icon">${NAV_ICONS.plus}</span></span></button>`;
+  // extra: buttons placed before Swap (the survivors page's 1v1 / Builds switch)
+  const cornerNav = (other, extra = "") => {
+    const role = other === "#/survivors" ? "killers" : "survivors";
+    return `<nav class="corner-nav">${extra}
+      <a class="nav-btn tint ${role}" href="${other}"><span class="nav-btn-label">Swap</span><span class="nav-btn-icon">${NAV_ICONS.swap}</span></a>
+      <a class="nav-btn back" href="#/"><span class="nav-btn-label">Back</span><span class="nav-btn-icon">${NAV_ICONS.back}</span></a>
+    </nav>`;
+  };
 
   function renderKillers(r) {
     const k = r.open && D.killers.find((x) => x.id === r.open);
@@ -389,31 +415,36 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
   function renderSurvivors(r) {
     const body = r.tab === "1v1"
       ? `<div class="v1-wrap">${render1v1("survivor")}</div>`
-      : `<div class="build-grid survivors-grid">
+      : `<div class="search">${ICONS.search}<input type="search" id="build-q" placeholder="Search for build…" value="${esc(buildQuery)}" autocomplete="off"></div>
+        <div class="build-grid survivors-grid">
           ${state.survivor.map((b) => buildCard(b, "survivor")).join("")}
-          <button class="add-tile" data-action="add" data-scope="survivor"><span class="plus-circle">+</span>Add another build</button>
-        </div>`;
-    return `${cornerNav("#/killers")}
+          ${addTile("survivor", "Add another build")}
+        </div>
+        <p class="picker-empty" id="no-build-match" hidden>No build matches your search.</p>`;
+    // the 1v1 switch sits top-right next to Swap / Back, so the page's top matches the killers page
+    const v1 = r.tab === "1v1";
+    const toggle = v1 ? navBtn("", "#/survivors", "Builds", "builds") : navBtn("", "#/survivors/1v1", "1v1", "v1");
+    return `${cornerNav("#/killers", toggle)}
       <div class="page-list">${hero(false)}</div>
-      <h2 class="page-title">Survivor Builds</h2>
-      <p class="page-sub">General builds — usable on any survivor.</p>
-      ${tabsBar("#/survivors", r.tab)}
+      <h2 class="page-title">${v1 ? "Survivor 1v1" : "Survivor Builds"}</h2>
       ${body}`;
   }
 
-  const tabsBar = (base, tab) => `<nav class="tabs-bar" aria-label="Build type">
-      <a class="tab ${tab === "builds" ? "active" : ""}" href="${base}" ${tab === "builds" ? 'aria-current="page"' : ""}>Builds</a>
-      <a class="tab ${tab === "1v1" ? "active" : ""}" href="${base}/1v1" ${tab === "1v1" ? 'aria-current="page"' : ""}>1v1</a>
-    </nav>`;
+  // Builds / 1v1 — same buttons as Swap / Back; the open tab is tinted with the page's role colour
+  const tabsBar = (base, tab) => {
+    const role = base.startsWith("#/survivors") ? "survivors" : "killers";
+    const btn = (id, href, label) => navBtn(tab === id ? `tint ${role}` : "", href, label, id === "1v1" ? "v1" : "builds", tab === id);
+    return `<nav class="tabs-bar" aria-label="Build type">${btn("builds", base, "Builds")}${btn("1v1", base + "/1v1", "1v1")}</nav>`;
+  };
 
-  /* 1v1 tab: the rules (allowed / banned) + up to maxBuilds 1v1 builds */
+  /* 1v1 tab: the rules (allowed / banned) + the 1v1 builds (no limit on how many) */
   function render1v1(scope) {
     const R = rulesFor(scope), killer = D.killers.find((k) => k.id === scope), list = listFor("v1:" + scope);
     return `${rulesBox(R, killer)}
-      <h3 class="v1-heading">1v1 Builds <span>${list.length}/${R.maxBuilds}</span></h3>
+      <h3 class="v1-heading">1v1 Builds <span>${list.length}</span></h3>
       <div class="build-grid v1-grid">
         ${list.map((b) => buildCard(b, R.role, killer, true)).join("")}
-        ${list.length < R.maxBuilds ? `<button class="add-tile v1-add" data-action="add" data-scope="v1:${scope}"><span class="plus-circle">+</span>Add 1v1 build</button>` : ""}
+        ${addTile("v1:" + scope, "Add 1v1 build", "v1-add")}
       </div>`;
   }
 
@@ -446,7 +477,6 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
 
   function renderHome() {
     return `${hero(true)}
-      <div class="save-file"><button class="save-file-btn" data-action="export">${ICONS.save} Save builds to file</button></div>
       <div class="role-cards">
         <a class="role-card killer" href="#/killers">
           <kbd class="role-key">Q</kbd><h2>Killers</h2>
@@ -456,6 +486,11 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
           <kbd class="role-key">E</kbd><h2>Survivors</h2>
           <img src="img/survivor-icon.png" alt="" width="692" height="692">
         </a>
+      </div>
+      <div class="credits">
+        <span>Created by <a href="https://github.com/siralexeu" target="_blank" rel="noopener">siralexeu</a></span>
+        <span>Inspired by <a href="https://otzdarva-builds.com/" target="_blank" rel="noopener">Otzdarva</a></span>
+        <button class="credits-link" data-action="export">Save builds to file</button>
       </div>`;
   }
 
@@ -475,13 +510,34 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
         ${tabsBar("#/killers/" + k.id, tab)}
         ${tab === "1v1" ? render1v1(k.id) : `<div class="build-grid">
           ${list.map((b) => buildCard(b, "killer", k)).join("")}
-          <button class="add-tile" data-action="add" data-scope="${k.id}"><span class="plus-circle">+</span>Add another build</button>
+          ${addTile(k.id, "Add another build")}
         </div>`}
       </div>
       <a class="popup-nav next" href="#/killers/${next.id}${keepTab}" aria-label="Next killer: ${esc(next.name)}">${arrow("next")}</a>`;
   }
 
+  // survivor builds: found by build name, survivor, perks (+ alternatives), item, add-ons and offering
+  function buildSearchText(b) {
+    const ids = [b.survivor, ...b.perks, ...Object.values(b.alts || {}).flat(), b.item, ...b.addons, b.offering];
+    return searchText(b.name, ...ids.filter((id) => id && INDEX[id]).flatMap((id) => [INDEX[id].name, ...(INDEX[id].aliases || [])]));
+  }
+  function applyBuildSearch() {
+    const grid = app.querySelector(".survivors-grid");
+    if (!grid) return;
+    const q = buildQuery.trim();
+    let shown = 0;
+    state.survivor.forEach((b) => {
+      const card = grid.querySelector(`[data-build="${b.id}"]`);
+      const ok = editing.has(b.id) || matches(buildSearchText(b), q); // a build being edited never disappears
+      if (card) card.hidden = !ok;
+      shown += ok;
+    });
+    grid.querySelector(".add-tile").hidden = !!q; // adding a build while filtering would hide it straight away
+    app.querySelector("#no-build-match").hidden = shown > 0 || !q;
+  }
+
   function applySearch() {
+    applyBuildSearch();
     const tiles = app.querySelectorAll(".kgrid .ktile");
     if (!tiles.length) return;
     const q = query.trim().toLowerCase();
@@ -498,10 +554,10 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
     const r = route();
     document.title = "DBD Builds" + (r.page === "killers" ? " · Killers" : r.page === "survivors" ? " · Survivors" : "");
 
-    const searchFocused = document.activeElement && document.activeElement.id === "char-q";
+    const focusedSearch = document.activeElement && ["char-q", "build-q"].includes(document.activeElement.id) ? document.activeElement.id : null;
     app.innerHTML = r.page === "home" ? renderHome() : r.page === "killers" ? renderKillers(r) : renderSurvivors(r);
     applySearch();
-    if (searchFocused) { const s = app.querySelector("#char-q"); if (s) { s.focus(); s.setSelectionRange(s.value.length, s.value.length); } }
+    if (focusedSearch) { const s = app.querySelector("#" + focusedSearch); if (s) { s.focus(); s.setSelectionRange(s.value.length, s.value.length); } }
 
     const k = r.open && D.killers.find((x) => x.id === r.open);
     const keepScroll = k && r.open === lastOpen && r.tab === lastTab ? overlay.scrollTop : 0;
@@ -544,7 +600,6 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
 
   function addBuild(scope) {
     const list = listFor(scope);
-    if (isV1(scope) && list.length >= rulesFor(baseScope(scope)).maxBuilds) return toast("You already have the maximum number of 1v1 builds.");
     const b = isV1(scope) ? blank1v1(baseScope(scope)) : blankBuild(roleOf(scope));
     b.name = (isV1(scope) ? "1v1 Build " : "Build ") + (list.length + 1);
     list.push(b);
@@ -555,7 +610,6 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
 
   function duplicateBuild(id) {
     const { list, i, scope } = locate(id);
-    if (isV1(scope) && list.length >= rulesFor(baseScope(scope)).maxBuilds) return toast("You already have the maximum number of 1v1 builds.");
     const copy = JSON.parse(JSON.stringify(list[i]));
     copy.id = uid();
     copy.name = (copy.name + " (copy)").slice(0, 60);
@@ -610,6 +664,21 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
   const detailEl = document.getElementById("picker-detail");
   let pick = null; // { buildId, kind, index }
 
+  /* picker search in descriptions: a word that starts with what you typed ("heal" finds heal, heals, healing,
+     healed…), only from 3 letters on so 1-2 letters don't match half the list */
+  const plainDesc = new Map(); // id → description as plain lower-case text, built on first search
+  function descMatches(e, q) {
+    q = fold(q).trim();
+    if (q.length < 3 || !e.desc) return false;
+    if (!plainDesc.has(e.id)) {
+      const tpl = document.createElement("template"); // inert: nothing in the description gets loaded
+      tpl.innerHTML = e.desc;
+      plainDesc.set(e.id, fold(tpl.content.textContent).replace(/\s+/g, " "));
+    }
+    const word = q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    return new RegExp("(^|[^a-z0-9])" + word).test(plainDesc.get(e.id));
+  }
+
   function pickerOptions(loc, kind) {
     const { b, role, killer } = loc;
     if (kind === "perks" || kind === "alt") return role === "killer" ? D.killerPerks : D.survivorPerks;
@@ -649,7 +718,10 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
     const q = qInput.value.trim().toLowerCase();
     const all = pickerOptions(loc, kind);
     // aliases are only searched, never shown (e.g. "will to live" finds Decisive Strike)
-    const opts = all.filter((e) => matches(searchText(e.name, e.owner, ...(e.aliases || [])), q));
+    const byName = all.filter((e) => matches(searchText(e.name, e.owner, ...(e.aliases || [])), q));
+    // then the ones whose description mentions it ("heal" → Leverage, Sloppy Butcher…), listed after the name matches
+    const named = new Set(byName);
+    const opts = [...byName, ...all.filter((e) => !named.has(e) && descMatches(e, q))];
 
     if (!all.length) {
       listEl.innerHTML = `<div class="picker-empty">${
@@ -888,6 +960,13 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
   }
 
   document.addEventListener("click", (e) => {
+    // the Back button gets the same fade as Esc (a plain click; ctrl / middle click still opens a new tab)
+    const back = e.target.closest(".corner-nav .nav-btn.back");
+    if (back && e.button === 0 && !e.ctrlKey && !e.metaKey && !e.shiftKey && !e.altKey) {
+      e.preventDefault();
+      slideTo("#/", "back");
+      return;
+    }
     if (!e.target.closest(".alt-drop, [data-action=alt-drop]")) closeDrops();
     const el = e.target.closest("[data-action]");
     if (!el || dlg.contains(el)) return;
@@ -911,15 +990,18 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
 
   document.addEventListener("input", (e) => {
     if (e.target.id === "char-q") { query = e.target.value; applySearch(); return; }
+    if (e.target.id === "build-q") { buildQuery = e.target.value; applyBuildSearch(); return; }
     const field = e.target.dataset.field;
     if (!field) return;
     locate(e.target.closest("[data-build]").dataset.build).b[field] = e.target.value;
     save();
   });
 
-  /* Q / E: the page slides sideways — killers come in from the left, survivors from the right (like the
-     role cards' order). Uses the browser's view transitions; without them (or with reduced motion) it just switches. */
+  /* animated page switch. from = "left" / "right": Q / E slide sideways — killers come in from the left, survivors
+     from the right (like the role cards' order); "back": Esc / Back to the home page, the page fades out and the
+     home page fades in. Uses the browser's view transitions; without them (or with reduced motion) it just switches. */
   function slideTo(hash, from) {
+    if (location.hash === hash) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (!document.startViewTransition || reduce) { location.hash = hash; return; }
     document.documentElement.dataset.slide = from;
@@ -927,7 +1009,9 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
       window.addEventListener("hashchange", done, { once: true }); // runs after the hashchange render below
       location.hash = hash;
     }));
-    t.finished.finally(() => delete document.documentElement.dataset.slide);
+    // the browser may skip the animation (e.g. tab hidden) — the page still switches, so that's not an error
+    t.ready.catch(() => {});
+    t.finished.catch(() => {}).finally(() => delete document.documentElement.dataset.slide);
   }
 
   document.addEventListener("keydown", (e) => {
@@ -937,7 +1021,12 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
     if (e.key === "Escape" && pinned) { hideTip(); return; }
     if (e.key === "Escape" && document.querySelector(".perk-wrap.drop-open")) { closeDrops(); return; }
     if (e.key === "Escape" && altState && !dlg.open) { closeAlts(); return; }
-    if (e.key === "Escape" && !dlg.open && route().open) closeOverlay();
+    if (e.key === "Escape" && !dlg.open && route().open) { closeOverlay(); return; }
+    // Escape on the killers / survivors page = back to the home page (not while typing in a search or a build name)
+    if (e.key === "Escape" && !dlg.open && route().page !== "home" && !/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) {
+      slideTo("#/", "back");
+      return;
+    }
     // Q = killers, E = survivors (the hints on the home page's role cards) — on every page, so Q / E also swap
     // between the killers and survivors pages; not while typing or with the picker / alternatives open
     const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName);

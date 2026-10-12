@@ -38,7 +38,6 @@ window.DBD_1V1 = {
   sourceNote: "Scrim-friendly general balancing, not the official balancing of the current competitive season. In an official Ladder match the Seasonal Ladder rules take priority.",
 
   survivor: {
-    maxBuilds: 2,
     perkSlots: 2,
     rules: [
       "You may bring up to <b>2 perks</b> of your choice that are not banned.",
@@ -56,7 +55,6 @@ window.DBD_1V1 = {
   },
 
   killer: {
-    maxBuilds: 3,
     perkSlots: 1,
     addonSlots: 2,
     rules: [],

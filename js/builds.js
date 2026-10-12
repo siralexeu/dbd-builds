@@ -18,21 +18,6 @@ window.DBD_BUILDS = {
     ],
     "offering": "of-ebony-memento-mori",
     "notes": "Set traps around the hook and at loops before chasing."
-   },
-   {
-    "id": "mv0ph8kf3rvna",
-    "name": "Build 2",
-    "perks": [
-     "kp-alien-instinct",
-     "kp-all-shaking-thunder",
-     null,
-     null
-    ],
-    "addons": [
-     null,
-     null
-    ],
-    "offering": "of-frightful-flan"
    }
   ],
   "wraith": [],
@@ -58,23 +43,7 @@ window.DBD_BUILDS = {
   "hag": [],
   "doctor": [],
   "huntress": [],
-  "cannibal": [
-   {
-    "id": "mv0p179o2356d",
-    "name": "Build 1",
-    "perks": [
-     "kp-hex-plaything",
-     null,
-     null,
-     null
-    ],
-    "addons": [
-     null,
-     null
-    ],
-    "offering": null
-   }
-  ],
+  "cannibal": [],
   "nightmare": [],
   "pig": [],
   "clown": [],
@@ -93,21 +62,6 @@ window.DBD_BUILDS = {
      "ka-spirit-muddy-sports-day-cap"
     ],
     "offering": "of-ebony-memento-mori"
-   },
-   {
-    "id": "muwky5nhpu8q7",
-    "name": "Build 2",
-    "perks": [
-     null,
-     null,
-     null,
-     null
-    ],
-    "addons": [
-     null,
-     null
-    ],
-    "offering": null
    }
   ],
   "legion": [
@@ -196,21 +150,6 @@ window.DBD_BUILDS = {
      "ka-ghoul-blood-stained-handkerchief"
     ],
     "offering": "of-toothy-torte"
-   },
-   {
-    "id": "mv0vsniscqf1b",
-    "name": "Build 4",
-    "perks": [
-     null,
-     null,
-     null,
-     null
-    ],
-    "addons": [
-     null,
-     null
-    ],
-    "offering": null
    }
   ],
   "animatronic": [],
@@ -256,24 +195,24 @@ window.DBD_BUILDS = {
    "survivor": "sv-adam-francis"
   },
   {
-   "id": "mv0p2efn2dme7",
-   "name": "Build 3",
+   "id": "mv52366b6aby8",
+   "name": "dramatugie",
    "perks": [
-    "sp-deja-vu",
-    "sp-ace-in-the-hole",
-    "sp-autodidact",
-    null
+    "sp-dramaturgy",
+    "sp-resurgence",
+    "sp-finesse",
+    "sp-exultation"
    ],
    "addons": [
-    null,
-    null
+    "sa-gel-dressings",
+    "sa-surgical-suture"
    ],
-   "offering": "of-vigos-jar-of-salty-lips",
-   "item": "it-all-hallows-eve-lunchbox",
-   "survivor": "sv-william-bill-overbeck"
+   "offering": "of-toothy-torte",
+   "item": "it-ranger-med-kit",
+   "survivor": "sv-ada-wong"
   }
  ],
- "updatedAt": 1791545319625,
+ "updatedAt": 1791798469572,
  "v1": {
   "killers": {
    "trapper": [
@@ -409,7 +348,7 @@ window.DBD_BUILDS = {
   "survivor": [
    {
     "id": "mv0sx19amknd2",
-    "name": "1v1 Build 1",
+    "name": "1v1 best",
     "perks": [
      "sp-lithe",
      "sp-finesse"
@@ -418,25 +357,6 @@ window.DBD_BUILDS = {
     "alts": {
      "1": [
       "sp-resilience"
-     ]
-    }
-   },
-   {
-    "id": "mv0vgs59twvr1",
-    "name": "1v1 Build 2",
-    "perks": [
-     "sp-background-player",
-     "sp-bada-bada-boom"
-    ],
-    "addons": [],
-    "alts": {
-     "0": [
-      "sp-autodidact"
-     ],
-     "1": [
-      "sp-autodidact",
-      "sp-appraisal",
-      "sp-a-place-for-us"
      ]
     }
    }
