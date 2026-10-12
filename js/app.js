@@ -204,8 +204,10 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
   window.addEventListener("beforeunload", (e) => { if (unsaved) { e.preventDefault(); e.returnValue = ""; } });
 
   /* edit mode: add / edit / copy / delete builds and save them to a file. View mode: look only, like otzdarva-builds.
-     The site always opens in edit mode; the button under "Save builds to file" on the home page switches. */
-  let editMode = true;
+     It opens in edit mode on your own computer (localhost / 127.0.0.1 / index.html opened as a file) and in view
+     mode anywhere else (e.g. GitHub Pages); the button under "Save builds to file" on the home page switches. */
+  const isLocal = location.protocol === "file:" || ["localhost", "127.0.0.1", "[::1]"].includes(location.hostname);
+  let editMode = isLocal;
   const editing = new Set();   // ids of builds currently in edit mode
   let query = "";              // character search on the killers page
   let buildQuery = "";         // build search on the survivors page
