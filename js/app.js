@@ -175,7 +175,6 @@
 
   /* writes every build into js/builds.js — save it over the one in the project folder, then commit it.
      Chrome / Edge let you pick where to save it; other browsers download it to Downloads. */
-  const canSaveFile = ["localhost", "127.0.0.1", ""].includes(location.hostname); // only on your own computer
   async function exportBuilds() {
     const text = `/* Your builds — written by the "Save builds to file" button on the home page.
    Save it over js/builds.js in the project folder and commit it; the site loads it for everyone. */
@@ -452,7 +451,7 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
 
   function renderHome() {
     return `${hero(true)}
-      ${canSaveFile ? `<div class="save-file"><button class="save-file-btn" data-action="export">${ICONS.save} Save builds to file</button></div>` : ""}
+      <div class="save-file"><button class="save-file-btn" data-action="export">${ICONS.save} Save builds to file</button></div>
       <div class="role-cards">
         <a class="role-card killer" href="#/killers">
           <kbd class="role-key">Q</kbd><h2>Killers</h2>
