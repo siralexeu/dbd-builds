@@ -923,6 +923,19 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
     save();
   });
 
+  /* Q / E: the page slides sideways — killers come in from the left, survivors from the right (like the
+     role cards' order). Uses the browser's view transitions; without them (or with reduced motion) it just switches. */
+  function slideTo(hash, from) {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!document.startViewTransition || reduce) { location.hash = hash; return; }
+    document.documentElement.dataset.slide = from;
+    const t = document.startViewTransition(() => new Promise((done) => {
+      window.addEventListener("hashchange", done, { once: true }); // runs after the hashchange render below
+      location.hash = hash;
+    }));
+    t.finished.finally(() => delete document.documentElement.dataset.slide);
+  }
+
   document.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && e.target.classList.contains("bcard-name")) {
       finishEdit(e.target.closest("[data-build]").dataset.build);
@@ -931,12 +944,13 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
     if (e.key === "Escape" && document.querySelector(".perk-wrap.drop-open")) { closeDrops(); return; }
     if (e.key === "Escape" && altState && !dlg.open) { closeAlts(); return; }
     if (e.key === "Escape" && !dlg.open && route().open) closeOverlay();
-    // home page shortcuts, shown as the Q / E hints on the role cards
+    // Q = killers, E = survivors (the hints on the home page's role cards) — on every page, so Q / E also swap
+    // between the killers and survivors pages; not while typing or with the picker / alternatives open
     const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName);
-    if (!typing && !e.ctrlKey && !e.metaKey && !e.altKey && route().page === "home") {
-      const k = e.key.toLowerCase();
-      if (k === "q") location.hash = "#/killers";
-      if (k === "e") location.hash = "#/survivors";
+    if (!typing && !e.ctrlKey && !e.metaKey && !e.altKey && !dlg.open && !altState) {
+      const k = e.key.toLowerCase(), page = route().page;
+      if (k === "q" && page !== "killers") slideTo("#/killers", "left");
+      if (k === "e" && page !== "survivors") slideTo("#/survivors", "right");
     }
   });
 

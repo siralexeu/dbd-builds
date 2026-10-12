@@ -30,7 +30,7 @@ button { cursor: pointer; }
 a { color: inherit; text-decoration: none; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-main { padding: 0 16px; }
+main { padding: 0 16px 64px; }
 
 /* ---------- hero ---------- */
 .hero { text-align: center; padding: 56px 0 8px; }
@@ -455,8 +455,6 @@ span.slot[data-tip] { cursor: pointer; }
 .toast button { border: 0; background: transparent; color: var(--accent-hi); font-weight: 600; padding: 6px 10px; border-radius: 6px; }
 .toast button:hover { background: var(--card-2); }
 
-.site-foot { padding: 80px 16px 40px; text-align: center; color: var(--dim-2); font-size: 14px; }
-
 /* ---------- responsive ---------- */
 @media (max-width: 700px) {
   .bcard.with-portrait { grid-template-columns: minmax(0, 1fr); gap: 10px; }
@@ -609,3 +607,16 @@ button.v1-map:hover { background: rgba(207, 42, 78, .2); box-shadow: 0 0 12px -4
 .alt-text { flex: 1; min-width: 0; display: flex; flex-direction: column; }
 .alt-text b { font-size: 15px; font-weight: 600; }
 .alt-text small { font-size: 12.5px; color: var(--dim); }
+
+/* ---------- Q / E page switch: slide left / right (slideTo in app.js) ---------- */
+.hero { view-transition-name: hero; }        /* the title stays put while the page slides */
+.corner-nav { view-transition-name: corner-nav; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .32s; animation-timing-function: cubic-bezier(.3, .7, .3, 1); }
+html[data-slide="left"]::view-transition-old(root)  { animation-name: slide-out-right; }
+html[data-slide="left"]::view-transition-new(root)  { animation-name: slide-in-left; }
+html[data-slide="right"]::view-transition-old(root) { animation-name: slide-out-left; }
+html[data-slide="right"]::view-transition-new(root) { animation-name: slide-in-right; }
+@keyframes slide-in-left   { from { transform: translateX(-12%); opacity: 0; } }
+@keyframes slide-in-right  { from { transform: translateX(12%);  opacity: 0; } }
+@keyframes slide-out-left  { to   { transform: translateX(-12%); opacity: 0; } }
+@keyframes slide-out-right { to   { transform: translateX(12%);  opacity: 0; } }
