@@ -210,9 +210,26 @@ window.DBD_BUILDS = {
    "offering": "of-toothy-torte",
    "item": "it-ranger-med-kit",
    "survivor": "sv-ada-wong"
+  },
+  {
+   "id": "mv53b4vtmt7g0",
+   "name": "Moment of glory",
+   "perks": [
+    "sp-moment-of-glory",
+    "sp-plunderers-instinct",
+    "sp-resilience",
+    "sp-dead-hard"
+   ],
+   "addons": [
+    "sa-unique-wedding-ring",
+    "sa-friendship-charm"
+   ],
+   "offering": "of-white-ward",
+   "item": "it-skeleton-key",
+   "survivor": "sv-vee-boonyasak"
   }
  ],
- "updatedAt": 1791798469572,
+ "updatedAt": 1791804658246,
  "v1": {
   "killers": {
    "trapper": [

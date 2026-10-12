@@ -203,6 +203,9 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
   }
   window.addEventListener("beforeunload", (e) => { if (unsaved) { e.preventDefault(); e.returnValue = ""; } });
 
+  /* edit mode: add / edit / copy / delete builds and save them to a file. View mode: look only, like otzdarva-builds.
+     The site always opens in edit mode; the button under "Save builds to file" on the home page switches. */
+  let editMode = true;
   const editing = new Set();   // ids of builds currently in edit mode
   let query = "";              // character search on the killers page
   let buildQuery = "";         // build search on the survivors page
@@ -331,13 +334,13 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
       </header>
       <div class="perks">${perks.join("")}</div>
       ${hasLoadout ? `<div class="loadout">${loadout.join("")}</div>` : ""}
-      <div class="bcard-tools">
+      ${editMode ? `<div class="bcard-tools">
         ${ed
           ? navBtn(`done ${role === "survivor" ? "survivors" : "killers"}`, "", "Done", "check", false, "button", "data-action=\"done\"")
           : `<button class="tool" data-action="edit" title="Edit build" aria-label="Edit build">${ICONS.edit}</button>`}
         <button class="tool" data-action="duplicate" title="Duplicate build" aria-label="Duplicate build">${ICONS.copy}</button>
         <button class="tool danger" data-action="delete" title="Delete build" aria-label="Delete build">${ICONS.trash}</button>
-      </div>`;
+      </div>` : ""}`;
 
     if (role !== "survivor" || v1) return `<article class="bcard ${ed ? "editing" : ""}" data-build="${b.id}">${main}</article>`;
     return `<article class="bcard with-portrait ${ed ? "editing" : ""}" data-build="${b.id}">
@@ -391,8 +394,12 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
       : `<a class="nav-btn ${cls}" href="${href}" ${current ? 'aria-current="page"' : ""}>${inner}</a>`;
   };
   // "Add another build" / "Add 1v1 build": a big tile with a Swap / Back style button in the middle
-  const addTile = (scope, label, cls = "") =>
-    `<button class="add-tile ${cls}" data-action="add" data-scope="${scope}"><span class="nav-btn add-pill"><span class="nav-btn-label">${label}</span><span class="nav-btn-icon">${NAV_ICONS.plus}</span></span></button>`;
+  // view mode with a single build: centre it (in edit mode the Add tile sits next to it)
+  const soloCls = (count) => (!editMode && count === 1 ? "solo" : "");
+  // view mode: no Add tile — and a short note instead when there are no builds at all
+  const addTile = (scope, label, cls = "", count = 1) => !editMode
+    ? (count ? "" : `<p class="no-builds">No builds yet.</p>`)
+    : `<button class="add-tile ${cls}" data-action="add" data-scope="${scope}"><span class="nav-btn add-pill"><span class="nav-btn-label">${label}</span><span class="nav-btn-icon">${NAV_ICONS.plus}</span></span></button>`;
   // extra: buttons placed before Swap (the survivors page's 1v1 / Builds switch)
   const cornerNav = (other, extra = "") => {
     const role = other === "#/survivors" ? "killers" : "survivors";
@@ -416,9 +423,9 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
     const body = r.tab === "1v1"
       ? `<div class="v1-wrap">${render1v1("survivor")}</div>`
       : `<div class="search">${ICONS.search}<input type="search" id="build-q" placeholder="Search for build…" value="${esc(buildQuery)}" autocomplete="off"></div>
-        <div class="build-grid survivors-grid">
+        <div class="build-grid survivors-grid ${soloCls(state.survivor.length)}">
           ${state.survivor.map((b) => buildCard(b, "survivor")).join("")}
-          ${addTile("survivor", "Add another build")}
+          ${addTile("survivor", "Add another build", "", state.survivor.length)}
         </div>
         <p class="picker-empty" id="no-build-match" hidden>No build matches your search.</p>`;
     // the 1v1 switch sits top-right next to Swap / Back, so the page's top matches the killers page
@@ -442,9 +449,9 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
     const R = rulesFor(scope), killer = D.killers.find((k) => k.id === scope), list = listFor("v1:" + scope);
     return `${rulesBox(R, killer)}
       <h3 class="v1-heading">1v1 Builds <span>${list.length}</span></h3>
-      <div class="build-grid v1-grid">
+      <div class="build-grid v1-grid ${soloCls(list.length)}">
         ${list.map((b) => buildCard(b, R.role, killer, true)).join("")}
-        ${addTile("v1:" + scope, "Add 1v1 build", "v1-add")}
+        ${addTile("v1:" + scope, "Add 1v1 build", "v1-add", list.length)}
       </div>`;
   }
 
@@ -490,7 +497,8 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
       <div class="credits">
         <span>Created by <a href="https://github.com/siralexeu" target="_blank" rel="noopener">siralexeu</a></span>
         <span>Inspired by <a href="https://otzdarva-builds.com/" target="_blank" rel="noopener">Otzdarva</a></span>
-        <button class="credits-link" data-action="export">Save builds to file</button>
+        ${editMode ? `<button class="credits-link" data-action="export">Save builds to file</button>` : ""}
+        <button class="credits-link" data-action="mode">${editMode ? "Switch to view mode" : "Switch to edit mode"}</button>
       </div>`;
   }
 
@@ -508,9 +516,9 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
         <h2 class="sec-title">${esc(k.name)}</h2>
         <p class="popup-meta">${[k.realName && esc(k.realName), `Power: <b>${esc(k.power)}</b>`, k.difficulty && esc(k.difficulty)].filter(Boolean).join("<span class=\"sep\">·</span>")}</p>
         ${tabsBar("#/killers/" + k.id, tab)}
-        ${tab === "1v1" ? render1v1(k.id) : `<div class="build-grid">
+        ${tab === "1v1" ? render1v1(k.id) : `<div class="build-grid ${soloCls(list.length)}">
           ${list.map((b) => buildCard(b, "killer", k)).join("")}
-          ${addTile(k.id, "Add another build")}
+          ${addTile(k.id, "Add another build", "", list.length)}
         </div>`}
       </div>
       <a class="popup-nav next" href="#/killers/${next.id}${keepTab}" aria-label="Next killer: ${esc(next.name)}">${arrow("next")}</a>`;
@@ -532,7 +540,8 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
       if (card) card.hidden = !ok;
       shown += ok;
     });
-    grid.querySelector(".add-tile").hidden = !!q; // adding a build while filtering would hide it straight away
+    const add = grid.querySelector(".add-tile"); // not there in view mode
+    if (add) add.hidden = !!q; // adding a build while filtering would hide it straight away
     app.querySelector("#no-build-match").hidden = shown > 0 || !q;
   }
 
@@ -973,15 +982,16 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
     const card = el.closest("[data-build]");
     const id = card ? card.dataset.build : altState && el.closest("#altpop") ? altState.buildId : null;
     switch (el.dataset.action) {
-      case "add": addBuild(el.dataset.scope); break;
-      case "edit": editing.add(id); render(); break;
+      case "add": if (editMode) addBuild(el.dataset.scope); break;
+      case "edit": if (editMode) { editing.add(id); render(); } break;
       case "done": finishEdit(id); break;
-      case "duplicate": duplicateBuild(id); break;
-      case "delete": deleteBuild(id); break;
-      case "pick": openPicker(id, el.dataset.slot, el.dataset.index); break;
+      case "duplicate": if (editMode) duplicateBuild(id); break;
+      case "delete": if (editMode) deleteBuild(id); break;
+      case "pick": if (editMode) openPicker(id, el.dataset.slot, el.dataset.index); break;
       case "alts": openAlts(id, +el.dataset.index); break;
       case "alt-drop": toggleDrop(el); break;
       case "export": exportBuilds(); break;
+      case "mode": editMode = !editMode; editing.clear(); render(); toast(editMode ? "Edit mode — you can add, edit and delete builds." : "View mode — builds can only be looked at."); break;
       case "alt-remove": { const { b } = locate(altState.buildId); b.alts[altState.p].splice(+el.dataset.index, 1); if (!b.alts[altState.p].length) delete b.alts[altState.p]; save(); render(); break; }
       case "alts-close": closeAlts(); break;
       case "close": closeOverlay(); break;

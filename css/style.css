@@ -688,3 +688,9 @@ html[data-slide="back"]::view-transition-old(root) { animation-name: back-out; }
 html[data-slide="back"]::view-transition-new(root) { animation-name: back-in; }
 @keyframes back-out { to   { transform: scale(.97);  opacity: 0; } }
 @keyframes back-in  { from { transform: scale(1.03); opacity: 0; } }
+
+/* view mode: shown where the Add tile would be when a killer / the survivors have no builds */
+.no-builds { grid-column: 1 / -1; margin: 8px 0 0; padding: 28px 16px; text-align: center; color: var(--dim); font-size: 14px;
+  border: 1px solid var(--line); border-radius: var(--radius); background: var(--glass); }
+/* view mode, one build only: centred, about as wide as it would be in two columns */
+.build-grid.solo { grid-template-columns: min(100%, max(420px, calc(50% - 16px))); justify-content: center; }
