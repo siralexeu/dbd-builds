@@ -241,14 +241,19 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
     else if (/^#\//.test(location.hash)) history.replaceState(null, "", url(location.hash));
   }
 
+  // the pages that exist: /  /killers  /killers/<killer>[/1v1]  /survivors[/1v1] — anything else is "notfound"
   function route() {
-    const [page, sub, tab] = currentHash().replace(/^#\/?/, "").split("/");
+    const parts = currentHash().replace(/^#\/?/, "").split("/").filter(Boolean);
+    const [page, sub, tab] = parts;
+    if (!page) return { page: "home" };
     if (page === "killers") {
+      if (!sub) return { page, role: "killer", open: null, tab: "builds" };
       const k = D.killers.find((x) => x.id === sub);
-      return { page, role: "killer", open: k ? k.id : null, tab: tab === "1v1" ? "1v1" : "builds" };
+      if (k && parts.length <= 3 && (!tab || tab === "1v1")) return { page, role: "killer", open: k.id, tab: tab === "1v1" ? "1v1" : "builds" };
+    } else if (page === "survivors" && parts.length <= 2 && (!sub || sub === "1v1")) {
+      return { page, role: "survivor", open: null, tab: sub === "1v1" ? "1v1" : "builds" };
     }
-    if (page === "survivors") return { page, role: "survivor", open: null, tab: sub === "1v1" ? "1v1" : "builds" };
-    return { page: "home" };
+    return { page: "notfound" };
   }
   const baseScope = (scope) => scope.replace(/^v1:/, "");
   const isV1 = (scope) => scope.startsWith("v1:");
@@ -437,6 +442,17 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
     </nav>`;
   };
 
+  // an address that is not a page (typed wrong, an old link…)
+  function renderNotFound() {
+    return `<div class="page-list">${hero(false)}</div>
+      <section class="not-found">
+        <div class="not-found-code">404</div>
+        <h2 class="page-title">Page not found</h2>
+        <p>This address doesn't lead anywhere — it may have been typed wrong or moved.</p>
+        <div class="not-found-actions">${navBtn("tint killers", "#/", "Back to home", "back")}</div>
+      </section>`;
+  }
+
   function renderKillers(r) {
     const k = r.open && D.killers.find((x) => x.id === r.open);
     return `${cornerNav("#/survivors")}
@@ -589,10 +605,10 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
   function render() {
     hideTip();
     const r = route();
-    document.title = "DBD Builds" + (r.page === "killers" ? " · Killers" : r.page === "survivors" ? " · Survivors" : "");
+    document.title = "DBD Builds" + (r.page === "killers" ? " · Killers" : r.page === "survivors" ? " · Survivors" : r.page === "notfound" ? " · Page not found" : "");
 
     const focusedSearch = document.activeElement && ["char-q", "build-q"].includes(document.activeElement.id) ? document.activeElement.id : null;
-    app.innerHTML = r.page === "home" ? renderHome() : r.page === "killers" ? renderKillers(r) : renderSurvivors(r);
+    app.innerHTML = r.page === "home" ? renderHome() : r.page === "killers" ? renderKillers(r) : r.page === "survivors" ? renderSurvivors(r) : renderNotFound();
     applySearch();
     if (focusedSearch) { const s = app.querySelector("#" + focusedSearch); if (s) { s.focus(); s.setSelectionRange(s.value.length, s.value.length); } }
 
