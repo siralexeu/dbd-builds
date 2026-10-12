@@ -2,7 +2,6 @@
   "use strict";
 
   const D = window.DBD_DATA;
-  const STORE_KEY = "dbd-builds:v1";
   const RARITY = { common: "Common", uncommon: "Uncommon", rare: "Rare", veryrare: "Very Rare", ultrarare: "Ultra Rare" };
   const SLOT_LABEL = { perks: "perk", addons: "add-on", offering: "offering", item: "item", survivor: "survivor", alt: "alternative perk" };
   // try-out: alternative perks open as a dropdown under the perk (false = the old pop-up in the middle of the screen)
@@ -158,16 +157,11 @@
     }));
   }
 
-  /* builds come from js/builds.js (the file you commit, written by "Save builds to file") or from this
-     browser's localStorage (your edits since) — whichever is newer; with neither, the starter builds */
+  /* builds come only from js/builds.js (written by "Save builds to file"); nothing is kept in the browser,
+     so edits last until the page is closed / reloaded unless you save the file. No file yet = starter builds. */
   function load() {
-    const valid = (s) => s && s.killers && Array.isArray(s.survivor);
-    let local = null;
-    try { local = JSON.parse(localStorage.getItem(STORE_KEY)); } catch (_) { /* storage blocked or corrupt */ }
-    const file = window.DBD_BUILDS ? JSON.parse(JSON.stringify(window.DBD_BUILDS)) : null;
-    const s = valid(local) && (!valid(file) || (local.updatedAt || 0) >= (file.updatedAt || 0)) ? local
-      : valid(file) ? file : null;
-    if (!s) return seed();
+    const s = window.DBD_BUILDS ? JSON.parse(JSON.stringify(window.DBD_BUILDS)) : null;
+    if (!(s && s.killers && Array.isArray(s.survivor))) return seed();
     D.killers.forEach((k) => { if (!Array.isArray(s.killers[k.id])) s.killers[k.id] = []; });
     migrate(s);
     return ensureV1(s);
@@ -186,6 +180,7 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
         const out = await handle.createWritable();
         await out.write(text);
         await out.close();
+        unsaved = false;
         return toast("Builds saved. Commit js/builds.js to put them on GitHub.");
       }
     } catch (err) {
@@ -196,18 +191,18 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
     a.download = "builds.js";
     a.click();
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    unsaved = false;
     toast("builds.js downloaded. Move it into the project's js folder, then commit it.");
   }
 
   let state = load();
-  let saveTimer = null;
+  // edits only live in this page until "Save builds to file" — leaving / reloading with unsaved edits asks first
+  let unsaved = false;
   function save() {
     state.updatedAt = Date.now();
-    clearTimeout(saveTimer);
-    saveTimer = setTimeout(() => {
-      try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (_) { /* ignore */ }
-    }, 150);
+    unsaved = true;
   }
+  window.addEventListener("beforeunload", (e) => { if (unsaved) { e.preventDefault(); e.returnValue = ""; } });
 
   const editing = new Set();   // ids of builds currently in edit mode
   let query = "";              // character search on the killers page
