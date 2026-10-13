@@ -196,7 +196,7 @@ window.DBD_BUILDS = {
   },
   {
    "id": "mv52366b6aby8",
-   "name": "dramatugie",
+   "name": "Dramatugie",
    "perks": [
     "sp-dramaturgy",
     "sp-resurgence",
@@ -227,9 +227,31 @@ window.DBD_BUILDS = {
    "offering": "of-white-ward",
    "item": "it-skeleton-key",
    "survivor": "sv-vee-boonyasak"
+  },
+  {
+   "id": "mv71ezk7ljxtw",
+   "name": "Broken build",
+   "perks": [
+    "sp-decisive-strike",
+    "sp-dead-hard",
+    "sp-made-for-this",
+    "sp-plot-twist"
+   ],
+   "addons": [
+    "sa-gel-dressings",
+    "sa-surgical-suture"
+   ],
+   "offering": "of-toothy-torte",
+   "item": "it-anniversary-med-kit",
+   "survivor": "sv-lara-croft",
+   "alts": {
+    "2": [
+     "sp-deliverance"
+    ]
+   }
   }
  ],
- "updatedAt": 1791899900907,
+ "updatedAt": 1791918354163,
  "v1": {
   "killers": {
    "trapper": [
