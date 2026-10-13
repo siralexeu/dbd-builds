@@ -10,3 +10,6 @@ nostalgia-pack-v40.1/
 
 # copy of the previous WebP pictures (before the nostalgia pack), kept only on this computer
 img-webp-old/
+
+# Claude Code settings (local only)
+.claude/

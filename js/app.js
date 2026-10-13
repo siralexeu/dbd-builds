@@ -2,7 +2,7 @@
   "use strict";
 
   const D = window.DBD_DATA;
-  const RARITY = { common: "Common", uncommon: "Uncommon", rare: "Rare", veryrare: "Very Rare", ultrarare: "Ultra Rare" };
+  const RARITY = { common: "Common", uncommon: "Uncommon", rare: "Rare", veryrare: "Very Rare", ultrarare: "Ultra Rare", event: "Event" };
   const SLOT_LABEL = { perks: "perk", addons: "add-on", offering: "offering", item: "item", survivor: "survivor", alt: "alternative perk" };
   // try-out: alternative perks open as a dropdown under the perk (false = the old pop-up in the middle of the screen)
   const ALT_DROPDOWN = true;
