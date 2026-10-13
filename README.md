@@ -1,9 +1,5 @@
 # DBD Builds
 
-Dead by Daylight builds for killers and survivors: perks, add-ons, items and the 1v1 rules.
-
-## Overview
-
 Dead by Daylight builds for every killer and for survivors, each with its perks, add-ons, item and offering, plus the 1v1 rules.
 
 Inspired by [Otzdarva's builds](https://otzdarva-builds.com/) and [Hens333](https://hens333.com/).
