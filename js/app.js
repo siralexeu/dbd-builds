@@ -317,14 +317,15 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
   const overlay = document.getElementById("overlay");
 
   function hero(withDate) {
-    const date = new Date(state.updatedAt || Date.now()).toLocaleDateString();
+    const d = new Date(state.updatedAt || Date.now());
+    const date = [d.getDate(), d.getMonth() + 1].map((n) => String(n).padStart(2, "0")).join(".") + "." + d.getFullYear(); // dd.mm.yyyy
     return `<header class="hero">
       <h1>
-        <span class="hero-top"><span class="logo-mark" aria-hidden="true"></span><span><span class="accent">${esc(D.site.brand)}</span> builds for</span></span>
+        <span class="hero-top"><img class="hero-logo" src="img/logo.png" alt="" width="48" height="48"><span><span class="accent">${esc(D.site.brand)}</span> builds for</span></span>
         <span class="hero-big">Dead by Daylight</span>
       </h1>
-      ${withDate && D.site.gameVersion ? `<p class="updated">Game version: ${esc(D.site.gameVersion)}</p>` : ""}
-      ${withDate ? `<p class="updated">Last updated: ${date}</p>` : ""}
+      ${withDate && D.site.gameVersion ? `<p class="updated">Game version ${esc(D.site.gameVersion)}</p>` : ""}
+      ${withDate ? `<p class="updated">Last updated ${date}</p>` : ""}
     </header>`;
   }
 
