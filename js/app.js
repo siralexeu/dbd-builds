@@ -444,13 +444,12 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
 
   // an address that is not a page (typed wrong, an old link…)
   function renderNotFound() {
-    return `<div class="page-list">${hero(false)}</div>
-      <section class="not-found">
-        <div class="not-found-code">404</div>
-        <h2 class="page-title">Page not found</h2>
-        <p>This address doesn't lead anywhere — it may have been typed wrong or moved.</p>
-        <div class="not-found-actions">${navBtn("tint killers", "#/", "Back to home", "back")}</div>
-      </section>`;
+    return `<section class="not-found">
+      <div class="not-found-code">404</div>
+      <p>Page not found</p>
+      <p class="not-found-note">This address doesn't lead anywhere — it may have been typed wrong or moved.</p>
+      <div class="not-found-actions">${navBtn("", "#/", "Back to home", "back")}</div>
+    </section>`;
   }
 
   function renderKillers(r) {

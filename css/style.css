@@ -695,9 +695,9 @@ html[data-slide="back"]::view-transition-new(root) { animation-name: back-in; }
 /* view mode, one build only: centred, about as wide as it would be in two columns */
 .build-grid.solo { grid-template-columns: min(100%, max(420px, calc(50% - 16px))); justify-content: center; }
 
-/* "Page not found" */
-.not-found { max-width: 520px; margin: 28px auto 0; text-align: center; }
-.not-found-code { font-size: clamp(72px, 16vw, 132px); font-weight: 700; line-height: 1; letter-spacing: .02em; color: var(--accent); }
-.not-found .page-title { margin-top: 18px; }
-.not-found p { margin: 14px 0 0; color: var(--dim); }
-.not-found-actions { display: flex; justify-content: center; margin-top: 26px; }
+/* "Page not found": just the code, one line and a button, in the middle of the screen */
+.not-found { min-height: 70vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; text-align: center; }
+.not-found-code { font-size: clamp(64px, 14vw, 112px); font-weight: 700; line-height: 1; color: var(--accent); }
+.not-found p { margin: 0; font-size: 18px; color: var(--dim); }
+.not-found .not-found-note { max-width: 420px; margin-top: 10px; font-size: 15px; color: var(--dim-2); }
+.not-found-actions { margin-top: 22px; }
