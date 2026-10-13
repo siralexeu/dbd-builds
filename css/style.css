@@ -6,7 +6,7 @@
   --edge-2: #3a3a3b;
   --txt: rgba(255, 255, 255, .87);
   --dim: #8b8b8d;
-  --dim-2: #5c5c5f;
+  --dim-2: #7f7f83; /* was #5c5c5f: too faint on the dark cards (contrast below 4.5:1) */
   --accent: #cf2a4e;
   --accent-hi: #e0355c;
   --accent-dark: #7c1430;
