@@ -4,3 +4,9 @@ img-originals/
 
 # installed packages
 node_modules/
+
+# new picture pack, only used locally to make the WebP files
+nostalgia-pack-v40.1/
+
+# copy of the previous WebP pictures (before the nostalgia pack), kept only on this computer
+img-webp-old/

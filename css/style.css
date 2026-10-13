@@ -258,12 +258,16 @@ main { padding: 0 16px 64px; }
 .with-portrait .loadout { gap: 10px; }
 .bportrait {
   position: relative; display: grid; place-items: center; width: 100%; aspect-ratio: 43 / 50; padding: 0;
-  border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: #0c0c0d; color: var(--dim);
+  border-radius: 6px; /* squarer corners, same as the killer tiles (.ktile) */
+  overflow: hidden; border: 1px solid var(--line); background: #0c0c0d; color: var(--dim);
 }
 .bportrait img { width: 100%; height: 100%; object-fit: cover; }
 .bportrait img.emblem { width: 62%; height: auto; opacity: .16; }
 .bportrait .choose { position: absolute; bottom: 10px; left: 0; right: 0; text-align: center; font-size: 12px; font-weight: 600; color: var(--dim); }
-button.bportrait:hover { border-color: var(--accent); }
+/* hover / hold: the border in the colour of the survivor's portrait background (--kc), like the killer tiles */
+.bportrait { transition: border-color .18s; }
+.bportrait:hover, .bportrait:active { border-color: var(--kc, var(--accent)); }
+.bportrait.is-empty:not(button):hover, .bportrait.is-empty:not(button):active { border-color: var(--line); }
 button.bportrait:hover .choose { color: var(--txt); }
 .build-grid.survivors-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 520px), 1fr)); max-width: 1100px; }
 
@@ -330,6 +334,11 @@ span.slot[data-tip] { cursor: pointer; }
   background: var(--offering-bg, url(../img/ui/common-offering.png)) center / contain no-repeat;
 }
 .ico-offering img { width: 86%; height: 86%; }
+
+/* the pictures are complete icons (diamond / square / hexagon frame and coloured background included), so no CSS frame
+   behind them and no shrinking inside it; the frames above stay for entries without a picture and for empty slots */
+.ico-perk.has-img, .ico-addon.has-img, .ico-item.has-img, .ico-offering.has-img, .ico-power.has-img { background: none; }
+.ico-perk.has-img img, .ico-addon.has-img img, .ico-item.has-img img, .ico-offering.has-img img, .ico-power.has-img img { width: 100%; height: 100%; }
 
 /* empty slots: the same frames, greyed out */
 .ico.empty { color: var(--dim); text-shadow: none; filter: grayscale(1) brightness(.42); }

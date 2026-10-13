@@ -295,7 +295,10 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
   function icon(shape, e) {
     const cls = shape === "perk" ? "" : "r-" + e.rarity;
     const inner = e.img ? `<img src="${esc(e.img)}" alt="" loading="lazy" decoding="async">` : `<span class="ico-txt">${esc(initials(e.name))}</span>`;
-    return `<span class="ico ico-${shape} ${cls}">${inner}</span>`;
+    // has-img: the picture already is a complete icon (frame + background), so the CSS frame is not drawn behind it
+    // aura colour sampled from the picture (js/glow-colors.js, made by tools/glow-colors.js); without one the rarity / CSS colour is used
+    const glow = (window.DBD_GLOW || {})[e.id];
+    return `<span class="ico ico-${shape} ${cls} ${e.img ? "has-img" : ""}"${glow ? ` style="--rc: ${glow}"` : ""}>${inner}</span>`;
   }
 
   function slot(kind, index, id, ed) {
@@ -389,8 +392,11 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
       ? `<img src="${esc(sv.img)}" alt="${esc(sv.name)}" loading="lazy" decoding="async">`
       : `<img class="emblem" src="img/survivor-icon.webp" alt="">${ed ? `<span class="choose">Choose survivor</span>` : ""}`;
     const tip = sv ? `data-tip="${sv.id}"` : "";
-    if (!ed) return `<span class="bportrait ${sv ? "" : "is-empty"}" ${tip}>${face}</span>`;
-    return `<button class="bportrait ${sv ? "" : "is-empty"}" data-action="pick" data-slot="survivor" data-index="0" ${tip}
+    // border colour on hover / hold = the portrait's background (--kc, like the killer tiles), from js/glow-colors.js
+    const kc = sv && (window.DBD_GLOW || {})[sv.id];
+    const sty = kc ? `style="--kc: ${kc}"` : "";
+    if (!ed) return `<span class="bportrait ${sv ? "" : "is-empty"}" ${tip} ${sty}>${face}</span>`;
+    return `<button class="bportrait ${sv ? "" : "is-empty"}" data-action="pick" data-slot="survivor" data-index="0" ${tip} ${sty}
       aria-label="${sv ? "Change survivor (" + esc(sv.name) + ")" : "Choose survivor"}">${face}</button>`;
   }
 
