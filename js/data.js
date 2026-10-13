@@ -1,7 +1,7 @@
 /* Game data.
    Killers, killer add-ons and all perks are generated from the Dead by Daylight
    wiki (deadbydaylight.wiki.gg, Module:Datatable + Module:Datatable/Loadout),
-   without descriptions for now. Unused / retired entries are left out.
+   Unused / retired entries are left out.
    Offerings: the wiki Offerings page list (no retired, no mobile, only Toothy Torte of the no-longer-available). Survivor items: those that take add-ons (no Limited / Firecrackers).
    Official images live in img/killers, img/powers, img/perks, img/addons, img/offerings, img/items, img/item-addons;
    rarity backgrounds in img/ui (the ones deadbydaylight.wiki.gg uses).

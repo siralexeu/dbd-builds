@@ -1,15 +1,12 @@
 :root {
   --bg: #0f0f10;
   --card: #171717;
-  --card-2: #1e1e1f;
   --edge: #262626;
   --edge-2: #3a3a3b;
   --txt: rgba(255, 255, 255, .87);
   --dim: #8b8b8d;
   --dim-2: #7f7f83; /* was #5c5c5f: too faint on the dark cards (contrast below 4.5:1) */
   --accent: #cf2a4e;
-  --accent-hi: #e0355c;
-  --accent-dark: #7c1430;
   /* the one look every button / panel shares (like otzdarva-builds' buttons) */
   --radius: 12px;
   --line: #262626;
@@ -232,7 +229,6 @@ main { padding: 0 16px 64px; }
 .chain { display: flex; align-items: center; }
 .chain .link { width: 24px; height: 3px; background: #050505; box-shadow: 0 0 0 1px rgba(255,255,255,.04); }
 .chain .link-item { width: 48px; }
-.loadout-label { font-size: 11px; color: var(--dim-2); text-transform: uppercase; letter-spacing: .12em; margin-right: 2px; }
 
 /* survivor builds: portrait column on the left */
 .bcard.with-portrait { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 16px; align-items: center; }
@@ -593,8 +589,6 @@ span.slot[data-tip] { cursor: pointer; }
   .ban-item { width: 76px; }
   .ban-item .slot-perk, .ban-item .ico-perk { width: 56px; height: 56px; }
 }
-.map-bans { display: flex; flex-wrap: wrap; gap: 6px; }
-.map-ban { padding: 4px 10px; border-radius: 5px; font-size: 13px; font-weight: 500; background: rgba(229, 72, 77, .12); border: 1px solid rgba(229, 72, 77, .35); color: #ffb3b5; }
 /* the map the 1v1 is played on — important, so it stands out */
 .v1-map {
   display: inline-flex; align-items: center; gap: 12px; margin: 2px 0 12px;

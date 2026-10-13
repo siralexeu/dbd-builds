@@ -67,8 +67,6 @@
     copy: svg(15, '<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/>'),
     trash: svg(15, '<path d="M4 7h16M10 11v6M14 11v6M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12M9 7V4h6v3"/>'),
     search: svg(15, '<circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/>'),
-    lines: svg(16, '<path d="M4 6h16M4 12h11M4 18h7"/>'),
-    chevron: svg(16, '<path d="M9 6l6 6-6 6"/>'),
     close: svg(18, '<path d="M6 6l12 12M18 6L6 18"/>', 'stroke-width="2.4"'),
   };
 
