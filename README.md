@@ -4,11 +4,13 @@ Dead by Daylight builds for killers and survivors: perks, add-ons, items and the
 
 ## Overview
 
-DBD Builds is a place to browse Dead by Daylight builds for both killers and survivors. Every build shows its perks, add-ons, item and offering, so it is easy to see what goes together and why.
+Dead by Daylight builds for every killer and for survivors, each with its perks, add-ons, item and offering, plus the 1v1 rules.
 
-## Inspired by
+Inspired by [Otzdarva's builds](https://otzdarva-builds.com/) and [Hens333](https://hens333.com/).
 
-[Otzdarva's builds](https://otzdarva-builds.com/) and [Hens333](https://hens333.com/).
+## Credits
+
+Game data (perks, add-ons, items, offerings and descriptions) comes from the [Dead by Daylight Wiki](https://deadbydaylight.wiki.gg/) and [Nightlight](https://nightlight.gg/).
 
 ## Disclaimer
 
