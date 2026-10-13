@@ -20,7 +20,23 @@ window.DBD_BUILDS = {
     "notes": "Set traps around the hook and at loops before chasing."
    }
   ],
-  "wraith": [],
+  "wraith": [
+   {
+    "id": "mv6qw5atnjy8w",
+    "name": "Build 1",
+    "perks": [
+     "kp-batteries-included",
+     "kp-alien-instinct",
+     "kp-all-shaking-thunder",
+     "kp-bitter-murmur"
+    ],
+    "addons": [
+     "ka-wraith-windstorm-mud",
+     "ka-wraith-bone-clapper"
+    ],
+    "offering": "of-tanager-wreath"
+   }
+  ],
   "hillbilly": [],
   "nurse": [
    {
@@ -64,23 +80,7 @@ window.DBD_BUILDS = {
     "offering": "of-ebony-memento-mori"
    }
   ],
-  "legion": [
-   {
-    "id": "muwkz18sdbwmx",
-    "name": "Build 1",
-    "perks": [
-     null,
-     null,
-     null,
-     null
-    ],
-    "addons": [
-     null,
-     null
-    ],
-    "offering": null
-   }
-  ],
+  "legion": [],
   "plague": [],
   "ghost-face": [],
   "demogorgon": [],
@@ -229,7 +229,7 @@ window.DBD_BUILDS = {
    "survivor": "sv-vee-boonyasak"
   }
  ],
- "updatedAt": 1791804658246,
+ "updatedAt": 1791899900907,
  "v1": {
   "killers": {
    "trapper": [
@@ -248,18 +248,6 @@ window.DBD_BUILDS = {
        "kp-bamboozle"
       ]
      }
-    },
-    {
-     "id": "mv0ugtrnjuhkx",
-     "name": "1v1 Build 2",
-     "perks": [
-      null
-     ],
-     "addons": [
-      null,
-      null
-     ],
-     "alts": {}
     }
    ],
    "wraith": [
@@ -342,20 +330,7 @@ window.DBD_BUILDS = {
     }
    ],
    "houndmaster": [],
-   "ghoul": [
-    {
-     "id": "mv0vt8e36bh4k",
-     "name": "1v1 Build 1",
-     "perks": [
-      null
-     ],
-     "addons": [
-      null,
-      null
-     ],
-     "alts": {}
-    }
-   ],
+   "ghoul": [],
    "animatronic": [],
    "krasue": [],
    "first": [],

@@ -687,6 +687,8 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
 
   function finishEdit(id) {
     const { b } = locate(id);
+    // an empty build (no perk and no add-on; the offering / item don't count) can't be finished
+    if (![...b.perks, ...b.addons].some(Boolean)) return toast("Add at least one perk or add-on first.");
     if (!b.name.trim()) b.name = "Untitled build";
     editing.delete(id);
     save(); render();
