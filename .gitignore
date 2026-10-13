@@ -1,0 +1,6 @@
+# the original (large) PNG pictures — only kept on this computer; the site uses the small WebP versions in img/
+# (tools/convert-images.js makes those from these)
+img-originals/
+
+# installed packages
+node_modules/

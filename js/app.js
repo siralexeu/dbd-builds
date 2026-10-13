@@ -294,7 +294,7 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
 
   function icon(shape, e) {
     const cls = shape === "perk" ? "" : "r-" + e.rarity;
-    const inner = e.img ? `<img src="${esc(e.img)}" alt="">` : `<span class="ico-txt">${esc(initials(e.name))}</span>`;
+    const inner = e.img ? `<img src="${esc(e.img)}" alt="" loading="lazy" decoding="async">` : `<span class="ico-txt">${esc(initials(e.name))}</span>`;
     return `<span class="ico ico-${shape} ${cls}">${inner}</span>`;
   }
 
@@ -386,8 +386,8 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
   function survivorPortrait(b, ed) {
     const sv = b.survivor && INDEX[b.survivor];
     const face = sv && sv.img
-      ? `<img src="${esc(sv.img)}" alt="${esc(sv.name)}">`
-      : `<img class="emblem" src="img/survivor-icon.png" alt="">${ed ? `<span class="choose">Choose survivor</span>` : ""}`;
+      ? `<img src="${esc(sv.img)}" alt="${esc(sv.name)}" loading="lazy" decoding="async">`
+      : `<img class="emblem" src="img/survivor-icon.webp" alt="">${ed ? `<span class="choose">Choose survivor</span>` : ""}`;
     const tip = sv ? `data-tip="${sv.id}"` : "";
     if (!ed) return `<span class="bportrait ${sv ? "" : "is-empty"}" ${tip}>${face}</span>`;
     return `<button class="bportrait ${sv ? "" : "is-empty"}" data-action="pick" data-slot="survivor" data-index="0" ${tip}
@@ -396,7 +396,7 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
 
   function portraitFace(k) {
     return k.img
-      ? `<img src="${esc(k.img)}" alt="">`
+      ? `<img src="${esc(k.img)}" alt="" loading="lazy" decoding="async">`
       : `<span class="initial">${esc(k.name.replace(/^The\s+/, "")[0])}</span>`;
   }
 
@@ -530,11 +530,11 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
       <div class="role-cards">
         <a class="role-card killer" href="${url("#/killers")}">
           <kbd class="role-key">Q</kbd><h2>Killers</h2>
-          <img src="img/killer-icon.png" alt="" width="736" height="706">
+          <img src="img/killer-icon.webp" alt="" width="512" height="491" fetchpriority="high">
         </a>
         <a class="role-card survivor" href="${url("#/survivors")}">
           <kbd class="role-key">E</kbd><h2>Survivors</h2>
-          <img src="img/survivor-icon.png" alt="" width="692" height="692">
+          <img src="img/survivor-icon.webp" alt="" width="512" height="512" fetchpriority="high">
         </a>
       </div>
       <div class="credits">

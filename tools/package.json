@@ -1,0 +1,8 @@
+{
+  "name": "dbd-builds-tools",
+  "private": true,
+  "description": "Helper scripts for the site (not part of the site itself)",
+  "dependencies": {
+    "sharp": "^0.35.5"
+  }
+}
