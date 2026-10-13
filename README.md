@@ -1,17 +1,16 @@
 # DBD Builds
 
-My Dead by Daylight builds for killers and survivors: perks, add-ons, items and the 1v1 rules.
+Dead by Daylight builds for killers and survivors: perks, add-ons, items and the 1v1 rules.
 
-**Live:** [dbdbuilds.vercel.app](https://dbdbuilds.vercel.app/)
+## Overview
 
-## What you can do
+DBD Builds is a place to browse Dead by Daylight builds for both killers and survivors. Every build shows its perks, add-ons, item and offering, so it is easy to see what goes together and why.
 
-- Pick a killer or survivor and see my builds.
-- Hover over a perk, add-on or item to see its name, click it to read what it does.
-- Check the 1v1 rules and banned perks for every killer.
+## Inspired by
 
-Inspired by [Otzdarva's builds](https://otzdarva-builds.com/) and [Hens333](https://hens333.com/).
+[Otzdarva's builds](https://otzdarva-builds.com/) and [Hens333](https://hens333.com/).
 
----
+## Disclaimer
 
-Created by [siralexeu](https://github.com/siralexeu). *Dead by Daylight* and all its names and pictures belong to Behaviour Interactive; this is an unofficial fan project.
+This project is a fan-made website and is not affiliated with, endorsed by, or sponsored by Behaviour Interactive.
+Dead by Daylight and all related names and pictures are trademarks of their respective owners.
