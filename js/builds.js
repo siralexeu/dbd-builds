@@ -197,7 +197,23 @@ window.DBD_BUILDS = {
   "trickster": [],
   "nemesis": [],
   "cenobite": [],
-  "artist": [],
+  "artist": [
+   {
+    "id": "mv8kdy58a4x0i",
+    "name": "OP 1",
+    "perks": [
+     "kp-scourge-hook-pain-resonance",
+     "kp-dead-mans-switch",
+     "kp-rapid-brutality",
+     "kp-lethal-pursuer"
+    ],
+    "addons": [
+     "ka-artist-severed-hands",
+     "ka-artist-untitled-agony"
+    ],
+    "offering": "of-toothy-torte"
+   }
+  ],
   "onryo": [],
   "dredge": [],
   "mastermind": [
@@ -439,14 +455,14 @@ window.DBD_BUILDS = {
    "id": "muwfrv9br3h8x",
    "name": "Chase Build",
    "perks": [
-    "sp-sprint-burst",
-    "sp-adrenaline",
-    "sp-windows-of-opportunity",
-    "sp-resilience"
+    "sp-quick-gambit",
+    "sp-dramaturgy",
+    "sp-balanced-landing",
+    "sp-five-moves-ahead"
    ],
    "addons": [
-    "sa-styptic-agent",
-    "sa-gauze-roll"
+    "sa-gel-dressings",
+    "sa-surgical-suture"
    ],
    "offering": "of-vigos-jar-of-salty-lips",
    "notes": "Loop the killer as long as possible, heal up after chase.",
@@ -525,9 +541,26 @@ window.DBD_BUILDS = {
      "sp-deliverance"
     ]
    }
+  },
+  {
+   "id": "mv8kblcrqpgce",
+   "name": "Gen Rush",
+   "perks": [
+    "sp-deja-vu",
+    "sp-built-to-last",
+    "sp-resurgence",
+    "sp-dead-hard"
+   ],
+   "addons": [
+    "sa-wire-spool",
+    "sa-socket-swivels"
+   ],
+   "offering": "of-shroud-of-separation",
+   "item": "it-masquerade-toolbox",
+   "survivor": "sv-jane-romero"
   }
  ],
- "updatedAt": 1792006753509,
+ "updatedAt": 1792009912728,
  "v1": {
   "killers": {
    "trapper": [
