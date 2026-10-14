@@ -78,6 +78,111 @@ window.DBD_BUILDS = {
      "ka-spirit-muddy-sports-day-cap"
     ],
     "offering": "of-ebony-memento-mori"
+   },
+   {
+    "id": "mv8hwch8rensw",
+    "name": "Build 2",
+    "perks": [
+     "kp-agitation",
+     "kp-scourge-hook-pain-resonance",
+     "kp-pop-goes-the-weasel",
+     "kp-languid-touch"
+    ],
+    "addons": [
+     "ka-spirit-muddy-sports-day-cap",
+     null
+    ],
+    "offering": null
+   },
+   {
+    "id": "mv8i1ejd0xo49",
+    "name": "OP 2",
+    "perks": [
+     "kp-pop-goes-the-weasel",
+     "kp-corrupt-intervention",
+     "kp-scourge-hook-pain-resonance",
+     "kp-eruption"
+    ],
+    "addons": [
+     "ka-spirit-rusty-flute",
+     "ka-spirit-muddy-sports-day-cap"
+    ],
+    "offering": "of-ebony-memento-mori"
+   },
+   {
+    "id": "mv8i2bs5xh0g3",
+    "name": "Agi Languid",
+    "perks": [
+     "kp-agitation",
+     "kp-scourge-hook-pain-resonance",
+     "kp-pop-goes-the-weasel",
+     "kp-languid-touch"
+    ],
+    "addons": [
+     "ka-spirit-rusty-flute",
+     "ka-spirit-muddy-sports-day-cap"
+    ],
+    "offering": "of-toothy-torte"
+   },
+   {
+    "id": "mv8ielmx5d8wf",
+    "name": "Awa Starstuck",
+    "perks": [
+     "kp-agitation",
+     "kp-awakened-awareness",
+     "kp-starstruck",
+     "kp-scourge-hook-pain-resonance"
+    ],
+    "addons": [
+     "ka-spirit-rusty-flute",
+     "ka-spirit-muddy-sports-day-cap"
+    ],
+    "offering": "of-survivor-pudding"
+   },
+   {
+    "id": "mv8ig1tfqwqyv",
+    "name": "Third Seal",
+    "perks": [
+     "kp-hex-the-third-seal",
+     "kp-scourge-hook-monstrous-shrine",
+     "kp-sloppy-butcher",
+     "kp-hex-undying"
+    ],
+    "addons": [
+     "ka-spirit-rusty-flute",
+     "ka-spirit-muddy-sports-day-cap"
+    ],
+    "offering": null
+   },
+   {
+    "id": "mv8igwosbifpg",
+    "name": "Hex End fast",
+    "perks": [
+     "kp-hex-blood-favour",
+     "kp-hex-thrill-of-the-hunt",
+     "kp-hex-ruin",
+     "kp-hex-undying"
+    ],
+    "addons": [
+     "ka-spirit-rusty-flute",
+     "ka-spirit-muddy-sports-day-cap"
+    ],
+    "offering": "of-ebony-memento-mori"
+   },
+   {
+    "id": "mv8ihziooyij7",
+    "name": "Chase Build",
+    "perks": [
+     "kp-hex-undying",
+     "kp-hex-blood-favour",
+     "kp-rapid-brutality",
+     "kp-save-the-best-for-last"
+    ],
+    "addons": [
+     "ka-spirit-rusty-flute",
+     "ka-spirit-muddy-sports-day-cap"
+    ],
+    "offering": "of-ivory-memento-mori"
    }
   ],
   "legion": [],
@@ -422,7 +527,7 @@ window.DBD_BUILDS = {
    }
   }
  ],
- "updatedAt": 1791994427597,
+ "updatedAt": 1792006753509,
  "v1": {
   "killers": {
    "trapper": [
