@@ -95,15 +95,93 @@ window.DBD_BUILDS = {
   "artist": [],
   "onryo": [],
   "dredge": [],
-  "mastermind": [],
+  "mastermind": [
+   {
+    "id": "mv8b708tol2v6",
+    "name": "EZ Build",
+    "perks": [
+     "kp-scourge-hook-pain-resonance",
+     "kp-bamboozle",
+     "kp-grim-embrace",
+     "kp-dissolution"
+    ],
+    "addons": [
+     "ka-mastermind-egg-gold",
+     "ka-mastermind-leather-gloves"
+    ],
+    "offering": null
+   }
+  ],
   "knight": [],
   "skull-merchant": [],
   "singularity": [],
   "xenomorph": [],
   "good-guy": [],
-  "unknown": [],
+  "unknown": [
+   {
+    "id": "mv8b4hft26jo9",
+    "name": "Hens - Untoppable",
+    "perks": [
+     "kp-unforeseen",
+     "kp-eruption",
+     "kp-barbecue-chilli",
+     "kp-nowhere-to-hide"
+    ],
+    "addons": [
+     "ka-unknown-iridescent-oss-report",
+     "ka-unknown-obscure-game-cartridge"
+    ],
+    "offering": "of-black-ward"
+   },
+   {
+    "id": "mv8b5kgrsy3sr",
+    "name": "Undetectable",
+    "perks": [
+     "kp-friends-til-the-end",
+     "kp-furtive-chase",
+     "kp-unforeseen",
+     "kp-alien-instinct"
+    ],
+    "addons": [
+     "ka-unknown-vanishing-box",
+     "ka-unknown-blurry-photo"
+    ],
+    "offering": null
+   }
+  ],
   "lich": [],
-  "dark-lord": [],
+  "dark-lord": [
+   {
+    "id": "mv8b2abvrgidf",
+    "name": "Build 1",
+    "perks": [
+     "kp-scourge-hook-pain-resonance",
+     "kp-turn-back-the-clock",
+     "kp-dead-mans-switch",
+     "kp-barbecue-chilli"
+    ],
+    "addons": [
+     "ka-dark-lord-killer-doll",
+     "ka-dark-lord-lapis-lazuli"
+    ],
+    "offering": null
+   },
+   {
+    "id": "mv8b3cojwff0q",
+    "name": "Pop Eruption",
+    "perks": [
+     "kp-scourge-hook-pain-resonance",
+     "kp-pop-goes-the-weasel",
+     "kp-eruption",
+     "kp-dead-mans-switch"
+    ],
+    "addons": [
+     "ka-dark-lord-lapis-lazuli",
+     "ka-dark-lord-winged-boots"
+    ],
+    "offering": null
+   }
+  ],
   "houndmaster": [],
   "ghoul": [
    {
@@ -152,10 +230,103 @@ window.DBD_BUILDS = {
     "offering": "of-toothy-torte"
    }
   ],
-  "animatronic": [],
+  "animatronic": [
+   {
+    "id": "mv8b08rkvrlby",
+    "name": "classic 1 ",
+    "perks": [
+     "kp-eruption",
+     "kp-scourge-hook-pain-resonance",
+     "kp-pop-goes-the-weasel",
+     "kp-mindbreaker"
+    ],
+    "addons": [
+     "ka-animatronic-restaurant-menu",
+     "ka-animatronic-security-guards-badge"
+    ],
+    "offering": "of-toothy-torte"
+   },
+   {
+    "id": "mv8b1bpyvajzp",
+    "name": "Fast break",
+    "perks": [
+     "kp-pop-goes-the-weasel",
+     "kp-eruption",
+     "kp-brutal-strength",
+     "kp-fire-up"
+    ],
+    "addons": [
+     "ka-animatronic-endo-cpu",
+     "ka-animatronic-foxys-hook"
+    ],
+    "offering": null
+   }
+  ],
   "krasue": [],
-  "first": [],
-  "slasher": [],
+  "first": [
+   {
+    "id": "mv8as0bn9q0bc",
+    "name": "Ruin Penti Thrill",
+    "perks": [
+     "kp-hex-thrill-of-the-hunt",
+     "kp-hex-ruin",
+     "kp-hex-pentimento",
+     "kp-hex-hive-mind"
+    ],
+    "addons": [
+     "ka-first-rabbit-remains",
+     "ka-first-bloody-roller-skate"
+    ],
+    "offering": "of-putrid-oak"
+   },
+   {
+    "id": "mv8avhlei1kz2",
+    "name": "Scourge Hook: Aura",
+    "perks": [
+     "kp-scourge-hook-floods-of-rage",
+     "kp-scourge-hook-pain-resonance",
+     "kp-scourge-hook-jagged-compass",
+     "kp-dead-mans-switch"
+    ],
+    "addons": [
+     "ka-first-neck-tendril",
+     "ka-first-electrode-cap"
+    ],
+    "offering": null
+   }
+  ],
+  "slasher": [
+   {
+    "id": "mv8axeqyq34vx",
+    "name": "Hens 333",
+    "perks": [
+     "kp-hex-blood-favour",
+     "kp-hex-ruin",
+     "kp-hex-thrill-of-the-hunt",
+     "kp-hex-pentimento"
+    ],
+    "addons": [
+     "ka-slasher-deputys-badge",
+     "ka-slasher-sauna-rock"
+    ],
+    "offering": "of-ebony-memento-mori"
+   },
+   {
+    "id": "mv8ayes9xhrfn",
+    "name": "Build 2",
+    "perks": [
+     "kp-scourge-hook-pain-resonance",
+     "kp-turn-back-the-clock",
+     "kp-barbecue-chilli",
+     "kp-corrupt-intervention"
+    ],
+    "addons": [
+     "ka-slasher-eye-goop",
+     "ka-slasher-coroners-coffee"
+    ],
+    "offering": null
+   }
+  ],
   "judgment": []
  },
  "survivor": [
@@ -251,7 +422,7 @@ window.DBD_BUILDS = {
    }
   }
  ],
- "updatedAt": 1791918354163,
+ "updatedAt": 1791994427597,
  "v1": {
   "killers": {
    "trapper": [
