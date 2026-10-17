@@ -231,11 +231,87 @@ window.DBD_BUILDS = {
      "ka-mastermind-leather-gloves"
     ],
     "offering": null
+   },
+   {
+    "id": "mvchp5hi3e586",
+    "name": "EZ Build 2",
+    "perks": [
+     "kp-corrupt-intervention",
+     "kp-pop-goes-the-weasel",
+     "kp-turn-back-the-clock",
+     "kp-barbecue-chilli"
+    ],
+    "addons": [
+     "ka-mastermind-iridescent-uroboros-vial",
+     "ka-mastermind-unicorn-medallion"
+    ],
+    "offering": null
+   },
+   {
+    "id": "mvchpvtdfzkma",
+    "name": "Build 3",
+    "perks": [
+     "kp-scourge-hook-pain-resonance",
+     "kp-barbecue-chilli",
+     "kp-lethal-pursuer",
+     "kp-brutal-strength"
+    ],
+    "addons": [
+     "ka-mastermind-egg-gold",
+     "ka-mastermind-leather-gloves"
+    ],
+    "offering": null
+   },
+   {
+    "id": "mvchqnwn376yk",
+    "name": "Easy 4",
+    "perks": [
+     "kp-silent-shadow",
+     "kp-barbecue-chilli",
+     "kp-scourge-hook-pain-resonance",
+     "kp-brutal-strength"
+    ],
+    "addons": [
+     "ka-mastermind-leather-gloves",
+     "ka-mastermind-jewel-beetle"
+    ],
+    "offering": "of-toothy-torte"
    }
   ],
   "knight": [],
   "skull-merchant": [],
-  "singularity": [],
+  "singularity": [
+   {
+    "id": "mvch53cc58j92",
+    "name": "Basic",
+    "perks": [
+     "kp-rapid-brutality",
+     "kp-coup-de-grace",
+     "kp-pop-goes-the-weasel",
+     "kp-corrupt-intervention"
+    ],
+    "addons": [
+     "ka-singularity-foreign-plant-fibres",
+     "ka-singularity-kids-ball-glove"
+    ],
+    "offering": null
+   },
+   {
+    "id": "mvch5z4kn7q0w",
+    "name": "Hubris End",
+    "perks": [
+     "kp-hubris",
+     "kp-enduring",
+     "kp-pop-goes-the-weasel",
+     "kp-scourge-hook-pain-resonance"
+    ],
+    "addons": [
+     "ka-singularity-diagnostic-tool-construction",
+     "ka-singularity-kids-ball-glove"
+    ],
+    "offering": null
+   }
+  ],
   "xenomorph": [],
   "good-guy": [],
   "unknown": [
@@ -268,13 +344,43 @@ window.DBD_BUILDS = {
      "ka-unknown-blurry-photo"
     ],
     "offering": null
+   },
+   {
+    "id": "mvchmjfqvwmc8",
+    "name": "Hens - Green Addons",
+    "perks": [
+     "kp-unforeseen",
+     "kp-eruption",
+     "kp-barbecue-chilli",
+     "kp-nowhere-to-hide"
+    ],
+    "addons": [
+     "ka-unknown-vanishing-box",
+     "ka-unknown-front-page-article"
+    ],
+    "offering": null
+   },
+   {
+    "id": "mvcho7f7zru4c",
+    "name": "Nowhere",
+    "perks": [
+     "kp-pop-goes-the-weasel",
+     "kp-nowhere-to-hide",
+     "kp-scourge-hook-pain-resonance",
+     "kp-lethal-pursuer"
+    ],
+    "addons": [
+     "ka-unknown-vanishing-box",
+     "ka-unknown-footprint-cast"
+    ],
+    "offering": null
    }
   ],
   "lich": [],
   "dark-lord": [
    {
     "id": "mv8b2abvrgidf",
-    "name": "Build 1",
+    "name": "Clock DMS BBQ",
     "perks": [
      "kp-scourge-hook-pain-resonance",
      "kp-turn-back-the-clock",
@@ -299,6 +405,21 @@ window.DBD_BUILDS = {
     "addons": [
      "ka-dark-lord-lapis-lazuli",
      "ka-dark-lord-winged-boots"
+    ],
+    "offering": null
+   },
+   {
+    "id": "mvch3gr2uiin0",
+    "name": "BloodF Ruin",
+    "perks": [
+     "kp-scourge-hook-pain-resonance",
+     "kp-hex-blood-favour",
+     "kp-hex-ruin",
+     "kp-discordance"
+    ],
+    "addons": [
+     "ka-dark-lord-force-of-echo",
+     "ka-dark-lord-travellers-hat"
     ],
     "offering": null
    }
@@ -560,7 +681,7 @@ window.DBD_BUILDS = {
    "survivor": "sv-jane-romero"
   }
  ],
- "updatedAt": 1792009912728,
+ "updatedAt": 1792247291643,
  "v1": {
   "killers": {
    "trapper": [
