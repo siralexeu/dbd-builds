@@ -279,6 +279,21 @@ window.DBD_BUILDS = {
      "ka-cannibal-chilli"
     ],
     "offering": null
+   },
+   {
+    "id": "mvcxd4remlqeu",
+    "name": "Insidious Meta",
+    "perks": [
+     "kp-corrupt-intervention",
+     "kp-secret-project",
+     "kp-lethal-pursuer",
+     "kp-insidious"
+    ],
+    "addons": [
+     "ka-cannibal-the-beasts-marks",
+     "ka-cannibal-primer-bulb"
+    ],
+    "offering": null
    }
   ],
   "nightmare": [
@@ -1424,7 +1439,7 @@ window.DBD_BUILDS = {
    "survivor": "sv-jane-romero"
   }
  ],
- "updatedAt": 1792268291820,
+ "updatedAt": 1792274363093,
  "v1": {
   "killers": {
    "trapper": [
