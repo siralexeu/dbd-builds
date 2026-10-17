@@ -25,19 +25,65 @@ window.DBD_BUILDS = {
     "id": "mv6qw5atnjy8w",
     "name": "Build 1",
     "perks": [
-     "kp-batteries-included",
-     "kp-alien-instinct",
-     "kp-all-shaking-thunder",
-     "kp-bitter-murmur"
+     "kp-eruption",
+     "kp-call-of-brine",
+     "kp-bamboozle",
+     "kp-barbecue-chilli"
     ],
     "addons": [
-     "ka-wraith-windstorm-mud",
-     "ka-wraith-bone-clapper"
+     "ka-wraith-swift-hunt-white",
+     "ka-wraith-windstorm-white"
     ],
     "offering": "of-tanager-wreath"
+   },
+   {
+    "id": "mvcs4ofxkhbzc",
+    "name": "Build 2",
+    "perks": [
+     "kp-deadlock",
+     "kp-make-your-choice",
+     "kp-scourge-hook-floods-of-rage",
+     "kp-no-way-out"
+    ],
+    "addons": [
+     "ka-wraith-blind-warrior-white",
+     "ka-wraith-swift-hunt-blood"
+    ],
+    "offering": null
+   },
+   {
+    "id": "mvcs5yzv2hnr4",
+    "name": "Build 3",
+    "perks": [
+     "kp-discordance",
+     "kp-bamboozle",
+     "kp-deadlock",
+     "kp-pop-goes-the-weasel"
+    ],
+    "addons": [
+     "ka-wraith-coxcombed-clapper",
+     "ka-wraith-swift-hunt-blood"
+    ],
+    "offering": null
    }
   ],
-  "hillbilly": [],
+  "hillbilly": [
+   {
+    "id": "mvcs7cbanx4t4",
+    "name": "Build 1",
+    "perks": [
+     "kp-scourge-hook-pain-resonance",
+     "kp-pop-goes-the-weasel",
+     "kp-bamboozle",
+     "kp-ultimate-weapon"
+    ],
+    "addons": [
+     "ka-hillbilly-dads-boots",
+     "ka-hillbilly-discarded-air-filter"
+    ],
+    "offering": null
+   }
+  ],
   "nurse": [
    {
     "id": "mv0sz684dcdb8",
@@ -53,16 +99,269 @@ window.DBD_BUILDS = {
      "ka-nurse-bad-mans-last-breath"
     ],
     "offering": "of-ebony-memento-mori"
+   },
+   {
+    "id": "mvcs8bzjz50p2",
+    "name": "No skill",
+    "perks": [
+     "kp-lethal-pursuer",
+     "kp-nowhere-to-hide",
+     "kp-pop-goes-the-weasel",
+     "kp-scourge-hook-pain-resonance"
+    ],
+    "addons": [
+     "ka-nurse-heavy-panting",
+     "ka-nurse-fragile-wheeze"
+    ],
+    "offering": "of-toothy-torte"
    }
   ],
-  "shape": [],
-  "hag": [],
-  "doctor": [],
-  "huntress": [],
-  "cannibal": [],
-  "nightmare": [],
-  "pig": [],
-  "clown": [],
+  "shape": [
+   {
+    "id": "mvcsb8bagrd2z",
+    "name": "old myers",
+    "perks": [
+     "kp-no-way-out",
+     "kp-bamboozle",
+     "kp-deadlock",
+     "kp-corrupt-intervention"
+    ],
+    "addons": [
+     "ka-shape-j-myers-memorial",
+     "ka-shape-tombstone-piece"
+    ],
+    "offering": null
+   }
+  ],
+  "hag": [
+   {
+    "id": "mvcscd8vkz0ru",
+    "name": "Build 1",
+    "perks": [
+     "kp-pop-goes-the-weasel",
+     "kp-make-your-choice",
+     "kp-franklins-demise",
+     "kp-scourge-hook-pain-resonance"
+    ],
+    "addons": [
+     "ka-hag-dragonfly-wings",
+     "ka-hag-swamp-orchid-necklet"
+    ],
+    "offering": null
+   },
+   {
+    "id": "mvcsd7528dni1",
+    "name": "Build 2",
+    "perks": [
+     "kp-hex-blood-favour",
+     "kp-hex-ruin",
+     "kp-hex-undying",
+     "kp-surge"
+    ],
+    "addons": [
+     "ka-hag-disfigured-ear",
+     "ka-hag-dried-cicada"
+    ],
+    "offering": null
+   }
+  ],
+  "doctor": [
+   {
+    "id": "mvcseaf8wh4oc",
+    "name": "Build 1",
+    "perks": [
+     "kp-scourge-hook-pain-resonance",
+     "kp-pop-goes-the-weasel",
+     "kp-merciless-storm",
+     "kp-corrupt-intervention"
+    ],
+    "addons": [
+     "ka-doctor-order-carters-notes",
+     "ka-doctor-discipline-class-iii"
+    ],
+    "offering": null
+   },
+   {
+    "id": "mvcsf4hz3l001",
+    "name": "Build 2",
+    "perks": [
+     "kp-discordance",
+     "kp-pop-goes-the-weasel",
+     "kp-rapid-brutality",
+     "kp-surge"
+    ],
+    "addons": [
+     "ka-doctor-high-stimulus-electrode",
+     "ka-doctor-discipline-class-iii"
+    ],
+    "offering": null
+   }
+  ],
+  "huntress": [
+   {
+    "id": "mvcskjz2nhfyk",
+    "name": "Build 1",
+    "perks": [
+     "kp-lethal-pursuer",
+     "kp-nowhere-to-hide",
+     "kp-darkness-revealed",
+     "kp-pop-goes-the-weasel"
+    ],
+    "addons": [
+     "ka-huntress-glowing-concoction",
+     "ka-huntress-oak-haft"
+    ],
+    "offering": null
+   },
+   {
+    "id": "mvcslebwlliy4",
+    "name": "Build 2",
+    "perks": [
+     "kp-iron-maiden",
+     "kp-bitter-murmur",
+     "kp-barbecue-chilli",
+     "kp-lethal-pursuer"
+    ],
+    "addons": [
+     "ka-huntress-glowing-concoction",
+     "ka-huntress-oak-haft"
+    ],
+    "offering": null
+   }
+  ],
+  "cannibal": [
+   {
+    "id": "mvcsg5gk8polf",
+    "name": "Build 1",
+    "perks": [
+     "kp-barbecue-chilli",
+     "kp-scourge-hook-pain-resonance",
+     "kp-turn-back-the-clock",
+     "kp-silent-shadow"
+    ],
+    "addons": [
+     "ka-cannibal-the-beasts-marks",
+     "ka-cannibal-primer-bulb"
+    ],
+    "offering": null
+   },
+   {
+    "id": "mvcsgvhnpernh",
+    "name": "Bubba Goes",
+    "perks": [
+     "kp-forced-hesitation",
+     "kp-infectious-fright",
+     "kp-bamboozle",
+     "kp-corrupt-intervention"
+    ],
+    "addons": [
+     "ka-cannibal-iridescent-flesh",
+     "ka-cannibal-the-beasts-marks"
+    ],
+    "offering": "of-rotten-oak",
+    "alts": {
+     "3": [
+      "kp-deadlock"
+     ]
+    }
+   },
+   {
+    "id": "mvcsj4yexce5f",
+    "name": "Unforseen",
+    "perks": [
+     "kp-iron-maiden",
+     "kp-bamboozle",
+     "kp-pop-goes-the-weasel",
+     "kp-unforeseen"
+    ],
+    "addons": [
+     "ka-cannibal-the-beasts-marks",
+     "ka-cannibal-chilli"
+    ],
+    "offering": null
+   }
+  ],
+  "nightmare": [
+   {
+    "id": "mvcsmldp8gdrm",
+    "name": "Build 1",
+    "perks": [
+     "kp-tinkerer",
+     "kp-pop-goes-the-weasel",
+     "kp-thrilling-tremors",
+     "kp-scourge-hook-pain-resonance"
+    ],
+    "addons": [
+     "ka-nightmare-unicorn-block",
+     "ka-nightmare-blue-dress"
+    ],
+    "offering": null
+   },
+   {
+    "id": "mvcsnf2ljbihu",
+    "name": "Build 2",
+    "perks": [
+     "kp-no-way-out",
+     "kp-barbecue-chilli",
+     "kp-dead-mans-switch",
+     "kp-scourge-hook-pain-resonance"
+    ],
+    "addons": [
+     "ka-nightmare-prototype-claws",
+     "ka-nightmare-blue-dress"
+    ],
+    "offering": null
+   }
+  ],
+  "pig": [
+   {
+    "id": "mvcsob5ssn0hh",
+    "name": "Dash",
+    "perks": [
+     "kp-scourge-hook-pain-resonance",
+     "kp-surveillance",
+     "kp-brutal-strength",
+     "kp-rapid-brutality"
+    ],
+    "addons": [
+     "ka-pig-last-will",
+     "ka-pig-workshop-grease"
+    ],
+    "offering": null
+   }
+  ],
+  "clown": [
+   {
+    "id": "mvcspptadgtny",
+    "name": "Preset 1",
+    "perks": [
+     "kp-surge",
+     "kp-save-the-best-for-last",
+     "kp-rapid-brutality",
+     "kp-dissolution"
+    ],
+    "addons": [
+     "ka-clown-cheap-gin-bottle",
+     "ka-clown-garish-make-up-kit"
+    ],
+    "offering": null
+   },
+   {
+    "id": "mvcsqihz60kbu",
+    "name": "Preset 2",
+    "perks": [
+     "kp-surge",
+     "kp-save-the-best-for-last",
+     "kp-rapid-brutality",
+     "kp-dissolution"
+    ],
+    "addons": [
+     "ka-clown-smelly-inner-soles",
+     "ka-clown-thick-cork-stopper"
+    ],
+    "offering": null
+   }
+  ],
   "spirit": [
    {
     "id": "muwkhoci040le",
@@ -170,22 +469,273 @@ window.DBD_BUILDS = {
     "offering": "of-ivory-memento-mori"
    }
   ],
-  "legion": [],
-  "plague": [],
-  "ghost-face": [],
-  "demogorgon": [],
+  "legion": [
+   {
+    "id": "mvcsri761xjo0",
+    "name": "Build 1",
+    "perks": [
+     "kp-discordance",
+     "kp-pop-goes-the-weasel",
+     "kp-thanatophobia",
+     "kp-surge"
+    ],
+    "addons": [
+     "ka-legion-etched-ruler",
+     "ka-legion-mischief-list"
+    ],
+    "offering": null
+   }
+  ],
+  "plague": [
+   {
+    "id": "mvcss833d0mf3",
+    "name": "Build 1",
+    "perks": [
+     "kp-discordance",
+     "kp-scourge-hook-pain-resonance",
+     "kp-thanatophobia",
+     "kp-grim-embrace"
+    ],
+    "addons": [
+     "ka-plague-ashen-apple",
+     "ka-plague-black-incense"
+    ],
+    "offering": null
+   }
+  ],
+  "ghost-face": [
+   {
+    "id": "mvcsstj5j0vio",
+    "name": "Build 1",
+    "perks": [
+     "kp-corrupt-intervention",
+     "kp-deadlock",
+     "kp-coup-de-grace",
+     "kp-surge"
+    ],
+    "addons": [
+     "ka-ghost-face-philly",
+     "ka-ghost-face-outdoor-security-camera"
+    ],
+    "offering": null
+   },
+   {
+    "id": "mvcstlwslogne",
+    "name": "Build 2",
+    "perks": [
+     "kp-hex-ruin",
+     "kp-surveillance",
+     "kp-hex-face-the-darkness",
+     "kp-scourge-hook-pain-resonance"
+    ],
+    "addons": [
+     "ka-ghost-face-marked-map",
+     "ka-ghost-face-philly"
+    ],
+    "offering": null
+   }
+  ],
+  "demogorgon": [
+   {
+    "id": "mvcsubcrxw481",
+    "name": "OP 1",
+    "perks": [
+     "kp-scourge-hook-pain-resonance",
+     "kp-corrupt-intervention",
+     "kp-turn-back-the-clock",
+     "kp-barbecue-chilli"
+    ],
+    "addons": [
+     "ka-demogorgon-barbs-glasses",
+     "ka-demogorgon-black-heart"
+    ],
+    "offering": null
+   },
+   {
+    "id": "mvcsv26r9khbu",
+    "name": "Build 2",
+    "perks": [
+     "kp-bamboozle",
+     "kp-corrupt-intervention",
+     "kp-pop-goes-the-weasel",
+     "kp-scourge-hook-pain-resonance"
+    ],
+    "addons": [
+     "ka-demogorgon-leprose-lichen",
+     "ka-demogorgon-red-moss"
+    ],
+    "offering": null
+   }
+  ],
   "oni": [],
-  "deathslinger": [],
-  "executioner": [],
-  "blight": [],
-  "twins": [],
-  "trickster": [],
-  "nemesis": [],
-  "cenobite": [],
+  "deathslinger": [
+   {
+    "id": "mvcswai5n2oua",
+    "name": "Noob 1",
+    "perks": [
+     "kp-dragons-grip",
+     "kp-trail-of-torment",
+     "kp-lethal-pursuer",
+     "kp-dissolution"
+    ],
+    "addons": [
+     "ka-deathslinger-honey-locust-thorn",
+     "ka-deathslinger-wardens-keys"
+    ],
+    "offering": null
+   },
+   {
+    "id": "mvcsx6wpnzmd3",
+    "name": "Build 2",
+    "perks": [
+     "kp-dead-mans-switch",
+     "kp-scourge-hook-pain-resonance",
+     "kp-surge",
+     "kp-ultimate-weapon"
+    ],
+    "addons": [
+     "ka-deathslinger-rusted-spike",
+     "ka-deathslinger-wardens-keys"
+    ],
+    "offering": null
+   }
+  ],
+  "executioner": [
+   {
+    "id": "mvcsy9ck8w008",
+    "name": "Build 1",
+    "perks": [
+     "kp-nowhere-to-hide",
+     "kp-pop-goes-the-weasel",
+     "kp-scourge-hook-pain-resonance",
+     "kp-corrupt-intervention"
+    ],
+    "addons": [
+     "ka-executioner-wax-doll",
+     "ka-executioner-obsidian-goblet"
+    ],
+    "offering": null
+   }
+  ],
+  "blight": [
+   {
+    "id": "mvcsz1wf1fr3l",
+    "name": "Build 1",
+    "perks": [
+     "kp-grim-embrace",
+     "kp-hex-ruin",
+     "kp-scourge-hook-pain-resonance",
+     "kp-pop-goes-the-weasel"
+    ],
+    "addons": [
+     "ka-blight-blighted-crow",
+     "ka-blight-blighted-rat"
+    ],
+    "offering": null
+   }
+  ],
+  "twins": [
+   {
+    "id": "mvcszsa2e3osm",
+    "name": "Build 1",
+    "perks": [
+     "kp-forced-penance",
+     "kp-scourge-hook-gift-of-pain",
+     "kp-scourge-hook-pain-resonance",
+     "kp-corrupt-intervention"
+    ],
+    "addons": [
+     "ka-twins-forest-stew",
+     "ka-twins-madeleines-scarf"
+    ],
+    "offering": null
+   }
+  ],
+  "trickster": [
+   {
+    "id": "mvct0v90lcjgy",
+    "name": "Build 1",
+    "perks": [
+     "kp-pop-goes-the-weasel",
+     "kp-darkness-revealed",
+     "kp-tinkerer",
+     "kp-barbecue-chilli"
+    ],
+    "addons": [
+     "ka-trickster-trick-blades",
+     "ka-trickster-tequila-moonrock"
+    ],
+    "offering": null
+   },
+   {
+    "id": "mvct1ov2u0zyk",
+    "name": "Build 2",
+    "perks": [
+     "kp-iron-maiden",
+     "kp-spirit-fury",
+     "kp-brutal-strength",
+     "kp-im-all-ears"
+    ],
+    "addons": [
+     "ka-trickster-melodious-murder",
+     "ka-trickster-edge-of-revival-album"
+    ],
+    "offering": null
+   }
+  ],
+  "nemesis": [
+   {
+    "id": "mvct4k6djns74",
+    "name": "Build 1",
+    "perks": [
+     "kp-discordance",
+     "kp-scourge-hook-pain-resonance",
+     "kp-turn-back-the-clock",
+     "kp-corrupt-intervention"
+    ],
+    "addons": [
+     "ka-nemesis-marvins-blood",
+     "ka-nemesis-licker-tongue"
+    ],
+    "offering": null
+   },
+   {
+    "id": "mvct66r3jdt0k",
+    "name": "Hex",
+    "perks": [
+     "kp-hex-devour-hope",
+     "kp-hex-crowd-control",
+     "kp-hex-plaything",
+     "kp-hex-pentimento"
+    ],
+    "addons": [
+     "ka-nemesis-admin-wristband",
+     "ka-nemesis-marvins-blood"
+    ],
+    "offering": null
+   }
+  ],
+  "cenobite": [
+   {
+    "id": "mvcs0d1r7bfpr",
+    "name": "Build 1",
+    "perks": [
+     "kp-grim-embrace",
+     "kp-surge",
+     "kp-lethal-pursuer",
+     "kp-scourge-hook-pain-resonance"
+    ],
+    "addons": [
+     "ka-cenobite-larrys-remains",
+     "ka-cenobite-liquified-gore"
+    ],
+    "offering": null
+   }
+  ],
   "artist": [
    {
     "id": "mv8kdy58a4x0i",
-    "name": "OP 1",
+    "name": "Classic 1",
     "perks": [
      "kp-scourge-hook-pain-resonance",
      "kp-dead-mans-switch",
@@ -196,11 +746,173 @@ window.DBD_BUILDS = {
      "ka-artist-severed-hands",
      "ka-artist-untitled-agony"
     ],
-    "offering": "of-toothy-torte"
+    "offering": "of-toothy-torte",
+    "alts": {
+     "3": [
+      "kp-barbecue-chilli"
+     ]
+    }
+   },
+   {
+    "id": "mvcruzj3op6w2",
+    "name": "Classic 1 (addons)",
+    "perks": [
+     "kp-scourge-hook-pain-resonance",
+     "kp-dead-mans-switch",
+     "kp-rapid-brutality",
+     "kp-lethal-pursuer"
+    ],
+    "addons": [
+     "ka-artist-festering-carrion",
+     "ka-artist-untitled-agony"
+    ],
+    "offering": "of-toothy-torte",
+    "alts": {
+     "3": [
+      "kp-barbecue-chilli"
+     ]
+    }
+   },
+   {
+    "id": "mvcrvdweh6tzt",
+    "name": "Classic 2",
+    "perks": [
+     "kp-barbecue-chilli",
+     "kp-scourge-hook-pain-resonance",
+     "kp-grim-embrace",
+     "kp-hex-ruin"
+    ],
+    "addons": [
+     "ka-artist-severed-hands",
+     "ka-artist-untitled-agony"
+    ],
+    "offering": null
+   },
+   {
+    "id": "mvcrw75b6do12",
+    "name": "Aura",
+    "perks": [
+     "kp-lethal-pursuer",
+     "kp-scourge-hook-pain-resonance",
+     "kp-gearhead",
+     "kp-scourge-hook-floods-of-rage"
+    ],
+    "addons": [
+     "ka-artist-festering-carrion",
+     "ka-artist-thick-tar"
+    ],
+    "offering": null
+   },
+   {
+    "id": "mvcrxewh10r7j",
+    "name": "Ruin Surv",
+    "perks": [
+     "kp-hex-ruin",
+     "kp-surveillance",
+     "kp-scourge-hook-pain-resonance",
+     "kp-hex-undying"
+    ],
+    "addons": [
+     "ka-artist-severed-hands",
+     "ka-artist-thick-tar"
+    ],
+    "offering": null
+   },
+   {
+    "id": "mvcrzjvs5f8ma",
+    "name": "Hex",
+    "perks": [
+     "kp-hex-wretched-fate",
+     "kp-hex-thrill-of-the-hunt",
+     "kp-hex-ruin",
+     "kp-barbecue-chilli"
+    ],
+    "addons": [
+     "ka-artist-severed-hands",
+     "ka-artist-untitled-agony"
+    ],
+    "offering": null
    }
   ],
-  "onryo": [],
-  "dredge": [],
+  "onryo": [
+   {
+    "id": "mvct7k2pduhrn",
+    "name": "Build 1",
+    "perks": [
+     "kp-hex-ruin",
+     "kp-hex-face-the-darkness",
+     "kp-hex-thrill-of-the-hunt",
+     "kp-sloppy-butcher"
+    ],
+    "addons": [
+     "ka-onryo-iridescent-videotape",
+     "ka-onryo-mothers-comb"
+    ],
+    "offering": null
+   },
+   {
+    "id": "mvct8k5zbvgbw",
+    "name": "Build 2",
+    "perks": [
+     "kp-corrupt-intervention",
+     "kp-a-nurses-calling",
+     "kp-sloppy-butcher",
+     "kp-surge"
+    ],
+    "addons": [
+     "ka-onryo-mothers-comb",
+     "ka-onryo-old-newspaper"
+    ],
+    "offering": null
+   },
+   {
+    "id": "mvct91gxve4qh",
+    "name": "Build 3",
+    "perks": [
+     "kp-eruption",
+     "kp-discordance",
+     "kp-nowhere-to-hide",
+     "kp-pop-goes-the-weasel"
+    ],
+    "addons": [
+     "ka-onryo-ring-drawing",
+     "ka-onryo-old-newspaper"
+    ],
+    "offering": null
+   }
+  ],
+  "dredge": [
+   {
+    "id": "mvcta3tf3kpjh",
+    "name": "Build 1",
+    "perks": [
+     "kp-barbecue-chilli",
+     "kp-scourge-hook-pain-resonance",
+     "kp-coup-de-grace",
+     "kp-scourge-hook-gift-of-pain"
+    ],
+    "addons": [
+     "ka-dredge-broken-doll",
+     "ka-dredge-field-recorder"
+    ],
+    "offering": null
+   },
+   {
+    "id": "mvctap0hjoxaa",
+    "name": "Build 2",
+    "perks": [
+     "kp-scourge-hook-floods-of-rage",
+     "kp-make-your-choice",
+     "kp-agitation",
+     "kp-scourge-hook-gift-of-pain"
+    ],
+    "addons": [
+     "ka-dredge-haddies-calendar",
+     "ka-dredge-boat-key"
+    ],
+    "offering": null
+   }
+  ],
   "mastermind": [
    {
     "id": "mv8b708tol2v6",
@@ -219,7 +931,7 @@ window.DBD_BUILDS = {
    },
    {
     "id": "mvchp5hi3e586",
-    "name": "EZ Build 2",
+    "name": "comp",
     "perks": [
      "kp-corrupt-intervention",
      "kp-pop-goes-the-weasel",
@@ -234,7 +946,7 @@ window.DBD_BUILDS = {
    },
    {
     "id": "mvchpvtdfzkma",
-    "name": "Build 3",
+    "name": "Easy 2",
     "perks": [
      "kp-scourge-hook-pain-resonance",
      "kp-barbecue-chilli",
@@ -249,7 +961,7 @@ window.DBD_BUILDS = {
    },
    {
     "id": "mvchqnwn376yk",
-    "name": "Easy 4",
+    "name": "Fun",
     "perks": [
      "kp-silent-shadow",
      "kp-barbecue-chilli",
@@ -263,7 +975,38 @@ window.DBD_BUILDS = {
     "offering": "of-toothy-torte"
    }
   ],
-  "knight": [],
+  "knight": [
+   {
+    "id": "mvctbsxfkz9dq",
+    "name": "Build 1",
+    "perks": [
+     "kp-eruption",
+     "kp-mindbreaker",
+     "kp-nowhere-to-hide",
+     "kp-overcharge"
+    ],
+    "addons": [
+     "ka-knight-dried-horsemeat",
+     "ka-knight-grim-iron-mask"
+    ],
+    "offering": null
+   },
+   {
+    "id": "mvctcfiscn3b8",
+    "name": "Build 2",
+    "perks": [
+     "kp-gearhead",
+     "kp-surge",
+     "kp-scourge-hook-pain-resonance",
+     "kp-corrupt-intervention"
+    ],
+    "addons": [
+     "ka-knight-grim-iron-mask",
+     "ka-knight-call-to-arms"
+    ],
+    "offering": null
+   }
+  ],
   "skull-merchant": [],
   "singularity": [
    {
@@ -666,7 +1409,7 @@ window.DBD_BUILDS = {
    "survivor": "sv-jane-romero"
   }
  ],
- "updatedAt": 1792250180584,
+ "updatedAt": 1792266765753,
  "v1": {
   "killers": {
    "trapper": [
