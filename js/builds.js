@@ -1198,6 +1198,21 @@ window.DBD_BUILDS = {
      "ka-ghoul-blood-stained-handkerchief"
     ],
     "offering": "of-toothy-torte"
+   },
+   {
+    "id": "mvcu7v9301vcy",
+    "name": "Friends 'til Nemesis",
+    "perks": [
+     "kp-furtive-chase",
+     "kp-friends-til-the-end",
+     "kp-nemesis",
+     "kp-hex-plaything"
+    ],
+    "addons": [
+     "ka-ghoul-yamoris-mask",
+     "ka-ghoul-fresh-coffee"
+    ],
+    "offering": null
    }
   ],
   "animatronic": [
@@ -1409,7 +1424,7 @@ window.DBD_BUILDS = {
    "survivor": "sv-jane-romero"
   }
  ],
- "updatedAt": 1792266765753,
+ "updatedAt": 1792268291820,
  "v1": {
   "killers": {
    "trapper": [
