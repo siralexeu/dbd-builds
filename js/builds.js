@@ -80,21 +80,6 @@ window.DBD_BUILDS = {
     "offering": "of-ebony-memento-mori"
    },
    {
-    "id": "mv8hwch8rensw",
-    "name": "Build 2",
-    "perks": [
-     "kp-agitation",
-     "kp-scourge-hook-pain-resonance",
-     "kp-pop-goes-the-weasel",
-     "kp-languid-touch"
-    ],
-    "addons": [
-     "ka-spirit-muddy-sports-day-cap",
-     null
-    ],
-    "offering": null
-   },
-   {
     "id": "mv8i1ejd0xo49",
     "name": "OP 2",
     "perks": [
@@ -681,7 +666,7 @@ window.DBD_BUILDS = {
    "survivor": "sv-jane-romero"
   }
  ],
- "updatedAt": 1792247291643,
+ "updatedAt": 1792250180584,
  "v1": {
   "killers": {
    "trapper": [
