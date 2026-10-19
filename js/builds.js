@@ -1454,9 +1454,26 @@ window.DBD_BUILDS = {
    "offering": "of-toothy-torte",
    "item": "it-sport-flashlight",
    "survivor": "sv-gabriel-soma"
+  },
+  {
+   "id": "mvfjhlm08ydca",
+   "name": "Aura Object",
+   "perks": [
+    "sp-object-of-obsession",
+    "sp-lithe",
+    "sp-finesse",
+    "sp-we-see-you"
+   ],
+   "addons": [
+    "sa-self-adherent-wrap",
+    "sa-medical-scissors"
+   ],
+   "offering": null,
+   "item": "it-masquerade-med-kit",
+   "survivor": "sv-feng-min"
   }
  ],
- "updatedAt": 1792401551495,
+ "updatedAt": 1792431663204,
  "v1": {
   "killers": {
    "trapper": [
