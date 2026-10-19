@@ -83,7 +83,7 @@
   // 1v1 build: fewer perks / add-ons than a normal build; like every build, its perks can have alternatives
   function blank1v1(scope) {
     const r = rulesFor(scope);
-    return { id: uid(), name: "1v1 Build", perks: Array(r.perkSlots).fill(null), addons: Array(r.addonSlots).fill(null), alts: {} };
+    return { id: uid(), name: "1v1 Preset", perks: Array(r.perkSlots).fill(null), addons: Array(r.addonSlots).fill(null), alts: {} };
   }
   function ensureV1(s) {
     s.v1 = s.v1 || {};
@@ -657,7 +657,7 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
   function addBuild(scope) {
     const list = listFor(scope);
     const b = isV1(scope) ? blank1v1(baseScope(scope)) : blankBuild(roleOf(scope));
-    b.name = (isV1(scope) ? "1v1 Build " : "Build ") + (list.length + 1);
+    b.name = (isV1(scope) ? "1v1 Preset " : "Preset ") + (list.length + 1);
     list.push(b);
     editing.add(b.id);
     save();
@@ -689,7 +689,7 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
     const { b } = locate(id);
     // an empty build (no perk and no add-on; the offering / item don't count) can't be finished
     if (![...b.perks, ...b.addons].some(Boolean)) return toast("Add at least one perk or add-on first.");
-    if (!b.name.trim()) b.name = "Untitled build";
+    if (!b.name.trim()) b.name = "Untitled preset";
     editing.delete(id);
     save(); render();
   }
