@@ -543,8 +543,7 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
         </a>
       </div>
       <div class="credits">
-        <span>Created by <a href="https://github.com/siralexeu" target="_blank" rel="noopener">siralexeu</a></span>
-        <span>Inspired by <a href="https://otzdarva-builds.com/" target="_blank" rel="noopener">Otzdarva</a></span>
+        <span><a href="https://github.com/siralexeu/dbd-builds" target="_blank" rel="noopener">View on GitHub</a></span>
         ${editMode ? `<button class="credits-link" data-action="export">Save builds</button>` : ""}
         <button class="credits-link" data-action="mode">${editMode ? "Switch to view mode" : "Switch to edit mode"}</button>
       </div>`;
