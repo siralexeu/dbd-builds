@@ -177,7 +177,7 @@ window.DBD_BUILDS = {
     ],
     "addons": [
      "ka-doctor-order-carters-notes",
-     "ka-doctor-discipline-class-iii"
+     "ka-doctor-discipline-class-ii"
     ],
     "offering": null
    },
@@ -192,7 +192,7 @@ window.DBD_BUILDS = {
     ],
     "addons": [
      "ka-doctor-high-stimulus-electrode",
-     "ka-doctor-discipline-class-iii"
+     "ka-doctor-discipline-class-ii"
     ],
     "offering": null
    }
@@ -1437,9 +1437,26 @@ window.DBD_BUILDS = {
    "offering": "of-shroud-of-separation",
    "item": "it-masquerade-toolbox",
    "survivor": "sv-jane-romero"
+  },
+  {
+   "id": "mvf1l11uekwrq",
+   "name": "Pallet UP",
+   "perks": [
+    "sp-five-moves-ahead",
+    "sp-lithe",
+    "sp-wide-open-throttle",
+    "sp-finesse"
+   ],
+   "addons": [
+    "sa-heavy-duty-battery",
+    "sa-long-life-battery"
+   ],
+   "offering": "of-toothy-torte",
+   "item": "it-sport-flashlight",
+   "survivor": "sv-gabriel-soma"
   }
  ],
- "updatedAt": 1792274363093,
+ "updatedAt": 1792401551495,
  "v1": {
   "killers": {
    "trapper": [
