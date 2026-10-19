@@ -23,7 +23,7 @@ window.DBD_BUILDS = {
   "wraith": [
    {
     "id": "mv6qw5atnjy8w",
-    "name": "Preset 1",
+    "name": "Build 1",
     "perks": [
      "kp-eruption",
      "kp-call-of-brine",
@@ -38,7 +38,7 @@ window.DBD_BUILDS = {
    },
    {
     "id": "mvcs4ofxkhbzc",
-    "name": "Preset 2",
+    "name": "Build 2",
     "perks": [
      "kp-deadlock",
      "kp-make-your-choice",
@@ -53,7 +53,7 @@ window.DBD_BUILDS = {
    },
    {
     "id": "mvcs5yzv2hnr4",
-    "name": "Preset 3",
+    "name": "Build 3",
     "perks": [
      "kp-discordance",
      "kp-bamboozle",
@@ -65,27 +65,12 @@ window.DBD_BUILDS = {
      "ka-wraith-swift-hunt-blood"
     ],
     "offering": null
-   },
-   {
-    "id": "mvexcx2gbyysa",
-    "name": "Preset 4",
-    "perks": [
-     null,
-     null,
-     null,
-     null
-    ],
-    "addons": [
-     null,
-     null
-    ],
-    "offering": null
    }
   ],
   "hillbilly": [
    {
     "id": "mvcs7cbanx4t4",
-    "name": "Preset 1",
+    "name": "Build 1",
     "perks": [
      "kp-scourge-hook-pain-resonance",
      "kp-pop-goes-the-weasel",
@@ -151,7 +136,7 @@ window.DBD_BUILDS = {
   "hag": [
    {
     "id": "mvcscd8vkz0ru",
-    "name": "Preset 1",
+    "name": "Build 1",
     "perks": [
      "kp-pop-goes-the-weasel",
      "kp-make-your-choice",
@@ -166,7 +151,7 @@ window.DBD_BUILDS = {
    },
    {
     "id": "mvcsd7528dni1",
-    "name": "Preset 2",
+    "name": "Build 2",
     "perks": [
      "kp-hex-blood-favour",
      "kp-hex-ruin",
@@ -183,7 +168,7 @@ window.DBD_BUILDS = {
   "doctor": [
    {
     "id": "mvcseaf8wh4oc",
-    "name": "Preset 1",
+    "name": "Build 1",
     "perks": [
      "kp-scourge-hook-pain-resonance",
      "kp-pop-goes-the-weasel",
@@ -192,13 +177,13 @@ window.DBD_BUILDS = {
     ],
     "addons": [
      "ka-doctor-order-carters-notes",
-     "ka-doctor-discipline-class-ii"
+     "ka-doctor-discipline-class-iii"
     ],
     "offering": null
    },
    {
     "id": "mvcsf4hz3l001",
-    "name": "Preset 2",
+    "name": "Build 2",
     "perks": [
      "kp-discordance",
      "kp-pop-goes-the-weasel",
@@ -207,7 +192,7 @@ window.DBD_BUILDS = {
     ],
     "addons": [
      "ka-doctor-high-stimulus-electrode",
-     "ka-doctor-discipline-class-ii"
+     "ka-doctor-discipline-class-iii"
     ],
     "offering": null
    }
@@ -215,7 +200,7 @@ window.DBD_BUILDS = {
   "huntress": [
    {
     "id": "mvcskjz2nhfyk",
-    "name": "Preset 1",
+    "name": "Build 1",
     "perks": [
      "kp-lethal-pursuer",
      "kp-nowhere-to-hide",
@@ -230,7 +215,7 @@ window.DBD_BUILDS = {
    },
    {
     "id": "mvcslebwlliy4",
-    "name": "Preset 2",
+    "name": "Build 2",
     "perks": [
      "kp-iron-maiden",
      "kp-bitter-murmur",
@@ -247,7 +232,7 @@ window.DBD_BUILDS = {
   "cannibal": [
    {
     "id": "mvcsg5gk8polf",
-    "name": "Preset 1",
+    "name": "Build 1",
     "perks": [
      "kp-barbecue-chilli",
      "kp-scourge-hook-pain-resonance",
@@ -314,7 +299,7 @@ window.DBD_BUILDS = {
   "nightmare": [
    {
     "id": "mvcsmldp8gdrm",
-    "name": "Preset 1",
+    "name": "Build 1",
     "perks": [
      "kp-tinkerer",
      "kp-pop-goes-the-weasel",
@@ -329,7 +314,7 @@ window.DBD_BUILDS = {
    },
    {
     "id": "mvcsnf2ljbihu",
-    "name": "Preset 2",
+    "name": "Build 2",
     "perks": [
      "kp-no-way-out",
      "kp-barbecue-chilli",
@@ -502,7 +487,7 @@ window.DBD_BUILDS = {
   "legion": [
    {
     "id": "mvcsri761xjo0",
-    "name": "Preset 1",
+    "name": "Build 1",
     "perks": [
      "kp-discordance",
      "kp-pop-goes-the-weasel",
@@ -519,7 +504,7 @@ window.DBD_BUILDS = {
   "plague": [
    {
     "id": "mvcss833d0mf3",
-    "name": "Preset 1",
+    "name": "Build 1",
     "perks": [
      "kp-discordance",
      "kp-scourge-hook-pain-resonance",
@@ -536,7 +521,7 @@ window.DBD_BUILDS = {
   "ghost-face": [
    {
     "id": "mvcsstj5j0vio",
-    "name": "Preset 1",
+    "name": "Build 1",
     "perks": [
      "kp-corrupt-intervention",
      "kp-deadlock",
@@ -551,7 +536,7 @@ window.DBD_BUILDS = {
    },
    {
     "id": "mvcstlwslogne",
-    "name": "Preset 2",
+    "name": "Build 2",
     "perks": [
      "kp-hex-ruin",
      "kp-surveillance",
@@ -583,7 +568,7 @@ window.DBD_BUILDS = {
    },
    {
     "id": "mvcsv26r9khbu",
-    "name": "Preset 2",
+    "name": "Build 2",
     "perks": [
      "kp-bamboozle",
      "kp-corrupt-intervention",
@@ -616,7 +601,7 @@ window.DBD_BUILDS = {
    },
    {
     "id": "mvcsx6wpnzmd3",
-    "name": "Preset 2",
+    "name": "Build 2",
     "perks": [
      "kp-dead-mans-switch",
      "kp-scourge-hook-pain-resonance",
@@ -633,7 +618,7 @@ window.DBD_BUILDS = {
   "executioner": [
    {
     "id": "mvcsy9ck8w008",
-    "name": "Preset 1",
+    "name": "Build 1",
     "perks": [
      "kp-nowhere-to-hide",
      "kp-pop-goes-the-weasel",
@@ -650,7 +635,7 @@ window.DBD_BUILDS = {
   "blight": [
    {
     "id": "mvcsz1wf1fr3l",
-    "name": "Preset 1",
+    "name": "Build 1",
     "perks": [
      "kp-grim-embrace",
      "kp-hex-ruin",
@@ -667,7 +652,7 @@ window.DBD_BUILDS = {
   "twins": [
    {
     "id": "mvcszsa2e3osm",
-    "name": "Preset 1",
+    "name": "Build 1",
     "perks": [
      "kp-forced-penance",
      "kp-scourge-hook-gift-of-pain",
@@ -684,7 +669,7 @@ window.DBD_BUILDS = {
   "trickster": [
    {
     "id": "mvct0v90lcjgy",
-    "name": "Preset 1",
+    "name": "Build 1",
     "perks": [
      "kp-pop-goes-the-weasel",
      "kp-darkness-revealed",
@@ -699,7 +684,7 @@ window.DBD_BUILDS = {
    },
    {
     "id": "mvct1ov2u0zyk",
-    "name": "Preset 2",
+    "name": "Build 2",
     "perks": [
      "kp-iron-maiden",
      "kp-spirit-fury",
@@ -716,7 +701,7 @@ window.DBD_BUILDS = {
   "nemesis": [
    {
     "id": "mvct4k6djns74",
-    "name": "Preset 1",
+    "name": "Build 1",
     "perks": [
      "kp-discordance",
      "kp-scourge-hook-pain-resonance",
@@ -748,7 +733,7 @@ window.DBD_BUILDS = {
   "cenobite": [
    {
     "id": "mvcs0d1r7bfpr",
-    "name": "Preset 1",
+    "name": "Build 1",
     "perks": [
      "kp-grim-embrace",
      "kp-surge",
@@ -867,7 +852,7 @@ window.DBD_BUILDS = {
   "onryo": [
    {
     "id": "mvct7k2pduhrn",
-    "name": "Preset 1",
+    "name": "Build 1",
     "perks": [
      "kp-hex-ruin",
      "kp-hex-face-the-darkness",
@@ -882,7 +867,7 @@ window.DBD_BUILDS = {
    },
    {
     "id": "mvct8k5zbvgbw",
-    "name": "Preset 2",
+    "name": "Build 2",
     "perks": [
      "kp-corrupt-intervention",
      "kp-a-nurses-calling",
@@ -897,7 +882,7 @@ window.DBD_BUILDS = {
    },
    {
     "id": "mvct91gxve4qh",
-    "name": "Preset 3",
+    "name": "Build 3",
     "perks": [
      "kp-eruption",
      "kp-discordance",
@@ -914,7 +899,7 @@ window.DBD_BUILDS = {
   "dredge": [
    {
     "id": "mvcta3tf3kpjh",
-    "name": "Preset 1",
+    "name": "Build 1",
     "perks": [
      "kp-barbecue-chilli",
      "kp-scourge-hook-pain-resonance",
@@ -929,7 +914,7 @@ window.DBD_BUILDS = {
    },
    {
     "id": "mvctap0hjoxaa",
-    "name": "Preset 2",
+    "name": "Build 2",
     "perks": [
      "kp-scourge-hook-floods-of-rage",
      "kp-make-your-choice",
@@ -1003,27 +988,12 @@ window.DBD_BUILDS = {
      "ka-mastermind-jewel-beetle"
     ],
     "offering": "of-toothy-torte"
-   },
-   {
-    "id": "mvexcr9gtadr1",
-    "name": "Preset 5",
-    "perks": [
-     null,
-     null,
-     null,
-     null
-    ],
-    "addons": [
-     null,
-     null
-    ],
-    "offering": null
    }
   ],
   "knight": [
    {
     "id": "mvctbsxfkz9dq",
-    "name": "Preset 1",
+    "name": "Build 1",
     "perks": [
      "kp-eruption",
      "kp-mindbreaker",
@@ -1038,7 +1008,7 @@ window.DBD_BUILDS = {
    },
    {
     "id": "mvctcfiscn3b8",
-    "name": "Preset 2",
+    "name": "Build 2",
     "perks": [
      "kp-gearhead",
      "kp-surge",
@@ -1343,7 +1313,7 @@ window.DBD_BUILDS = {
    },
    {
     "id": "mv8ayes9xhrfn",
-    "name": "Preset 2",
+    "name": "Build 2",
     "perks": [
      "kp-scourge-hook-pain-resonance",
      "kp-turn-back-the-clock",
@@ -1467,34 +1437,17 @@ window.DBD_BUILDS = {
    "offering": "of-shroud-of-separation",
    "item": "it-masquerade-toolbox",
    "survivor": "sv-jane-romero"
-  },
-  {
-   "id": "mvexsbu94ezpv",
-   "name": "Pallet UP",
-   "perks": [
-    "sp-five-moves-ahead",
-    "sp-lithe",
-    "sp-wide-open-throttle",
-    "sp-finesse"
-   ],
-   "addons": [
-    "sa-heavy-duty-battery",
-    "sa-long-life-battery"
-   ],
-   "offering": "of-toothy-torte",
-   "item": "it-sport-flashlight",
-   "survivor": "sv-gabriel-soma"
   }
  ],
- "updatedAt": 1792395430619,
+ "updatedAt": 1792274363093,
  "v1": {
   "killers": {
    "trapper": [
     {
      "id": "mv0rcyrotuxo9",
-     "name": "1v1 Preset 1",
+     "name": "1v1 Build 1",
      "perks": [
-      "kp-bamboozle"
+      "kp-brutal-strength"
      ],
      "addons": [
       "ka-trapper-trapper-sack",
@@ -1502,7 +1455,7 @@ window.DBD_BUILDS = {
      ],
      "alts": {
       "0": [
-       "kp-brutal-strength"
+       "kp-bamboozle"
       ]
      }
     }
@@ -1510,7 +1463,7 @@ window.DBD_BUILDS = {
    "wraith": [
     {
      "id": "mv0ubmt5fjbno",
-     "name": "uncloak breaking",
+     "name": "classic 1v1",
      "perks": [
       "kp-bamboozle"
      ],
@@ -1528,7 +1481,7 @@ window.DBD_BUILDS = {
    "doctor": [
     {
      "id": "mv0ua1dmbr8od",
-     "name": "1v1 Preset 1",
+     "name": "1v1 Build 1",
      "perks": [
       "kp-brutal-strength"
      ],
@@ -1571,7 +1524,7 @@ window.DBD_BUILDS = {
    "dark-lord": [
     {
      "id": "mv0rdojlbk2js",
-     "name": "1v1 Preset 1",
+     "name": "1v1 Build 1",
      "perks": [
       "kp-brutal-strength"
      ],
