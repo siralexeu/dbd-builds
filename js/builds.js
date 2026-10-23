@@ -382,16 +382,22 @@ window.DBD_BUILDS = {
     "id": "muwkhoci040le",
     "name": "comp 1",
     "perks": [
-     "kp-corrupt-intervention",
      "kp-scourge-hook-pain-resonance",
      "kp-pop-goes-the-weasel",
-     "kp-eruption"
+     "kp-eruption",
+     "kp-corrupt-intervention"
     ],
     "addons": [
      "ka-spirit-rusty-flute",
      "ka-spirit-muddy-sports-day-cap"
     ],
-    "offering": "of-ebony-memento-mori"
+    "offering": "of-ebony-memento-mori",
+    "alts": {
+     "3": [
+      "kp-hex-devour-hope",
+      "kp-surge"
+     ]
+    }
    },
    {
     "id": "mv8i1ejd0xo49",
@@ -1473,7 +1479,7 @@ window.DBD_BUILDS = {
    "survivor": "sv-feng-min"
   }
  ],
- "updatedAt": 1792431663204,
+ "updatedAt": 1792780343324,
  "v1": {
   "killers": {
    "trapper": [
