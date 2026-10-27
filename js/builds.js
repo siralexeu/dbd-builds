@@ -1479,13 +1479,13 @@ window.DBD_BUILDS = {
    "survivor": "sv-feng-min"
   }
  ],
- "updatedAt": 1792780343324,
+ "updatedAt": 1793107397325,
  "v1": {
   "killers": {
    "trapper": [
     {
      "id": "mv0rcyrotuxo9",
-     "name": "1v1 Build 1",
+     "name": "1v1 Preset 1",
      "perks": [
       "kp-brutal-strength"
      ],
@@ -1493,17 +1493,25 @@ window.DBD_BUILDS = {
       "ka-trapper-trapper-sack",
       null
      ],
-     "alts": {
-      "0": [
-       "kp-bamboozle"
-      ]
-     }
+     "alts": {}
+    },
+    {
+     "id": "mvqpemd7gefgb",
+     "name": "1v1 Preset 2",
+     "perks": [
+      "kp-bamboozle"
+     ],
+     "addons": [
+      null,
+      null
+     ],
+     "alts": {}
     }
    ],
    "wraith": [
     {
      "id": "mv0ubmt5fjbno",
-     "name": "classic 1v1",
+     "name": "uncloak + break",
      "perks": [
       "kp-bamboozle"
      ],
@@ -1533,19 +1541,97 @@ window.DBD_BUILDS = {
     }
    ],
    "huntress": [],
-   "cannibal": [],
+   "cannibal": [
+    {
+     "id": "mvqprbitbdsmg",
+     "name": "1v1 Preset 1",
+     "perks": [
+      "kp-bamboozle"
+     ],
+     "addons": [
+      "ka-cannibal-homemade-muffler",
+      "ka-cannibal-the-beasts-marks"
+     ],
+     "alts": {}
+    }
+   ],
    "nightmare": [],
-   "pig": [],
+   "pig": [
+    {
+     "id": "mvqpqadrqy063",
+     "name": "1v1 Preset 1",
+     "perks": [
+      "kp-bamboozle"
+     ],
+     "addons": [
+      "ka-pig-last-will",
+      "ka-pig-workshop-grease"
+     ],
+     "alts": {}
+    }
+   ],
    "clown": [],
-   "spirit": [],
+   "spirit": [
+    {
+     "id": "mvqps3f8v8jh5",
+     "name": "1v1 Preset 1",
+     "perks": [
+      "kp-rapid-brutality"
+     ],
+     "addons": [
+      "ka-spirit-muddy-sports-day-cap",
+      "ka-spirit-white-hair-ribbon"
+     ],
+     "alts": {}
+    }
+   ],
    "legion": [],
    "plague": [],
    "ghost-face": [],
-   "demogorgon": [],
-   "oni": [],
+   "demogorgon": [
+    {
+     "id": "mvqppo2ea20ee",
+     "name": "1v1 Preset 1",
+     "perks": [
+      "kp-bamboozle"
+     ],
+     "addons": [
+      "ka-demogorgon-barbs-glasses",
+      "ka-demogorgon-black-heart"
+     ],
+     "alts": {}
+    }
+   ],
+   "oni": [
+    {
+     "id": "mvqpssla0vim2",
+     "name": "1v1 Preset 1",
+     "perks": [
+      "kp-bamboozle"
+     ],
+     "addons": [
+      "ka-oni-akitos-crutch",
+      "ka-oni-shattered-wakizashi"
+     ],
+     "alts": {}
+    }
+   ],
    "deathslinger": [],
    "executioner": [],
-   "blight": [],
+   "blight": [
+    {
+     "id": "mvqpttf4sfnx1",
+     "name": "1v1 Preset 1",
+     "perks": [
+      "kp-enduring"
+     ],
+     "addons": [
+      "ka-blight-blighted-crow",
+      "ka-blight-blighted-rat"
+     ],
+     "alts": {}
+    }
+   ],
    "twins": [],
    "trickster": [],
    "nemesis": [],
