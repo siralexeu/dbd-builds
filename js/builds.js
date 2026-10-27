@@ -1479,7 +1479,7 @@ window.DBD_BUILDS = {
    "survivor": "sv-feng-min"
   }
  ],
- "updatedAt": 1793107397325,
+ "updatedAt": 1793136230535,
  "v1": {
   "killers": {
    "trapper": [
@@ -1534,8 +1534,8 @@ window.DBD_BUILDS = {
       "kp-brutal-strength"
      ],
      "addons": [
-      "ka-doctor-iridescent-king",
-      "ka-doctor-iridescent-queen"
+      "ka-doctor-discipline-carters-notes",
+      "ka-doctor-high-stimulus-electrode"
      ],
      "alts": {}
     }
