@@ -326,6 +326,21 @@ window.DBD_BUILDS = {
      "ka-nightmare-blue-dress"
     ],
     "offering": null
+   },
+   {
+    "id": "mvwutvfa0oa4k",
+    "name": "Preset 3",
+    "perks": [
+     "kp-dragons-grip",
+     "kp-sloppy-butcher",
+     "kp-lay-waste",
+     "kp-scourge-hook-jagged-compass"
+    ],
+    "addons": [
+     "ka-nightmare-pill-bottle",
+     "ka-nightmare-jump-rope-dream-demon"
+    ],
+    "offering": null
    }
   ],
   "pig": [
@@ -1331,6 +1346,21 @@ window.DBD_BUILDS = {
      "ka-slasher-coroners-coffee"
     ],
     "offering": null
+   },
+   {
+    "id": "mvwuv0drnrl81",
+    "name": "Preset 3",
+    "perks": [
+     "kp-lay-waste",
+     "kp-scourge-hook-jagged-compass",
+     "kp-scourge-hook-gift-of-pain",
+     "kp-whispers"
+    ],
+    "addons": [
+     "ka-slasher-two-nails",
+     "ka-slasher-sleeping-bag"
+    ],
+    "offering": null
    }
   ],
   "judgment": []
@@ -1479,7 +1509,7 @@ window.DBD_BUILDS = {
    "survivor": "sv-feng-min"
   }
  ],
- "updatedAt": 1793136230535,
+ "updatedAt": 1793478683993,
  "v1": {
   "killers": {
    "trapper": [
