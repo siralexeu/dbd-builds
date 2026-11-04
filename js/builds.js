@@ -65,6 +65,21 @@ window.DBD_BUILDS = {
      "ka-wraith-swift-hunt-blood"
     ],
     "offering": null
+   },
+   {
+    "id": "mw2j51o9vpyl4",
+    "name": "Preset 4",
+    "perks": [
+     "kp-bamboozle",
+     "kp-eruption",
+     "kp-sloppy-butcher",
+     "kp-lay-waste"
+    ],
+    "addons": [
+     "ka-wraith-shadow-dance-blood",
+     "ka-wraith-swift-hunt-blood"
+    ],
+    "offering": "of-black-ward"
    }
   ],
   "hillbilly": [
@@ -1509,7 +1524,7 @@ window.DBD_BUILDS = {
    "survivor": "sv-feng-min"
   }
  ],
- "updatedAt": 1793478683993,
+ "updatedAt": 1793822416701,
  "v1": {
   "killers": {
    "trapper": [
