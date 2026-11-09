@@ -561,7 +561,7 @@ window.DBD_BUILDS = ${JSON.stringify(state, null, 1)};
       <div class="popup-box" role="dialog" aria-label="${esc(k.name)} builds">
         <button class="close-btn popup-close" data-action="close" aria-label="Close">${ICONS.close}</button>
         <h2 class="sec-title">${esc(k.name)}</h2>
-        <p class="popup-meta">${[k.realName && esc(k.realName), `Power: <b>${esc(k.power)}</b>`, k.difficulty && esc(k.difficulty)].filter(Boolean).join("<span class=\"sep\">·</span>")}</p>
+        <p class="popup-meta">${[k.realName && esc(k.realName), `Power: <b>${esc(k.power)}</b>`, k.speed && `Speed: <b>${esc(k.speed)}</b> m/s${k.powerSpeed ? ` (${esc(k.powerSpeed)})` : ""}`].filter(Boolean).join("<span class=\"sep\">·</span>")}</p>
         ${tabsBar("#/killers/" + k.id, tab)}
         ${tab === "1v1" ? render1v1(k.id) : `<div class="build-grid ${soloCls(list.length)}">
           ${list.map((b) => buildCard(b, "killer", k)).join("")}

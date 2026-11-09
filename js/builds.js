@@ -65,6 +65,21 @@ window.DBD_BUILDS = {
      "ka-wraith-swift-hunt-blood"
     ],
     "offering": null
+   },
+   {
+    "id": "mw2j51o9vpyl4",
+    "name": "Preset 4",
+    "perks": [
+     "kp-bamboozle",
+     "kp-eruption",
+     "kp-sloppy-butcher",
+     "kp-lay-waste"
+    ],
+    "addons": [
+     "ka-wraith-shadow-dance-blood",
+     "ka-wraith-swift-hunt-blood"
+    ],
+    "offering": "of-black-ward"
    }
   ],
   "hillbilly": [
@@ -326,6 +341,21 @@ window.DBD_BUILDS = {
      "ka-nightmare-blue-dress"
     ],
     "offering": null
+   },
+   {
+    "id": "mvwutvfa0oa4k",
+    "name": "Preset 3",
+    "perks": [
+     "kp-dragons-grip",
+     "kp-sloppy-butcher",
+     "kp-lay-waste",
+     "kp-scourge-hook-jagged-compass"
+    ],
+    "addons": [
+     "ka-nightmare-pill-bottle",
+     "ka-nightmare-jump-rope-dream-demon"
+    ],
+    "offering": null
    }
   ],
   "pig": [
@@ -382,16 +412,22 @@ window.DBD_BUILDS = {
     "id": "muwkhoci040le",
     "name": "comp 1",
     "perks": [
-     "kp-corrupt-intervention",
      "kp-scourge-hook-pain-resonance",
      "kp-pop-goes-the-weasel",
-     "kp-eruption"
+     "kp-eruption",
+     "kp-corrupt-intervention"
     ],
     "addons": [
      "ka-spirit-rusty-flute",
      "ka-spirit-muddy-sports-day-cap"
     ],
-    "offering": "of-ebony-memento-mori"
+    "offering": "of-ebony-memento-mori",
+    "alts": {
+     "3": [
+      "kp-hex-devour-hope",
+      "kp-surge"
+     ]
+    }
    },
    {
     "id": "mv8i1ejd0xo49",
@@ -497,6 +533,21 @@ window.DBD_BUILDS = {
     "addons": [
      "ka-legion-etched-ruler",
      "ka-legion-mischief-list"
+    ],
+    "offering": null
+   },
+   {
+    "id": "mw9bcn7yy1za4",
+    "name": "Preset 2",
+    "perks": [
+     "kp-scourge-hook-pain-resonance",
+     "kp-surge",
+     "kp-thanatophobia",
+     "kp-surveillance"
+    ],
+    "addons": [
+     "ka-legion-iridescent-button",
+     "ka-legion-the-legion-pin"
     ],
     "offering": null
    }
@@ -1325,6 +1376,21 @@ window.DBD_BUILDS = {
      "ka-slasher-coroners-coffee"
     ],
     "offering": null
+   },
+   {
+    "id": "mvwuv0drnrl81",
+    "name": "Preset 3",
+    "perks": [
+     "kp-lay-waste",
+     "kp-scourge-hook-jagged-compass",
+     "kp-scourge-hook-gift-of-pain",
+     "kp-whispers"
+    ],
+    "addons": [
+     "ka-slasher-two-nails",
+     "ka-slasher-sleeping-bag"
+    ],
+    "offering": null
    }
   ],
   "judgment": []
@@ -1454,15 +1520,32 @@ window.DBD_BUILDS = {
    "offering": "of-toothy-torte",
    "item": "it-sport-flashlight",
    "survivor": "sv-gabriel-soma"
+  },
+  {
+   "id": "mvfjhlm08ydca",
+   "name": "Aura Object",
+   "perks": [
+    "sp-object-of-obsession",
+    "sp-lithe",
+    "sp-finesse",
+    "sp-we-see-you"
+   ],
+   "addons": [
+    "sa-self-adherent-wrap",
+    "sa-medical-scissors"
+   ],
+   "offering": null,
+   "item": "it-masquerade-med-kit",
+   "survivor": "sv-feng-min"
   }
  ],
- "updatedAt": 1792401551495,
+ "updatedAt": 1794231943959,
  "v1": {
   "killers": {
    "trapper": [
     {
      "id": "mv0rcyrotuxo9",
-     "name": "1v1 Build 1",
+     "name": "1v1 Preset 1",
      "perks": [
       "kp-brutal-strength"
      ],
@@ -1470,17 +1553,25 @@ window.DBD_BUILDS = {
       "ka-trapper-trapper-sack",
       null
      ],
-     "alts": {
-      "0": [
-       "kp-bamboozle"
-      ]
-     }
+     "alts": {}
+    },
+    {
+     "id": "mvqpemd7gefgb",
+     "name": "1v1 Preset 2",
+     "perks": [
+      "kp-bamboozle"
+     ],
+     "addons": [
+      null,
+      null
+     ],
+     "alts": {}
     }
    ],
    "wraith": [
     {
      "id": "mv0ubmt5fjbno",
-     "name": "classic 1v1",
+     "name": "uncloak + break",
      "perks": [
       "kp-bamboozle"
      ],
@@ -1503,26 +1594,104 @@ window.DBD_BUILDS = {
       "kp-brutal-strength"
      ],
      "addons": [
-      "ka-doctor-iridescent-king",
-      "ka-doctor-iridescent-queen"
+      "ka-doctor-discipline-carters-notes",
+      "ka-doctor-high-stimulus-electrode"
      ],
      "alts": {}
     }
    ],
    "huntress": [],
-   "cannibal": [],
+   "cannibal": [
+    {
+     "id": "mvqprbitbdsmg",
+     "name": "1v1 Preset 1",
+     "perks": [
+      "kp-bamboozle"
+     ],
+     "addons": [
+      "ka-cannibal-homemade-muffler",
+      "ka-cannibal-the-beasts-marks"
+     ],
+     "alts": {}
+    }
+   ],
    "nightmare": [],
-   "pig": [],
+   "pig": [
+    {
+     "id": "mvqpqadrqy063",
+     "name": "1v1 Preset 1",
+     "perks": [
+      "kp-bamboozle"
+     ],
+     "addons": [
+      "ka-pig-last-will",
+      "ka-pig-workshop-grease"
+     ],
+     "alts": {}
+    }
+   ],
    "clown": [],
-   "spirit": [],
+   "spirit": [
+    {
+     "id": "mvqps3f8v8jh5",
+     "name": "1v1 Preset 1",
+     "perks": [
+      "kp-rapid-brutality"
+     ],
+     "addons": [
+      "ka-spirit-muddy-sports-day-cap",
+      "ka-spirit-white-hair-ribbon"
+     ],
+     "alts": {}
+    }
+   ],
    "legion": [],
    "plague": [],
    "ghost-face": [],
-   "demogorgon": [],
-   "oni": [],
+   "demogorgon": [
+    {
+     "id": "mvqppo2ea20ee",
+     "name": "1v1 Preset 1",
+     "perks": [
+      "kp-bamboozle"
+     ],
+     "addons": [
+      "ka-demogorgon-barbs-glasses",
+      "ka-demogorgon-black-heart"
+     ],
+     "alts": {}
+    }
+   ],
+   "oni": [
+    {
+     "id": "mvqpssla0vim2",
+     "name": "1v1 Preset 1",
+     "perks": [
+      "kp-bamboozle"
+     ],
+     "addons": [
+      "ka-oni-akitos-crutch",
+      "ka-oni-shattered-wakizashi"
+     ],
+     "alts": {}
+    }
+   ],
    "deathslinger": [],
    "executioner": [],
-   "blight": [],
+   "blight": [
+    {
+     "id": "mvqpttf4sfnx1",
+     "name": "1v1 Preset 1",
+     "perks": [
+      "kp-enduring"
+     ],
+     "addons": [
+      "ka-blight-blighted-crow",
+      "ka-blight-blighted-rat"
+     ],
+     "alts": {}
+    }
+   ],
    "twins": [],
    "trickster": [],
    "nemesis": [],
