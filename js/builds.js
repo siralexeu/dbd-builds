@@ -535,6 +535,21 @@ window.DBD_BUILDS = {
      "ka-legion-mischief-list"
     ],
     "offering": null
+   },
+   {
+    "id": "mw9bcn7yy1za4",
+    "name": "Preset 2",
+    "perks": [
+     "kp-scourge-hook-pain-resonance",
+     "kp-surge",
+     "kp-thanatophobia",
+     "kp-surveillance"
+    ],
+    "addons": [
+     "ka-legion-iridescent-button",
+     "ka-legion-the-legion-pin"
+    ],
+    "offering": null
    }
   ],
   "plague": [
@@ -1524,7 +1539,7 @@ window.DBD_BUILDS = {
    "survivor": "sv-feng-min"
   }
  ],
- "updatedAt": 1793822416701,
+ "updatedAt": 1794231943959,
  "v1": {
   "killers": {
    "trapper": [
