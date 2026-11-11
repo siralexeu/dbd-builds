@@ -633,7 +633,23 @@ window.DBD_BUILDS = {
     "offering": null
    }
   ],
-  "oni": [],
+  "oni": [
+   {
+    "id": "mwc8xx2iwkqyb",
+    "name": "Preset 1",
+    "perks": [
+     "kp-hex-retribution",
+     "kp-hex-pentimento",
+     "kp-hex-undying",
+     "kp-hex-ruin"
+    ],
+    "addons": [
+     "ka-oni-lion-fang",
+     "ka-oni-ink-lion"
+    ],
+    "offering": null
+   }
+  ],
   "deathslinger": [
    {
     "id": "mvcswai5n2oua",
@@ -1539,7 +1555,7 @@ window.DBD_BUILDS = {
    "survivor": "sv-feng-min"
   }
  ],
- "updatedAt": 1794231943959,
+ "updatedAt": 1794409355534,
  "v1": {
   "killers": {
    "trapper": [
